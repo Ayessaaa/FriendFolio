@@ -130,7 +130,11 @@
       </div>
     </div>
 
-    <div class="lg:w-2/3 xl:w-1/2 mx-auto mt-10 transition-all px-10 lg:px-0 ">
+    <div class="lg:w-2/3 xl:w-1/2 mx-auto mt-10 transition-all px-10 lg:px-0">
+      <span
+        class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400 font-bold text-3xl"
+        >Friend Profile</span
+      >
       <div class="flex flex-col mt-5 gap-3 px-5">
         <div class="flex gap-2 mx-auto w-full">
           <div
@@ -146,9 +150,45 @@
                 17 years old
               </p>
             </div>
+            <div class="flex-1">
+              <div class="w-fit ml-auto">
+                <button
+                  title="edit"
+                  class="p-1 rounded-md bg-white border border-neutral-200 hover:bg-violet-400 transition-all text-violet-400 hover:text-white hover:border-violet-400 hover:shadow-md hover:shadow-violet-500/30"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    class="size-5"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M11.013 2.513a1.75 1.75 0 0 1 2.475 2.474L6.226 12.25a2.751 2.751 0 0 1-.892.596l-2.047.848a.75.75 0 0 1-.98-.98l.848-2.047a2.75 2.75 0 0 1 .596-.892l7.262-7.261Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+                <button
+                  title="edit"
+                  class="p-1 rounded-md bg-white border border-neutral-200 hover:bg-red-400 transition-all text-red-400 hover:text-white hover:border-red-400 hover:shadow-md hover:shadow-red-500/30"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    class="size-5"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M5 3.25V4H2.75a.75.75 0 0 0 0 1.5h.3l.815 8.15A1.5 1.5 0 0 0 5.357 15h5.285a1.5 1.5 0 0 0 1.493-1.35l.815-8.15h.3a.75.75 0 0 0 0-1.5H11v-.75A2.25 2.25 0 0 0 8.75 1h-1.5A2.25 2.25 0 0 0 5 3.25Zm2.25-.75a.75.75 0 0 0-.75.75V4h3v-.75a.75.75 0 0 0-.75-.75h-1.5ZM6.05 6a.75.75 0 0 1 .787.713l.275 5.5a.75.75 0 0 1-1.498.075l-.275-5.5A.75.75 0 0 1 6.05 6Zm3.9 0a.75.75 0 0 1 .712.787l-.275 5.5a.75.75 0 0 1-1.498-.075l.275-5.5a.75.75 0 0 1 .786-.711Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
-
-          
 
           <div
             class="rounded-xl bg-violet-300 font-bold text-white flex-col flex items-center justify-center w-32 group hover:bg-violet-400/70 transition-all hover:shadow-md hover:shadow-violet-500/30"
@@ -164,15 +204,127 @@
               28
             </p>
           </div>
-          <div class="bg-white text-center rounded-xl py-4 px-3">
-            <p class="text-4xl">♋</p>
-            <p class="font-bold text-xl text-neutral-800">Cancer</p>
-            <p class="text-sm font-medium">(Jun 21 – Jul 22)</p>
+          <div
+            class="bg-white text-center rounded-xl py-4 px-3 hover:bg-purple-400 transition-all hover:text-white group hover:shadow-md hover:shadow-purple-500/30"
+          >
+            <p class="text-4xl trasition-all">♋</p>
+            <p
+              class="font-bold text-xl text-neutral-800 group-hover:text-white drop-shadow-md"
+            >
+              Cancer
+            </p>
+            <p class="text-sm font-medium drop-shadow-sm">(Jun 21 – Jul 22)</p>
           </div>
         </div>
       </div>
-      
-      
+
+      <div class="flex flex-row mt-3 gap-3 px-5">
+        <div class="bg-white basis-1/2 rounded-xl py-2 px-5">
+          <p
+            class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400 font-bold text-xl mb-3"
+          >
+            Personal Details
+          </p>
+
+          <div class="ml-3">
+            <p class="font-semibold text-neutral-500">Hobbies</p>
+            <ul class="list-disc ml-8 text-sm font-medium text-neutral-500/80">
+              <li class="hover:text-violet-500 transition-all">Coding</li>
+              <li class="hover:text-violet-500 transition-all">Cooking</li>
+              <li class="hover:text-violet-500 transition-all">Travel</li>
+            </ul>
+            <p class="font-semibold text-neutral-500 mt-3">Dream</p>
+            <p class="text-sm font-medium text-neutral-500/80 hover:text-violet-500 transition-all">
+              Cloud Architect
+            </p>
+            <div class="flex mb-3">
+              <div class="basis-1/2">
+                <p class="font-semibold text-neutral-500 mt-3 b">Likes</p>
+                <ul
+                  class="list-disc ml-8 text-sm font-medium text-neutral-500/80"
+                >
+                  <li class="hover:text-pink-500 transition-all">Pink and Blue</li>
+                  <li class="hover:text-pink-500 transition-all">Pepper</li>
+                  <li class="hover:text-pink-500 transition-all">Fam and Friends</li>
+                </ul>
+              </div>
+              <div class="basis-1/">
+                <p class="font-semibold text-neutral-500 mt-3">Dislikes</p>
+                <ul
+                  class="list-disc ml-8 text-sm font-medium text-neutral-500/80"
+                >
+                  <li  class="hover:text-pink-500 transition-all">Coding</li>
+                  <li  class="hover:text-pink-500 transition-all">Cooking</li>
+                  <li  class="hover:text-pink-500 transition-all">Travel</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white basis-1/2 rounded-xl py-2 px-5 h-fit">
+          <p
+            class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400 font-bold text-xl mb-3"
+          >
+            Contact Info
+          </p>
+          <div class="ml-3">
+            <p class="font-semibold text-neutral-500 mt-3">Contact Number</p>
+            <p
+              class="text-sm font-medium text-neutral-500/80 flex items-center gap-1 hover:text-orange-500 transition-all"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                class="size-4 inline"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="m3.855 7.286 1.067-.534a1 1 0 0 0 .542-1.046l-.44-2.858A1 1 0 0 0 4.036 2H3a1 1 0 0 0-1 1v2c0 .709.082 1.4.238 2.062a9.012 9.012 0 0 0 6.7 6.7A9.024 9.024 0 0 0 11 14h2a1 1 0 0 0 1-1v-1.036a1 1 0 0 0-.848-.988l-2.858-.44a1 1 0 0 0-1.046.542l-.534 1.067a7.52 7.52 0 0 1-4.86-4.859Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              09192772359
+            </p>
+            <p class="font-semibold text-neutral-500 mt-3">Email</p>
+            <p
+              class="text-sm font-medium text-neutral-500/80 flex items-center gap-1 hover:text-orange-500 transition-all"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                class="size-4"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M11.89 4.111a5.5 5.5 0 1 0 0 7.778.75.75 0 1 1 1.06 1.061A7 7 0 1 1 15 8a2.5 2.5 0 0 1-4.083 1.935A3.5 3.5 0 1 1 11.5 8a1 1 0 0 0 2 0 5.48 5.48 0 0 0-1.61-3.889ZM10 8a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+
+              ayessamaedeguzman@gmail.com
+            </p>
+            <p class="font-semibold text-neutral-500 mt-3">Address</p>
+            <p
+              class="text-sm font-medium text-neutral-500/80 flex items-center gap-1 mb-3 hover:text-orange-500 transition-all"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                class="size-4"
+              >
+                <path
+                  d="M8.543 2.232a.75.75 0 0 0-1.085 0l-5.25 5.5A.75.75 0 0 0 2.75 9H4v4a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1a1 1 0 1 1 2 0v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V9h1.25a.75.75 0 0 0 .543-1.268l-5.25-5.5Z"
+                />
+              </svg>
+
+              ABC Street, Malolos City, Bulacan
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
