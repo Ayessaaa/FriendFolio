@@ -28,9 +28,9 @@
     </style>
   </head>
   <body
-    class="bg-gradient-to-r from-violet-100 via-purple-50 to-pink-100 bg-no-repeat bg-fixed transition-all px-16 py-10"
+    class="bg-gradient-to-r from-violet-100 via-purple-50 to-pink-100 bg-no-repeat bg-fixed transition-all px-0 lg:px-16 py-10"
   >
-    <div class="grid grid-cols-3 w-full h-fit">
+    <div class="grid grid-cols-3 w-full h-fit px-16 lg:px-0">
       <div
         class="group w-fit flex items-center flex-row col-span-3 lg:col-span-1 mx-auto lg:mx-0 transition-all"
       >
@@ -90,19 +90,21 @@
         </button>
         <button
           title="friends"
-          class="flex items-center h-full w-fit bg-pink-400 px-3 py-1 rounded-full gap-2 shadow-md shadow-pink-500/50 hover:bg-pink-500/80 transition-all"
+          class="flex items-center h-full w-fit group bg-pink-400 px-3 py-1 rounded-full gap-2 shadow-md shadow-pink-500/50 hover:bg-pink-500/80 transition-all active:bg-pink-200"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            class="size-5 text-white"
+            class="size-5 text-white group-active:text-pink-400"
           >
             <path
               d="M10 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM6 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM1.49 15.326a.78.78 0 0 1-.358-.442 3 3 0 0 1 4.308-3.516 6.484 6.484 0 0 0-1.905 3.959c-.023.222-.014.442.025.654a4.97 4.97 0 0 1-2.07-.655ZM16.44 15.98a4.97 4.97 0 0 0 2.07-.654.78.78 0 0 0 .357-.442 3 3 0 0 0-4.308-3.517 6.484 6.484 0 0 1 1.907 3.96 2.32 2.32 0 0 1-.026.654ZM18 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM5.304 16.19a.844.844 0 0 1-.277-.71 5 5 0 0 1 9.947 0 .843.843 0 0 1-.277.71A6.975 6.975 0 0 1 10 18a6.974 6.974 0 0 1-4.696-1.81Z"
             />
           </svg>
-          <p class="font-medium text-white">Friends</p>
+          <p class="font-medium text-white group-active:text-pink-400">
+            Friends
+          </p>
         </button>
         <button
           title="polariods"
@@ -131,19 +133,54 @@
       </div>
     </div>
 
-    <div class="w-100 mx-auto mt-10 transition-all">
-      <p class="font-semibold text-xl text-neutral-500">
-        My
-        <span
-          class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400 font-bold text-3xl"
-          >Friends!</span
+    <div
+      class="w-100 mx-auto mt-10 transition-all px-2 md:px-0 bg-white rounded-xl py-5 border"
+    >
+      <div class="bg-pink-400 w-fit p-1.5 rounded-lg mx-auto mb-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="size-9 text-white stroke-2"
         >
-      </p>
+          <path
+            fill-rule="evenodd"
+            d="M8.25 6.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM15.75 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM2.25 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM6.31 15.117A6.745 6.745 0 0 1 12 12a6.745 6.745 0 0 1 6.709 7.498.75.75 0 0 1-.372.568A12.696 12.696 0 0 1 12 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 0 1-.372-.568 6.787 6.787 0 0 1 1.019-4.38Z"
+            clip-rule="evenodd"
+          />
+          <path
+            d="M5.082 14.254a8.287 8.287 0 0 0-1.308 5.135 9.687 9.687 0 0 1-1.764-.44l-.115-.04a.563.563 0 0 1-.373-.487l-.01-.121a3.75 3.75 0 0 1 3.57-4.047ZM20.226 19.389a8.287 8.287 0 0 0-1.308-5.135 3.75 3.75 0 0 1 3.57 4.047l-.01.121a.563.563 0 0 1-.373.486l-.115.04c-.567.2-1.156.349-1.764.441Z"
+          />
+        </svg>
+      </div>
 
-      <div class="flex flex-col mt-5 gap-3 w-100">
-        <div class="flex gap-2 w-100 mx-auto">
+      <p
+        class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400 font-bold text-3xl w-fit mx-auto mb-5"
+      >
+        My Friends
+      </p>
+      <div class="w-fit mx-auto">
+        <button
+          class="bg-pink-100 px-5 py-1 text-pink-400 font-semibold transition-all rounded-full flex items-center gap-1 hover:bg-violet-200 hover:text-violet-500 hover:border-violet-400 active:bg-violet-400 active:border-violet-500 active:text-white"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            class="size-5 inline stroke-2"
+          >
+            <path
+              d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"
+            />
+          </svg>
+          Add Friends
+        </button>
+      </div>
+
+      <div class="flex flex-col mt-5 gap-3 px-5">
+        <div class="flex gap-2 mx-auto w-full">
           <div
-            class="py-3 px-3 bg-gradient-to-br from-white via-sky-50 to-sky-200 w-72 rounded-xl flex border shrink w-100"
+            class="py-3 px-3 bg-gradient-to-br w-72 rounded-xl flex border-neutral-100 hover:shadow-md transition-all flex-1"
           >
             <img src="img/pfp.jpg" alt="" class="w-16 rounded-lg" />
             <div class="leading-tight flex-col flex">
@@ -164,54 +201,43 @@
                 </div>
               </div>
             </div>
+
+            <div class="flex-1">
+              <div class="w-fit ml-auto">
+                <button
+                  title="edit"
+                  class="p-1 rounded-md bg-white border border-neutral-200 hover:bg-violet-400 transition-all text-violet-400 hover:text-white hover:border-violet-400 hover:shadow-md hover:shadow-violet-500/30"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    class="size-4"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M11.013 2.513a1.75 1.75 0 0 1 2.475 2.474L6.226 12.25a2.751 2.751 0 0 1-.892.596l-2.047.848a.75.75 0 0 1-.98-.98l.848-2.047a2.75 2.75 0 0 1 .596-.892l7.262-7.261Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
 
           <div
-            class="rounded-xl bg-sky-300 font-bold text-white flex-col flex items-center justify-center border w-20"
+            class="rounded-xl bg-violet-300 font-bold text-white flex-col flex items-center justify-center w-20 group hover:bg-violet-400/70 transition-all hover:shadow-md hover:shadow-violet-500/30"
           >
             <p
-              class="bg-sky-400/70 basis-2/6 px-5 pt-1.5 rounded-t-xl text-lg text-sky-600/80 w-full text-center"
+              class="bg-violet-400/70 basis-2/6 px-5 pt-1.5 rounded-t-xl text-lg text-violet-600/80 w-full text-center drop-shadow-md group-hover:bg-violet-500/50 transition-all group-hover:text-violet-600"
             >
               Apr
             </p>
-            <p class="text-3xl basis-4/6 pt-2">28</p>
-          </div>
-        </div>
-
-        <div class="flex gap-2 w-100 mx-auto">
-          <div
-            class="py-3 px-3 bg-gradient-to-br from-white via-red-50 to-red-200 w-72 rounded-xl flex border flex-1"
-          >
-            <img src="img/pfp.jpg" alt="" class="w-16 rounded-lg" />
-            <div class="leading-tight flex-col flex">
-              <p class="font-medium ml-3 text-neutral-800">Yessa</p>
-              <p class="font-medium ml-3 text-neutral-600 text-xs">
-                Ayessa De Guzman
-              </p>
-              <div class="flex gap-1 ml-3 mt-2.5">
-                <div
-                  class="text-xs font-semibold bg-emerald-100 border border-emerald-200 w-fit text-emerald-400 px-2 rounded-full"
-                >
-                  school
-                </div>
-                <div
-                  class="text-xs font-semibold bg-indigo-100 border border-indigo-200 w-fit text-indigo-400 px-2 rounded-full"
-                >
-                  coding
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="rounded-xl bg-red-300 font-bold text-white flex-col flex items-center justify-center border w-20"
-          >
             <p
-              class="bg-red-400/70 basis-2/6 px-5 pt-1.5 rounded-t-xl text-lg text-red-600/80 w-full text-center"
+              class="text-3xl basis-4/6 pt-2 drop-shadow-md group-hover:scale-105 transition-all"
             >
-              Dec
+              28
             </p>
-            <p class="text-3xl basis-4/6 pt-2">1</p>
           </div>
         </div>
       </div>

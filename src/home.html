@@ -25,9 +25,9 @@
     </style>
   </head>
   <body
-    class="bg-gradient-to-r from-violet-100 via-purple-50 to-pink-100 bg-no-repeat bg-fixed transition-all px-16 py-10"
+    class="bg-gradient-to-r from-violet-100 via-purple-50 to-pink-100 bg-no-repeat bg-fixed transition-all px-0 lg:px-16 py-10"
   >
-    <div class="grid grid-cols-3 w-full h-fit">
+    <div class="grid grid-cols-3 w-full h-fit px-16 lg:px-0">
       <div
         class="group w-fit flex items-center flex-row col-span-3 lg:col-span-1 mx-auto lg:mx-0 transition-all"
       >
@@ -70,13 +70,13 @@
       >
         <button
           title="home"
-          class="flex items-center h-full w-fit bg-violet-400 px-3 py-1 rounded-full gap-2 shadow-md shadow-violet-500/50 hover:bg-violet-500/80 transition-all"
+          class="flex items-center h-full w-fit group bg-violet-400 px-3 py-1 rounded-full gap-2 shadow-md shadow-violet-500/50 hover:bg-violet-500/80 transition-all active:bg-violet-200"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            class="size-5 text-white"
+            class="size-5 text-white group-active:text-violet-400"
           >
             <path
               fill-rule="evenodd"
@@ -84,7 +84,7 @@
               clip-rule="evenodd"
             />
           </svg>
-          <p class="font-medium text-white">Home</p>
+          <p class="font-medium text-white group-active:text-violet-400">Home</p>
         </button>
         <button
           title="friends"
@@ -128,7 +128,7 @@
       </div>
     </div>
 
-    <div class="lg:w-2/3  xl:w-1/2 mx-auto mt-10 transition-all">
+    <div class="lg:w-2/3  xl:w-1/2 mx-auto mt-10 transition-all  px-10 lg:px-0">
       <p class="font-semibold text-xl text-neutral-500">
         Welcome Back,
         <span
