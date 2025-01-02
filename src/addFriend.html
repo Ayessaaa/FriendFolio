@@ -11,7 +11,7 @@
       rel="stylesheet"
     />
 
-    <title>Friends - FriendFolio</title>
+    <title>Add Friend - FriendFolio</title>
     <link
       rel="icon"
       type="image/x-icon"
@@ -27,6 +27,9 @@
       }
       .ml-30 {
         margin-left: 7.5rem;
+      }
+      .ml-18 {
+        margin-left: 4.5rem
       }
     </style>
   </head>
@@ -142,7 +145,7 @@
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"
           fill="currentColor"
-          class="size-9 text-white stroke-2"
+          class="size-8 text-white stroke-2"
         >
           <path
             d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"
@@ -158,7 +161,7 @@
     </div>
 
     <div
-      class="w-100 mx-auto transition-all px-2 md:px-0 bg-white rounded-xl py-5 border"
+      class="w-96 mx-auto transition-all px-0 bg-white rounded-xl py-5 border"
     >
       <div class="w-fit mx-auto">
         <div
@@ -168,17 +171,17 @@
         </div>
       </div>
 
-      <div class="mx-5 mt-5 flex gap-3 text-sm">
+      <div class="mx-8 mt-5 flex gap-3 text-sm w-fit">
         <div class="w-1/3">
           <img src="img/pfp.jpg" alt="" class="rounded-xl" />
-          <button class="absolute -mt-9 ml-30 group" title="profile">
+          <button class="absolute -mt-9 ml-18 group" title="profile">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="size-9 stroke-violet-500 fill-violet-400/90 transition-all group-hover:fill-violet-400 group-hover:stroke-violet-100 group-active:fill-violet-500"
+              class="size-8 stroke-violet-500 fill-violet-400/90 transition-all group-hover:fill-violet-400 group-hover:stroke-violet-100 group-active:fill-violet-500"
             >
               <path
                 stroke-linecap="round"
@@ -193,7 +196,7 @@
           <input
             type="text"
             name="name"
-            title="name"
+            id="name"
             class="bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
           />
           <label for="nickname" class="font-semibold text-neutral-400 mt-1"
@@ -202,20 +205,11 @@
           <input
             type="text"
             name="nickname"
-            title="nickname"
-            class="bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
-          />
-          <label for="birthday" class="font-semibold text-neutral-400 mt-1"
-            >Birthday</label
-          >
-          <input
-            type="date"
-            name="birthday"
-            title="birthday"
+            id="nickname"
             class="bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
           />
         </div>
-        <div
+        <!-- <div
           class="bg-violet-400 p-1.5 flex-1 rounded-lg border-violet-100 shadow-md shadow-violet-500/30"
         >
           <p class="text-white font-semibold text-center mb-1">Tags</p>
@@ -229,7 +223,19 @@
           >
             Family
           </button>
-        </div>
+        </div> -->
+      </div>
+
+      <div class="text-sm flex items-center gap-2 mx-9 mt-5">
+        <label for="birthday" class="font-semibold text-neutral-400 mt-1"
+          >Birthday</label
+        >
+        <input
+          type="date"
+          name="birthday"
+          id="birthday"
+          class="flex-1 bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
+        />
       </div>
 
       <div class="mt-8">
@@ -238,14 +244,14 @@
         >
           Contact Info
         </div>
-        <div class="flex flex-col text-sm px-10">
+        <div class="flex flex-col text-sm px-10 mt-3">
           <label for="contact" class="font-semibold text-neutral-400"
             >Contact Number</label
           >
           <input
             type="number"
             name="contact"
-            title="contact"
+            id="contact"
             class="bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
           />
           <label for="email" class="font-semibold text-neutral-400 mt-1"
@@ -254,7 +260,7 @@
           <input
             type="text"
             name="email"
-            title="email"
+            id="email"
             class="bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
           />
           <label for="address" class="font-semibold text-neutral-400 mt-1"
@@ -263,11 +269,9 @@
           <input
             type="text"
             name="address"
-            title="address"
+            id="address"
             class="bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
           />
-
-          
         </div>
       </div>
 
@@ -277,14 +281,14 @@
         >
           Personal Details
         </div>
-        <div class="flex flex-col text-sm px-10">
+        <div class="flex flex-col text-sm px-10  mt-3">
           <label for="hobbies" class="font-semibold text-neutral-400"
             >Hobbies</label
           >
           <input
             type="text"
             name="hobbies"
-            title="hobbies"
+            id="hobbies"
             class="bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
           />
           <label for="dreams" class="font-semibold text-neutral-400 mt-1"
@@ -293,7 +297,7 @@
           <input
             type="text"
             name="dreams"
-            title="dreams"
+            id="dreams"
             class="bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
           />
           <label for="likes" class="font-semibold text-neutral-400 mt-1"
@@ -302,7 +306,7 @@
           <input
             type="text"
             name="likes"
-            title="likes"
+            id="likes"
             class="bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
           />
           <label for="dislikes" class="font-semibold text-neutral-400 mt-1"
@@ -311,7 +315,7 @@
           <input
             type="text"
             name="dislikes"
-            title="dislikes"
+            id="dislikes"
             class="bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
           />
 
@@ -321,32 +325,29 @@
           <textarea
             type="text"
             name="notes"
-            title="notes"
+            id="notes"
             class="bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
           ></textarea>
-          
-
-          
         </div>
       </div>
 
       <button
-            class="hover:bg-violet-500/90 hover:shadow-violet-500/50 active:bg-violet-500/80 hover:scale-105 transition-all flex items-center gap-2 mt-5 bg-violet-400 w-fit mx-auto text-xl font-semibold text-white pl-5 pr-3 py-1 rounded-lg shadow-md shadow-violet-500/20"
-          >
-          Submit
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-              class="size-5 stroke-2"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M2 8a.75.75 0 0 1 .75-.75h8.69L8.22 4.03a.75.75 0 0 1 1.06-1.06l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 0 1-1.06-1.06l3.22-3.22H2.75A.75.75 0 0 1 2 8Z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </button>
+        class="hover:bg-violet-500/90 hover:shadow-violet-500/50 active:bg-violet-500/80 hover:scale-105 transition-all flex items-center gap-2 mt-5 bg-violet-400 w-fit mx-auto text-xl font-semibold text-white pl-5 pr-3 py-1 rounded-lg shadow-md shadow-violet-500/20"
+      >
+        Submit
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 16 16"
+          fill="currentColor"
+          class="size-5 stroke-2"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M2 8a.75.75 0 0 1 .75-.75h8.69L8.22 4.03a.75.75 0 0 1 1.06-1.06l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 0 1-1.06-1.06l3.22-3.22H2.75A.75.75 0 0 1 2 8Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </button>
     </div>
   </body>
 </html>
