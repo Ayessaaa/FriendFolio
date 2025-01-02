@@ -25,6 +25,9 @@
       .w-100 {
         width: 32rem;
       }
+      .ml-30 {
+        margin-left: 7.5rem;
+      }
     </style>
   </head>
   <body
@@ -161,12 +164,30 @@
         <div
           class="bg-pink-100 px-5 py-1 text-pink-400 font-semibold transition-all rounded-full flex items-center gap-1 hover:bg-violet-200 hover:text-violet-500 hover:border-violet-400 active:bg-violet-400 active:border-violet-500 active:text-white"
         >
-          Friend Info
+          Basic Info
         </div>
       </div>
 
       <div class="mx-5 mt-5 flex gap-3 text-sm">
-        <img src="img/pfp.jpg" alt="" class="w-1/3 rounded-xl" />
+        <div class="w-1/3">
+          <img src="img/pfp.jpg" alt="" class="rounded-xl" />
+          <button class="absolute -mt-9 ml-30 group" title="profile">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-9 stroke-violet-500 fill-violet-400/90 transition-all group-hover:fill-violet-400 group-hover:stroke-violet-100 group-active:fill-violet-500"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+              />
+            </svg>
+          </button>
+        </div>
         <div class="flex flex-col">
           <label for="name" class="font-semibold text-neutral-400">Name</label>
           <input
@@ -188,18 +209,144 @@
             >Birthday</label
           >
           <input
-            type="text"
+            type="date"
             name="birthday"
             title="birthday"
             class="bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
           />
         </div>
-        <div class="bg-violet-400 p-1.5 flex-1  rounded-lg  border-violet-100 shadow-md shadow-violet-500/30">
+        <div
+          class="bg-violet-400 p-1.5 flex-1 rounded-lg border-violet-100 shadow-md shadow-violet-500/30"
+        >
           <p class="text-white font-semibold text-center mb-1">Tags</p>
-          <button class="border text-xs border-emerald-500/50 bg-emerald-400/30 w-full font-medium py-0.5 rounded-full text-emerald-200">School</button>
-          <button class="border text-xs border-blue-400 bg-blue-400 w-full font-medium py-0.5 rounded-full text-white mt-1 shadow-md shadow-blue-500/30">Family</button>
+          <button
+            class="border text-xs border-emerald-500/50 bg-emerald-400/30 w-full font-medium py-0.5 rounded-full text-emerald-200"
+          >
+            School
+          </button>
+          <button
+            class="border text-xs border-blue-400 bg-blue-400 w-full font-medium py-0.5 rounded-full text-white mt-1 shadow-md shadow-blue-500/30"
+          >
+            Family
+          </button>
         </div>
       </div>
+
+      <div class="mt-8">
+        <div
+          class="w-fit mx-auto bg-orange-100 px-5 py-1 text-orange-400 font-semibold transition-all rounded-full flex items-center gap-1 hover:bg-yellow-200 hover:text-yellow-500 hover:border-yellow-400 active:bg-yellow-400 active:border-yellow-500 active:text-white"
+        >
+          Contact Info
+        </div>
+        <div class="flex flex-col text-sm px-10">
+          <label for="contact" class="font-semibold text-neutral-400"
+            >Contact Number</label
+          >
+          <input
+            type="number"
+            name="contact"
+            title="contact"
+            class="bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
+          />
+          <label for="email" class="font-semibold text-neutral-400 mt-1"
+            >Email</label
+          >
+          <input
+            type="text"
+            name="email"
+            title="email"
+            class="bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
+          />
+          <label for="address" class="font-semibold text-neutral-400 mt-1"
+            >Address</label
+          >
+          <input
+            type="text"
+            name="address"
+            title="address"
+            class="bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
+          />
+
+          
+        </div>
+      </div>
+
+      <div class="mt-8">
+        <div
+          class="w-fit mx-auto bg-purple-100 px-5 py-1 text-purple-400 font-semibold transition-all rounded-full flex items-center gap-1 hover:bg-pink-200 hover:text-pink-500 hover:border-pink-400 active:bg-pink-400 active:border-pink-500 active:text-white"
+        >
+          Personal Details
+        </div>
+        <div class="flex flex-col text-sm px-10">
+          <label for="hobbies" class="font-semibold text-neutral-400"
+            >Hobbies</label
+          >
+          <input
+            type="text"
+            name="hobbies"
+            title="hobbies"
+            class="bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
+          />
+          <label for="dreams" class="font-semibold text-neutral-400 mt-1"
+            >Dreams</label
+          >
+          <input
+            type="text"
+            name="dreams"
+            title="dreams"
+            class="bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
+          />
+          <label for="likes" class="font-semibold text-neutral-400 mt-1"
+            >Likes</label
+          >
+          <input
+            type="text"
+            name="likes"
+            title="likes"
+            class="bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
+          />
+          <label for="dislikes" class="font-semibold text-neutral-400 mt-1"
+            >Dislikes</label
+          >
+          <input
+            type="text"
+            name="dislikes"
+            title="dislikes"
+            class="bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
+          />
+
+          <label for="notes" class="font-semibold text-neutral-400 mt-1"
+            >Custom Notes</label
+          >
+          <textarea
+            type="text"
+            name="notes"
+            title="notes"
+            class="bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
+          ></textarea>
+          
+
+          
+        </div>
+      </div>
+
+      <button
+            class="hover:bg-violet-500/90 hover:shadow-violet-500/50 active:bg-violet-500/80 hover:scale-105 transition-all flex items-center gap-2 mt-5 bg-violet-400 w-fit mx-auto text-xl font-semibold text-white pl-5 pr-3 py-1 rounded-lg shadow-md shadow-violet-500/20"
+          >
+          Submit
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              class="size-5 stroke-2"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M2 8a.75.75 0 0 1 .75-.75h8.69L8.22 4.03a.75.75 0 0 1 1.06-1.06l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 0 1-1.06-1.06l3.22-3.22H2.75A.75.75 0 0 1 2 8Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
     </div>
   </body>
 </html>
