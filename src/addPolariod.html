@@ -130,80 +130,76 @@
       </div>
     </div>
 
-    <div class="lg:w-2/3 xl:w-1/2 mx-auto mt-10 transition-all px-10 lg:px-0">
+    <div
+      class="md:w-4/5 lg:w-2/3 xl:w-1/2 mx-auto mt-20 transition-all px-10 lg:px-0"
+    >
       <p
         class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400 font-bold text-4xl w-fit mx-auto"
       >
         Polariods
       </p>
       <div
-        class="rounded-full bg-violet-300/50 w-fit px-8 py-0.5 font-bold text-violet-500 mx-auto mt-5"
+        class="rounded-full bg-orange-300/50 w-fit px-8 py-0.5 font-bold text-orange-500 mx-auto mt-5"
       >
-        <p>Yessa's Polariod</p>
+        <p>Add Polariod</p>
       </div>
 
-      <div class="w-96 mx-auto">
+      <div class="flex gap-5 md:flex-row flex-col">
         <div
-          class="bg-white rounded-md pb-7 pt-7 px-7 mt-5 hover:bg-violet-500 transition-all group shadow-md shadow-neutral-300/30 hover:shadow-lg hover:shadow-violet-500/30"
+          class="mx-auto bg-white rounded-md w-fit pb-7 pt-7 px-7 mt-5 hover:bg-violet-400 transition-all group shadow-md shadow-neutral-300/30 hover:shadow-lg hover:shadow-violet-500/30"
         >
-          <img src="img/pfp.jpg" alt="" class="mb-3 rounded-sm" />
+          <img src="img/pfp.jpg" alt="" class="mb-3 rounded-sm max-w-64" />
           <div class="flex items-center">
             <p class="font-semibold text-2xl flex-1 group-hover:text-white">
               Yessa
             </p>
-            <p
-              class="font-semibold text-base text-neutral-500 group-hover:text-violet-700"
-            >
-              12/24/24
-            </p>
           </div>
-          <p
-            class="group-hover:text-violet-100 font-medium mt-2 text-neutral-600"
-          >
-            Title title title
-          </p>
-          <p class="group-hover:text-violet-200 text-sm text-neutral-500">
-            Just some lengthy description here lmao more more more
-          </p>
         </div>
-        <div class="flex gap-2 mt-5">
-          <button
-            title="edit"
-            class="active:bg-violet-200 active:text-violet-400 font-medium text-lg py-1 px-3 flex items-center gap-2 rounded-md bg-white shadow-sm border-neutral-200 hover:bg-violet-400 transition-all text-violet-400 hover:text-white hover:border-violet-400 hover:shadow-md hover:shadow-violet-500/30"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-              class="size-5"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M11.013 2.513a1.75 1.75 0 0 1 2.475 2.474L6.226 12.25a2.751 2.751 0 0 1-.892.596l-2.047.848a.75.75 0 0 1-.98-.98l.848-2.047a2.75 2.75 0 0 1 .596-.892l7.262-7.261Z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            Edit
-          </button>
 
-          <button
-            title="delete"
-            class="active:bg-red-200 active:text-red-400 font-medium text-lg py-1 px-3 flex items-center gap-2 rounded-md bg-white shadow-sm border-neutral-200 hover:bg-red-400 transition-all text-red-400 hover:text-white hover:border-red-400 hover:shadow-md hover:shadow-red-500/30"
+        <div
+          class="mt-5 bg-white flex-1 rounded-md pb-7 pt-7 px-7 transition-all group shadow-md shadow-neutral-300/30 hover:shadow-lg flex flex-col"
+        >
+          <p class="font-semibold text-neutral-500 text-center">
+            Polariod Info
+          </p>
+          <label for="date" class="font-semibold text-neutral-400 mt-2"
+            >Date</label
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-              class="size-5"
+          <input
+            required
+            type="date"
+            name="date"
+            id="date"
+            class="text-sm bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
+          />
+          <label for="title" class="font-semibold text-neutral-400 mt-2"
+            >Title</label
+          >
+          <input
+            required
+            type="text"
+            name="title"
+            id="title"
+            class="text-sm bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
+          />
+          <label for="body" class="font-semibold text-neutral-400 mt-2"
+            >Body</label
+          >
+          <textarea
+            required
+            type="text"
+            name="body"
+            id="body"
+            class="flex-1 text-sm bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
+          ></textarea>
+
+          <div class="mx-auto w-fit">
+            <button
+              class="active:bg-orange-100 active:text-orange-400 font-semibold text-white bg-orange-400 text-lg px-5 py-1 rounded-md mt-5 hover:bg-orange-500 transition-all shadow-md shadow-orange-500/20 hover:shadow-orange-500/40"
             >
-              <path
-                fill-rule="evenodd"
-                d="M5 3.25V4H2.75a.75.75 0 0 0 0 1.5h.3l.815 8.15A1.5 1.5 0 0 0 5.357 15h5.285a1.5 1.5 0 0 0 1.493-1.35l.815-8.15h.3a.75.75 0 0 0 0-1.5H11v-.75A2.25 2.25 0 0 0 8.75 1h-1.5A2.25 2.25 0 0 0 5 3.25Zm2.25-.75a.75.75 0 0 0-.75.75V4h3v-.75a.75.75 0 0 0-.75-.75h-1.5ZM6.05 6a.75.75 0 0 1 .787.713l.275 5.5a.75.75 0 0 1-1.498.075l-.275-5.5A.75.75 0 0 1 6.05 6Zm3.9 0a.75.75 0 0 1 .712.787l-.275 5.5a.75.75 0 0 1-1.498-.075l.275-5.5a.75.75 0 0 1 .786-.711Z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            Delete
-          </button>
+              Add Polariod
+            </button>
+          </div>
         </div>
       </div>
     </div>
