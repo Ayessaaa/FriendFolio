@@ -51,19 +51,27 @@ app.post("/auth/sign-up", authController.authSignUp);
 
 app.post("/auth/log-in", authController.authLogIn);
 
-// app.get("/logout", (req, res) => {
-//   req.session.destroy((err) => {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       res.redirect("/log-in");
-//     }
-//   });
-// });
+app.get("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.redirect("/log-in");
+    }
+  });
+});
 
-// app.get("/", (req, res) => {
-//   res.redirect("/home");
-// });
+app.get("/", (req, res) => {
+  res.redirect("/home");
+});
 
-// app.get("/home", siteController.home);
+app.get("/home", siteController.home);
+
+app.get("/add-friend", siteController.addFriend);
+
+app.get("/friends", siteController.friends)
+app.post("/friends", siteController.friendsPost)
+
+app.get("/polariods", siteController.polariods)
+
 

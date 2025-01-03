@@ -125,11 +125,12 @@
         </button>
       </div>
       <div class="flex items-center justify-end mt-8 lg:mt-0">
-        <p
+        <a
+          href="/logout"
           class="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-yellow-400 font-bold text-lg"
         >
           Log Out
-        </p>
+        </a>
       </div>
     </div>
 
@@ -168,7 +169,7 @@
         </button>
 
         <button
-          onclick="window.onload.href = '/add-friend'"
+          onclick="window.location.href = '/add-friend'"
           class="items-center py-4 px-8 rounded-lg text-white font-semibold bg-gradient-to-br from-orange-400 to-yellow-400 flex gap-2 hover:scale-105 transition-all hover:shadow-md hover:shadow-yellow-500/30 active:from-orange-500/80 active:to-yellow-500/80"
         >
           <svg
