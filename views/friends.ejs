@@ -189,7 +189,7 @@
           <button onclick="window.location.href = '/friend/<%= element._id %>'"
             class="py-3 px-3 bg-gradient-to-br w-72 rounded-xl flex border-neutral-100 hover:shadow-md transition-all flex-1"
           >
-            <img src="img/pfp.jpg" alt="" class="w-16 rounded-lg" />
+            <img src="<%= element.img %>" alt="" class="w-16 rounded-lg" />
             <div class="leading-tight flex-col flex text-left">
               <p class="font-medium ml-3 text-neutral-800"><%= element.nickname %></p>
               <p class="font-medium ml-3 text-neutral-600 text-xs">

@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
+const cloudinary = require('cloudinary').v2;
 
 const User = require("../models/user");
 const Friend = require("../models/friend");
@@ -57,60 +58,102 @@ function arraySplitter(value) {
   return arr;
 }
 
-const friendsPost = (req, res) => {
+const friendsPost = async function (req, res) {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
-    var zodiac = ""
-    var emoji = ""
-    if (req.body.birthday){
-      const date = new Date((new Date(req.body.birthday).getMonth()+1)+"/"+(new Date(req.body.birthday).getDate())+"/2000");
 
-      console.log((new Date(req.body.birthday).getMonth()+1)+"/"+(new Date(req.body.birthday).getDate())+"/2000")
+    var zodiac = "";
+    var emoji = "";
+    if (req.body.birthday) {
+      const date = new Date(
+        new Date(req.body.birthday).getMonth() +
+          1 +
+          "/" +
+          new Date(req.body.birthday).getDate() +
+          "/2000"
+      );
+
+      console.log(
+        new Date(req.body.birthday).getMonth() +
+          1 +
+          "/" +
+          new Date(req.body.birthday).getDate() +
+          "/2000"
+      );
 
       if (new Date("03/21/2000") <= date && date <= new Date("04/19/2000")) {
-        zodiac = "Aries"
-        emoji = "♈"
-      } else if (new Date("04/20/2000") <= date && date <= new Date("05/20/2000")){
-        zodiac = "Taurus"
-        emoji = "♉"
-      } else if (new Date("05/21/2000") <= date && date <= new Date("06/21/2000")){
-        zodiac = "Gemini"
-        emoji = "♊"
-      }else if (new Date("06/22/2000") <= date && date <= new Date("07/22/2000")){
-        zodiac = "Cancer"
-        emoji = "♋"
-      }else if (new Date("07/23/2000") <= date && date <= new Date("08/22/2000")){
-        zodiac = "Leo"
-        emoji = "♌"
-      }else if (new Date("08/23/2000") <= date && date <= new Date("09/22/2000")){
-        zodiac = "Virgo"
-        emoji = "♍"
-      }else if (new Date("09/23/2000") <= date && date <= new Date("10/23/2000")){
-        zodiac = "Libra"
-        emoji = "♎"
-      }else if (new Date("10/24/2000") <= date && date <= new Date("11/21/2000")){
-        zodiac = "Scorpio"
-        emoji = "♏"
-      }else if (new Date("11/22/2000") <= date && date <= new Date("12/21/2000")){
-        zodiac = "Sagittarius"
-        emoji = "♐"
-      }else if (new Date("01/20/2000") <= date && date <= new Date("02/18/2000")){
-        zodiac = "Aquarius"
-        emoji = "♒"
-      }else if (new Date("02/19/2000") <= date && date <= new Date("03/20/2000")){
-        zodiac = "Pisces"
-        emoji = "♓"
-      }else {
-        zodiac = "Capricorn"
-        emoji = "♑"
+        zodiac = "Aries";
+        emoji = "♈";
+      } else if (
+        new Date("04/20/2000") <= date &&
+        date <= new Date("05/20/2000")
+      ) {
+        zodiac = "Taurus";
+        emoji = "♉";
+      } else if (
+        new Date("05/21/2000") <= date &&
+        date <= new Date("06/21/2000")
+      ) {
+        zodiac = "Gemini";
+        emoji = "♊";
+      } else if (
+        new Date("06/22/2000") <= date &&
+        date <= new Date("07/22/2000")
+      ) {
+        zodiac = "Cancer";
+        emoji = "♋";
+      } else if (
+        new Date("07/23/2000") <= date &&
+        date <= new Date("08/22/2000")
+      ) {
+        zodiac = "Leo";
+        emoji = "♌";
+      } else if (
+        new Date("08/23/2000") <= date &&
+        date <= new Date("09/22/2000")
+      ) {
+        zodiac = "Virgo";
+        emoji = "♍";
+      } else if (
+        new Date("09/23/2000") <= date &&
+        date <= new Date("10/23/2000")
+      ) {
+        zodiac = "Libra";
+        emoji = "♎";
+      } else if (
+        new Date("10/24/2000") <= date &&
+        date <= new Date("11/21/2000")
+      ) {
+        zodiac = "Scorpio";
+        emoji = "♏";
+      } else if (
+        new Date("11/22/2000") <= date &&
+        date <= new Date("12/21/2000")
+      ) {
+        zodiac = "Sagittarius";
+        emoji = "♐";
+      } else if (
+        new Date("01/20/2000") <= date &&
+        date <= new Date("02/18/2000")
+      ) {
+        zodiac = "Aquarius";
+        emoji = "♒";
+      } else if (
+        new Date("02/19/2000") <= date &&
+        date <= new Date("03/20/2000")
+      ) {
+        zodiac = "Pisces";
+        emoji = "♓";
+      } else {
+        zodiac = "Capricorn";
+        emoji = "♑";
       }
-    } 
-    
+    }
 
     const friend = new Friend({
       username: req.session.username,
-      img: "nothing yet",
+      img: req.file.path,
       name: req.body.name,
       nickname: req.body.nickname,
       birthday: req.body.birthday,
@@ -123,7 +166,7 @@ const friendsPost = (req, res) => {
       dislikes: arraySplitter(req.body.dislikes),
       notes: req.body.notes,
       zodiac: zodiac,
-      emoji: emoji
+      emoji: emoji,
     });
 
     friend

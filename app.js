@@ -1,9 +1,18 @@
+// https://dev.to/evansitworld/upload-images-with-nodejs-and-express-to-the-cloud-using-cloudinary-26e4
+// https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
+require('dotenv').config();
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
+
+const cloudinary = require('cloudinary').v2;
+
+const { storage } = require('./storage/storage');
+const multer = require('multer');
+const upload = multer({ storage });
 
 const { render } = require("ejs");
 dotenv.config({ path: ".env" });
@@ -70,7 +79,7 @@ app.get("/home", siteController.home);
 app.get("/add-friend", siteController.addFriend);
 
 app.get("/friends", siteController.friends)
-app.post("/friends", siteController.friendsPost)
+app.post("/friends", upload.single('image'), siteController.friendsPost)
 
 app.get("/friend", siteController.friend)
 app.get("/friend/:id", siteController.friendID)
