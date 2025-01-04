@@ -217,11 +217,11 @@
             <div
               class="basis-3/5 bg-white text-center rounded-xl py-4 px-3 hover:bg-purple-400 transition-all hover:text-white group hover:shadow-md hover:shadow-purple-500/30"
             >
-              <p class="text-4xl trasition-all"><%= friend.emoji %></p>
+              <p class="text-4xl trasition-all"><%= friend.emoji  || "😕" %></p>
               <p
                 class="font-bold text-xl text-neutral-800 group-hover:text-white drop-shadow-md"
               >
-                <%= friend.zodiac %>
+                <%= friend.zodiac || "No data" %>
               </p> 
               <p class="text-sm font-medium drop-shadow-sm">
                 <% const zodiacDates = {
@@ -246,7 +246,7 @@
       </div>
 
       <div class="flex flex-col md:flex-row mt-3 gap-3 px-5 transition-all">
-        <div class="bg-white basis-1/2 rounded-xl py-2 px-5">
+        <div class="bg-white grow rounded-xl py-2 px-5">
           <p
             class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400 font-bold text-xl mb-3"
           >
@@ -288,7 +288,7 @@
 
                 </ul>
               </div>
-              <div class="basis-1/">
+              <div class="basis-1/2">
                 <p class="font-semibold text-neutral-500 mt-3">Dislikes</p>
                 <ul
                   class="list-disc ml-8 text-sm font-medium text-neutral-500/80"
@@ -306,7 +306,7 @@
             </div>
           </div>
         </div>
-        <div class="bg-white basis-1/2 rounded-xl py-2 px-5 h-fit">
+        <div class="bg-white rounded-xl py-2 px-5 h-fit">
           <p
             class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400 font-bold text-xl mb-3"
           >
@@ -371,6 +371,13 @@
             </p>
           </div>
         </div>
+        <div class="shrink py-2 px-5 md:w-60 bg-pink-300 rounded-xl h-fit hover:bg-white transition-all group">
+          <p
+            class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-red-500 font-bold text-xl w-fit mb-1"
+          >
+            Notes
+          </p>
+          <p class="font-medium group-hover:shadow-md group-hover:shadow-pink-400/30 group-hover:scale-105 transition-all text-pink-500 bg-pink-200 rounded-lg p-2 text-sm mb-2 group-hover:bg-pink-100 group-hover:text-pink-400"><%= friend.notes %></p></div>
       </div>
     </div>
 
