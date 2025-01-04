@@ -148,7 +148,9 @@
       <div
         class="rounded-full bg-violet-300/50 w-fit px-8 py-0.5 font-bold text-violet-500 mx-auto mt-5"
       >
-        <p>January 1, 2025</p>
+      <% const months = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] %>
+      <% const dateToday = new Date() %>
+        <p><%= months[dateToday.getMonth()]+" "+dateToday.getDate()+", "+dateToday.getFullYear() %></p>
       </div>
       <div class="flex gap-3 mx-auto w-fit mt-3 lg:text-2xl md:text-xl text-lg">
         <button
@@ -197,14 +199,19 @@
       <div
         class="bg-white p-5 border rounded-xl mt-3 flex flex-wrap gap-3 w-fit justify-center"
       >
-        <div
+      <% for (let i = 0; i < friends.length; i++) {
+        const element = friends[i]; %>
+        
+      
+        <button
+        onclick="window.location.href = '/friend/<%= element._id %>'"
           class="py-3 px-3 bg-gradient-to-br w-72 rounded-xl flex border-neutral-100 hover:shadow-md transition-all grow"
         >
-          <img src="img/pfp.jpg" alt="" class="w-16 rounded-lg" />
+          <img src="<%= element.img %>" alt="" class="w-16 rounded-lg" />
           <div class="leading-tight flex-col flex">
-            <p class="font-medium ml-3 text-neutral-800">Yessa</p>
-            <p class="font-medium ml-3 text-neutral-600 text-xs">
-              Ayessa De Guzman
+            <p class="font-medium ml-3 text-neutral-800 text-left"><%= element.nickname %></p>
+            <p class="font-medium ml-3 text-neutral-600 text-xs text-left">
+              <%= element.name %>
             </p>
             <div class="flex gap-1 ml-3 mt-2.5">
               <div
@@ -219,79 +226,9 @@
               </div>
             </div>
           </div>
-        </div>
+        </button>
 
-        <div
-          class="py-3 px-3 bg-gradient-to-br w-72 rounded-xl flex border-neutral-100 hover:shadow-md transition-all grow"
-        >
-          <img src="img/pfp.jpg" alt="" class="w-16 rounded-lg" />
-          <div class="leading-tight flex-col flex">
-            <p class="font-medium ml-3 text-neutral-800">Yessa</p>
-            <p class="font-medium ml-3 text-neutral-600 text-xs">
-              Ayessa De Guzman
-            </p>
-            <div class="flex gap-1 ml-3 mt-2.5">
-              <div
-                class="text-xs font-semibold bg-emerald-100 border border-emerald-200 w-fit text-emerald-400 px-2 rounded-full"
-              >
-                school
-              </div>
-              <div
-                class="text-xs font-semibold bg-indigo-100 border border-indigo-200 w-fit text-indigo-400 px-2 rounded-full"
-              >
-                coding
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="py-3 px-3 bg-gradient-to-br w-72 rounded-xl flex border-neutral-100 hover:shadow-md transition-all grow"
-        >
-          <img src="img/pfp.jpg" alt="" class="w-16 rounded-lg" />
-          <div class="leading-tight flex-col flex">
-            <p class="font-medium ml-3 text-neutral-800">Yessa</p>
-            <p class="font-medium ml-3 text-neutral-600 text-xs">
-              Ayessa De Guzman
-            </p>
-            <div class="flex gap-1 ml-3 mt-2.5">
-              <div
-                class="text-xs font-semibold bg-emerald-100 border border-emerald-200 w-fit text-emerald-400 px-2 rounded-full"
-              >
-                school
-              </div>
-              <div
-                class="text-xs font-semibold bg-indigo-100 border border-indigo-200 w-fit text-indigo-400 px-2 rounded-full"
-              >
-                coding
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="py-3 px-3 bg-gradient-to-br w-72 rounded-xl flex border-neutral-100 hover:shadow-md transition-all grow"
-        >
-          <img src="img/pfp.jpg" alt="" class="w-16 rounded-lg" />
-          <div class="leading-tight flex-col flex">
-            <p class="font-medium ml-3 text-neutral-800">Yessa</p>
-            <p class="font-medium ml-3 text-neutral-600 text-xs">
-              Ayessa De Guzman
-            </p>
-            <div class="flex gap-1 ml-3 mt-2.5">
-              <div
-                class="text-xs font-semibold bg-emerald-100 border border-emerald-200 w-fit text-emerald-400 px-2 rounded-full"
-              >
-                school
-              </div>
-              <div
-                class="text-xs font-semibold bg-indigo-100 border border-indigo-200 w-fit text-indigo-400 px-2 rounded-full"
-              >
-                coding
-              </div>
-            </div>
-          </div>
-        </div>
+      <% } %>
       </div>
 
       <p class="mt-12 font-bold text-3xl text-center w-fit mx-auto">

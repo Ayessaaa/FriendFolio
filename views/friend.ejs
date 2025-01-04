@@ -161,7 +161,7 @@
                 <button
                 onclick="window.location.href = '/edit-friend/<%= friend._id %>'"
                   title="edit"
-                  class="p-1 rounded-md bg-white border border-neutral-200 hover:bg-violet-400 transition-all text-violet-400 hover:text-white hover:border-violet-400 hover:shadow-md hover:shadow-violet-500/30"
+                  class="active:bg-violet-100 active:text-violet-400 p-1 rounded-md bg-white border border-neutral-200 hover:bg-violet-400 transition-all text-violet-400 hover:text-white hover:border-violet-400 hover:shadow-md hover:shadow-violet-500/30"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -178,7 +178,7 @@
                 </button>
                 <button
                   title="delete"
-                  class="p-1 rounded-md bg-white border border-neutral-200 hover:bg-red-400 transition-all text-red-400 hover:text-white hover:border-red-400 hover:shadow-md hover:shadow-red-500/30"
+                  class="active:bg-red-100 active:text-red-400 p-1 rounded-md bg-white border border-neutral-200 hover:bg-red-400 transition-all text-red-400 hover:text-white hover:border-red-400 hover:shadow-md hover:shadow-red-500/30"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -197,12 +197,12 @@
             </div>
           </div>
 
-          <div class="flex gap-2">
+          <div class="flex gap-2 ">
             <div
-              class="basis-2/5 rounded-xl bg-violet-300 font-bold text-white flex-col flex items-center justify-center w-34 group hover:bg-violet-400/70 transition-all hover:shadow-md hover:shadow-violet-500/30"
+              class="basis-2/5 top-0 rounded-xl flex-1 bg-violet-300 font-bold text-white flex-col flex items-center justify-center w-34 group hover:bg-violet-400/70 transition-all hover:shadow-md hover:shadow-violet-500/30"
             >
               <p
-                class="bg-violet-400/70 basis-5/12 px-3 pt-2 rounded-t-xl text-xl text-violet-600/80 w-full text-center drop-shadow-md group-hover:bg-violet-500/50 transition-all group-hover:text-violet-600"
+                class="bg-violet-400/70 px-3 py-2 rounded-t-xl text-xl text-violet-600/80 w-full text-center drop-shadow-md group-hover:bg-violet-500/50 transition-all group-hover:text-violet-600"
               >
               <% const monthsShort = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
             
@@ -216,7 +216,7 @@
               </p>
             </div>
             <div
-              class="basis-3/5 bg-white text-center rounded-xl py-4 px-3 hover:bg-purple-400 transition-all hover:text-white group hover:shadow-md hover:shadow-purple-500/30"
+              class=" bg-white text-center w-40 rounded-xl py-4 px-3 hover:bg-purple-400 transition-all hover:text-white group hover:shadow-md hover:shadow-purple-500/30"
             >
               <p class="text-4xl trasition-all"><%= friend.emoji  || "😕" %></p>
               <p
