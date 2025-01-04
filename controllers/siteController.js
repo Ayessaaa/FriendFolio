@@ -58,7 +58,7 @@ function arraySplitter(value) {
   return arr;
 }
 
-const friendsPost = async function (req, res) {
+const friendsPost = (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
@@ -182,6 +182,33 @@ const friendsPost = async function (req, res) {
   }
 };
 
+const editFriendID = (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    Friend.find({ _id: req.params.id })
+      .then((result) => {
+        res.render("editFriend", { friend: result[0] });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    res.redirect("/log-in");
+  }
+}
+
+const editFriend = (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    res.redirect("/edit-friend");
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
+
 const polariods = (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
@@ -226,4 +253,6 @@ module.exports = {
   polariods,
   friend,
   friendID,
+  editFriend,
+  editFriendID
 };

@@ -139,7 +139,7 @@
       <p
         class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400 font-bold text-3xl w-fit"
       >
-        Friend Profile
+        Edit Friend Profile
       </p>
       <div class="flex flex-col mt-5 gap-3 px-5">
         <div class="flex gap-2 mx-auto w-full flex-col md:flex-row">
@@ -147,11 +147,11 @@
             class="py-5 px-5 bg-gradient-to-r from-violet-200 w-full via-purple-100 to-pink-200 rounded-xl flex border-neutral-100 hover:shadow-md transition-all flex-1"
           >
             <img src="<%=friend.img%>" alt="" class="w-20 rounded-lg" />
-            <div class="leading-tight flex-col flex">
-              <p class="font-semibold ml-3 text-neutral-800 text-xl"><%= friend.nickname %></p>
-              <p class="font-medium ml-3 text-neutral-600 text-sm">
-                <%= friend.name %>
-              </p>
+            <div class="leading-tight flex-col flex shrink">
+              <input class="outline-0 focus:ring-2 focus:ring-violet-300 active:bg-white transition-all w-40 font-semibold ml-3 text-neutral-800 text-xl px-1 bg-neutral-50/70 rounded-lg hover:bg-neutral-50/90" value="<%= friend.nickname %>"/>
+              <input class=" outline-0 focus:ring-2 focus:bg-white/60 focus:ring-violet-300 active:bg-white transition-all  w-40 font-medium ml-3 text-neutral-600 text-sm px-1 bg-neutral-50/40 rounded-md mt-1" value="<%= friend.name %>">
+                
+              
               <p class="font-medium ml-3 text-neutral-500 text-sm mt-3">
                 <%= friend.age %>
               </p>
@@ -159,7 +159,6 @@
             <div class="flex-1">
               <div class="w-fit ml-auto">
                 <button
-                onclick="window.location.href = '/edit-friend/<%= friend._id %>'"
                   title="edit"
                   class="p-1 rounded-md bg-white border border-neutral-200 hover:bg-violet-400 transition-all text-violet-400 hover:text-white hover:border-violet-400 hover:shadow-md hover:shadow-violet-500/30"
                 >
@@ -199,55 +198,26 @@
 
           <div class="flex gap-2">
             <div
-              class="basis-2/5 rounded-xl bg-violet-300 font-bold text-white flex-col flex items-center justify-center w-34 group hover:bg-violet-400/70 transition-all hover:shadow-md hover:shadow-violet-500/30"
+              class=" rounded-xl w-full  bg-violet-300 font-bold text-white flex-col flex items-center justify-center w-34 group hover:bg-violet-400/70 transition-all hover:shadow-md hover:shadow-violet-500/30"
             >
-              <p
-                class="bg-violet-400/70 basis-5/12 px-3 pt-2 rounded-t-xl text-xl text-violet-600/80 w-full text-center drop-shadow-md group-hover:bg-violet-500/50 transition-all group-hover:text-violet-600"
-              >
-              <% const monthsShort = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
             
-            %>
-              <%= friend.birthday ? monthsShort[friend.birthday.getMonth()] : "-" %>
-              </p>
               <p
-                class="text-5xl basis-4/6 pt-2.5 drop-shadow-md group-hover:scale-105 transition-all"
+                class="top-0 bg-violet-400/70 basis-5/12 px-3 py-3 rounded-t-xl text-xl text-violet-600/80 w-full text-center drop-shadow-md group-hover:bg-violet-500/50 transition-all group-hover:text-violet-600"
               >
-              <%= friend.birthday ? friend.birthday.toString().split(" ")[2] : "-"  %>
+              
+              Birthday
               </p>
-            </div>
-            <div
-              class="basis-3/5 bg-white text-center rounded-xl py-4 px-3 hover:bg-purple-400 transition-all hover:text-white group hover:shadow-md hover:shadow-purple-500/30"
-            >
-              <p class="text-4xl trasition-all"><%= friend.emoji  || "😕" %></p>
-              <p
-                class="font-bold text-xl text-neutral-800 group-hover:text-white drop-shadow-md"
-              >
-                <%= friend.zodiac || "No data" %>
-              </p> 
-              <p class="text-sm font-medium drop-shadow-sm">
-                <% const zodiacDates = {
-                  "Aries": "Mar 21 – Apr 19",
-                  "Taurus": "Apr 20 – May 20",
-                  "Gemini": "May 21 – Jun 21",
-                  "Cancer": "Jun 22 – Jul 22",
-                  "Leo": "Jul 23 – Aug 22",
-                  "Virgo": "Aug 23 – Sep 22",
-                  "Libra": "Sep 23 – Oct 23",
-                  "Scorpio": "Oct 24 – Nov 21",
-                  "Sagittarius": "Nov 22 – Dec 21",
-                  "Capricorn": "Dec 22 – Jan 19",
-                  "Aquarius": "Jan 20 – Feb 18",
-                  "Pisces": "Feb 19 – Mar 20",
-                } %>
-                <%= zodiacDates[friend.zodiac] %>
-              </p>
+              <div class="flex-1 px-3 flex items-center py-4">
+
+                <input type="date" class="outline-0 focus:ring-2 focus:ring-violet-400 text-violet-300 w-ful text-sm p-1 rounded-lg text-center hover:bg-white/80 transition-all hover:text-violet-400"/>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="flex flex-col md:flex-row mt-3 gap-3 px-5 transition-all">
-        <div class="bg-white grow rounded-xl py-2 px-5 flex-1 basis-1/2">
+      <div class="flex flex-col lg:flex-row mt-3 gap-3 px-5 transition-all">
+        <div class="bg-white grow rounded-xl py-2 px-5">
           <p
             class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400 font-bold text-xl mb-3"
           >
@@ -260,17 +230,19 @@
               <% for (let i = 0; i < friend.hobbies.length; i++) {
                 const element = friend.hobbies[i];%>
                 
-              
-              <li class="hover:text-violet-500 transition-all"><%= element %></li>
+              <li class="mt-1">
+                <input class="hover:text-violet-500 transition-all bg-violet-100/50 px-1 rounded-md active:bg-violet-200/80 hover:bg-violet-100/80 outline-0 focus:ring-2 focus:ring-violet-300" value="<%= element %>"/>
+              </li>
 
             <%}%>
             </ul>
             <p class="font-semibold text-neutral-500 mt-3">Dream</p>
-            <p
-              class="text-sm font-medium text-neutral-500/80 hover:text-violet-500 transition-all"
-            >
-              <%= friend.dream || "-" %>
-            </p>
+            <input
+            value="<%= friend.dream || "-" %>"
+              class="text-sm font-medium text-neutral-500/80 hover:text-violet-500 transition-all bg-violet-100/50 px-1 rounded-md active:bg-violet-200/80 hover:bg-violet-100/80 outline-0 focus:ring-2 focus:ring-violet-300"
+            />
+              
+            
             <div class="flex mb-3">
               <div class="basis-1/2">
                 <p class="font-semibold text-neutral-500 mt-3 b">Likes</p>
@@ -281,8 +253,8 @@
                 <% for (let i = 0; i < friend.likes.length; i++) {
                   const element = friend.likes[i];%>
 
-                  <li class="hover:text-pink-500 transition-all">
-                    <%=element%>
+                  <li class="mt-1">
+                    <input class="w-32 hover:text-violet-500 transition-all bg-violet-100/50 px-1 rounded-md active:bg-violet-200/80 hover:bg-violet-100/80 outline-0 focus:ring-2 focus:ring-violet-300" value="<%= element %>"/>
                   </li>
 
                 <%}%>
@@ -297,8 +269,8 @@
                   <% for (let i = 0; i < friend.dislikes.length; i++) {
                   const element = friend.dislikes[i];%>
 
-                  <li class="hover:text-pink-500 transition-all">
-                    <%=element%>
+                  <li class="mt-1">
+                    <input class="w-32 hover:text-violet-500 transition-all bg-violet-100/50 px-1 rounded-md active:bg-violet-200/80 hover:bg-violet-100/80 outline-0 focus:ring-2 focus:ring-violet-300" value="<%= element %>"/>
                   </li>
 
                 <%}%>
@@ -307,9 +279,10 @@
             </div>
           </div>
         </div>
-        <div class="flex gap-3 flex-col 2xl:flex-row xl:flex-col lg:flex-row basis-1/2">
+
+        <div class="flex gap-3 flex-col 2xl:flex-row xl:flex-col lg:flex-row">
           
-          <div class="bg-white rounded-xl py-2 px-5 h-fit">
+          <div class="bg-white rounded-xl py-2 px-5 h-fit basis-1/2">
             <p
               class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400 font-bold text-xl mb-3"
             >
@@ -332,7 +305,10 @@
                     clip-rule="evenodd"
                   />
                 </svg>
-                <%= friend.contact_number || "-" %>
+                <input
+                  value="<%= friend.contact_number || "-" %>"
+                  class="text-sm w-72 max-w-80 font-medium  text-neutral-500/80 hover:text-orange-500 transition-all bg-orange-100/50 px-1 rounded-md active:bg-orange-200/80 hover:bg-orange-100/80 outline-0 focus:ring-2 focus:ring-orange-300"
+                />
               </p>
               <p class="font-semibold text-neutral-500 mt-3">Email</p>
               <p
@@ -351,25 +327,31 @@
                   />
                 </svg>
   
-                <%= friend.email || "-" %>
+                <input
+                  value="<%= friend.email || "-" %>"
+                  class="text-sm  w-72 max-w-80 font-medium text-neutral-500/80 hover:text-orange-500 transition-all bg-orange-100/50 px-1 rounded-md active:bg-orange-200/80 hover:bg-orange-100/80 outline-0 focus:ring-2 focus:ring-orange-300"
+                />
   
               </p>
               <p class="font-semibold text-neutral-500 mt-3">Address</p>
               <p
-                class="text-sm font-medium text-neutral-500/80 flex items-center gap-1 mb-3 hover:text-orange-500 transition-all"
+                class="text-sm font-medium text-neutral-500/80 flex items-start gap-1 mb-3 hover:text-orange-500 transition-all"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"
                   fill="currentColor"
-                  class="size-4"
+                  class="size-4 mt-0.5"
                 >
                   <path
                     d="M8.543 2.232a.75.75 0 0 0-1.085 0l-5.25 5.5A.75.75 0 0 0 2.75 9H4v4a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1a1 1 0 1 1 2 0v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V9h1.25a.75.75 0 0 0 .543-1.268l-5.25-5.5Z"
                   />
                 </svg>
   
-                <%= friend.address || "-" %>
+                <input
+                  value="<%= friend.address || "-" %>"
+                  class="text-sm w-72 max-w-80 font-medium text-neutral-500/80 hover:text-orange-500 transition-all bg-orange-100/50 px-1 rounded-md active:bg-orange-200/80 hover:bg-orange-100/80 outline-0 focus:ring-2 focus:ring-orange-300"
+                />
   
               </p>
             </div>
@@ -380,9 +362,10 @@
             >
               Notes
             </p>
-            <p class="w-full font-medium group-hover:shadow-md group-hover:shadow-pink-400/30 group-hover:scale-105 transition-all text-pink-400 bg-pink-100 rounded-lg p-2 text-sm mb-2  "><%= friend.notes %></p></div>
+            <textarea class="w-full font-medium h-28 group-hover:shadow-md group-hover:shadow-pink-400/30  transition-all text-pink-400 bg-pink-100 rounded-lg p-2 text-sm mb-2  "><%= friend.notes %></textarea></div>
           </div>
         </div>
+
     </div>
 
     <div class="xl:w-2/3 2xl:1/2 mx-auto mt-10 transition-all px-10 lg:px-0">

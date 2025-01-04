@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const friendSchema = new Schema(
   {
     username: { type: String, require: true },
-    img: { type: String, require: false },
+    img: { type: String, require: false, default: "https://fl-1.cdn.flockler.com/embed/no-image.svg" },
     name: { type: String, require: true },
     nickname: { type: String, require: true },
     birthday: { type: Date, require: false },
