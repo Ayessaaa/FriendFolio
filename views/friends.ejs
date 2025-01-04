@@ -165,7 +165,7 @@
       </p>
       <div class="w-fit mx-auto">
         <button
-          class="bg-pink-100 px-5 py-1 text-pink-400 font-semibold transition-all rounded-full flex items-center gap-1 hover:bg-violet-200 hover:text-violet-500 hover:border-violet-400 active:bg-violet-400 active:border-violet-500 active:text-white"
+          class="bg-pink-100  px-5 py-1 text-pink-400 font-semibold transition-all rounded-full flex items-center gap-1 hover:bg-violet-200 hover:text-violet-500 hover:border-violet-400 active:bg-violet-400 active:border-violet-500 active:text-white"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -181,16 +181,19 @@
         </button>
       </div>
 
-      <div class="flex flex-col mt-5 gap-3 px-5">
+      
+      <div class="flex flex-col mt-5 gap-2 px-5">
+        <% for (let i = 0; i < friends.length; i++) { 
+        const element = friends[i];%>
         <div class="flex gap-2 mx-auto w-full">
-          <div
+          <button onclick="window.location.href = '/friend/<%= element._id %>'"
             class="py-3 px-3 bg-gradient-to-br w-72 rounded-xl flex border-neutral-100 hover:shadow-md transition-all flex-1"
           >
             <img src="img/pfp.jpg" alt="" class="w-16 rounded-lg" />
-            <div class="leading-tight flex-col flex">
-              <p class="font-medium ml-3 text-neutral-800">Yessa</p>
+            <div class="leading-tight flex-col flex text-left">
+              <p class="font-medium ml-3 text-neutral-800"><%= element.nickname %></p>
               <p class="font-medium ml-3 text-neutral-600 text-xs">
-                Ayessa De Guzman
+                <%= element.name %>
               </p>
               <div class="flex gap-1 ml-3 mt-2.5">
                 <div
@@ -208,7 +211,7 @@
 
             <div class="flex-1">
               <div class="w-fit ml-auto">
-                <button
+                <div
                   title="edit"
                   class="p-1 rounded-md bg-white border border-neutral-200 hover:bg-violet-400 transition-all text-violet-400 hover:text-white hover:border-violet-400 hover:shadow-md hover:shadow-violet-500/30"
                 >
@@ -224,10 +227,10 @@
                       clip-rule="evenodd"
                     />
                   </svg>
-                </button>
+                </div>
               </div>
             </div>
-          </div>
+          </button>
 
           <div
             class="rounded-xl bg-violet-300 font-bold text-white flex-col flex items-center justify-center w-20 group hover:bg-violet-400/70 transition-all hover:shadow-md hover:shadow-violet-500/30"
@@ -235,16 +238,22 @@
             <p
               class="bg-violet-400/70 basis-2/6 px-5 pt-1.5 rounded-t-xl text-lg text-violet-600/80 w-full text-center drop-shadow-md group-hover:bg-violet-500/50 transition-all group-hover:text-violet-600"
             >
-              Apr
+            <% // const monthsShort = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+            // const bday = element.bday.toString()
+            %>
+            <%= element.birthday ?  element.birthday.toString().split(" ")[1] : "-" %>
             </p>
             <p
               class="text-3xl basis-4/6 pt-2 drop-shadow-md group-hover:scale-105 transition-all"
             >
-              28
+            <%= element.birthday ?  element.birthday.toString().split(" ")[2] : "-" %>
             </p>
           </div>
         </div>
+        <% } %>
       </div>
+
+      
     </div>
   </body>
 </html>

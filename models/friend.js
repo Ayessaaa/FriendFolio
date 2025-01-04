@@ -16,6 +16,8 @@ const friendSchema = new Schema(
     likes: { type: Array, require: false },
     dislikes: { type: Array, require: false },
     notes: { type: String, require: false },
+    zodiac: { type: String, require: false },
+    emoji: { type: String, require: false },
 
   },
   { timestamps: true }

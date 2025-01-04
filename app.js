@@ -72,6 +72,9 @@ app.get("/add-friend", siteController.addFriend);
 app.get("/friends", siteController.friends)
 app.post("/friends", siteController.friendsPost)
 
+app.get("/friend", siteController.friend)
+app.get("/friend/:id", siteController.friendID)
+
 app.get("/polariods", siteController.polariods)
 
 

@@ -148,12 +148,12 @@
           >
             <img src="img/pfp.jpg" alt="" class="w-20 rounded-lg" />
             <div class="leading-tight flex-col flex">
-              <p class="font-semibold ml-3 text-neutral-800 text-xl">Yessa</p>
+              <p class="font-semibold ml-3 text-neutral-800 text-xl"><%= friend.nickname %></p>
               <p class="font-medium ml-3 text-neutral-600 text-sm">
-                Ayessa De Guzman
+                <%= friend.name %>
               </p>
               <p class="font-medium ml-3 text-neutral-500 text-sm mt-3">
-                17 years old
+                <%= friend.age %>
               </p>
             </div>
             <div class="flex-1">
@@ -203,25 +203,42 @@
               <p
                 class="bg-violet-400/70 basis-5/12 px-3 pt-2 rounded-t-xl text-xl text-violet-600/80 w-full text-center drop-shadow-md group-hover:bg-violet-500/50 transition-all group-hover:text-violet-600"
               >
-                November
+              <% const monthsShort = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+            
+            %>
+              <%= friend.birthday ? monthsShort[friend.birthday.getMonth()] : "-" %>
               </p>
               <p
                 class="text-5xl basis-4/6 pt-2.5 drop-shadow-md group-hover:scale-105 transition-all"
               >
-                28
+              <%= friend.birthday ? friend.birthday.toString().split(" ")[2] : "-"  %>
               </p>
             </div>
             <div
               class="basis-3/5 bg-white text-center rounded-xl py-4 px-3 hover:bg-purple-400 transition-all hover:text-white group hover:shadow-md hover:shadow-purple-500/30"
             >
-              <p class="text-4xl trasition-all">♋</p>
+              <p class="text-4xl trasition-all"><%= friend.emoji %></p>
               <p
                 class="font-bold text-xl text-neutral-800 group-hover:text-white drop-shadow-md"
               >
-                Cancer
-              </p>
+                <%= friend.zodiac %>
+              </p> 
               <p class="text-sm font-medium drop-shadow-sm">
-                (Jun 21 – Jul 22)
+                <% const zodiacDates = {
+                  "Aries": "Mar 21 – Apr 19",
+                  "Taurus": "Apr 20 – May 20",
+                  "Gemini": "May 21 – Jun 21",
+                  "Cancer": "Jun 22 – Jul 22",
+                  "Leo": "Jul 23 – Aug 22",
+                  "Virgo": "Aug 23 – Sep 22",
+                  "Libra": "Sep 23 – Oct 23",
+                  "Scorpio": "Oct 24 – Nov 21",
+                  "Sagittarius": "Nov 22 – Dec 21",
+                  "Capricorn": "Dec 22 – Jan 19",
+                  "Aquarius": "Jan 20 – Feb 18",
+                  "Pisces": "Feb 19 – Mar 20",
+                } %>
+                <%= zodiacDates[friend.zodiac] %>
               </p>
             </div>
           </div>
@@ -239,15 +256,19 @@
           <div class="ml-3">
             <p class="font-semibold text-neutral-500">Hobbies</p>
             <ul class="list-disc ml-8 text-sm font-medium text-neutral-500/80">
-              <li class="hover:text-violet-500 transition-all">Coding</li>
-              <li class="hover:text-violet-500 transition-all">Cooking</li>
-              <li class="hover:text-violet-500 transition-all">Travel</li>
+              <% for (let i = 0; i < friend.hobbies.length; i++) {
+                const element = friend.hobbies[i];%>
+                
+              
+              <li class="hover:text-violet-500 transition-all"><%= element %></li>
+
+            <%}%>
             </ul>
             <p class="font-semibold text-neutral-500 mt-3">Dream</p>
             <p
               class="text-sm font-medium text-neutral-500/80 hover:text-violet-500 transition-all"
             >
-              Cloud Architect
+              <%= friend.dream || "-" %>
             </p>
             <div class="flex mb-3">
               <div class="basis-1/2">
@@ -255,13 +276,16 @@
                 <ul
                   class="list-disc ml-8 text-sm font-medium text-neutral-500/80"
                 >
+
+                <% for (let i = 0; i < friend.likes.length; i++) {
+                  const element = friend.likes[i];%>
+
                   <li class="hover:text-pink-500 transition-all">
-                    Pink and Blue
+                    <%=element%>
                   </li>
-                  <li class="hover:text-pink-500 transition-all">Pepper</li>
-                  <li class="hover:text-pink-500 transition-all">
-                    Fam and Friends
-                  </li>
+
+                <%}%>
+
                 </ul>
               </div>
               <div class="basis-1/">
@@ -269,9 +293,14 @@
                 <ul
                   class="list-disc ml-8 text-sm font-medium text-neutral-500/80"
                 >
-                  <li class="hover:text-pink-500 transition-all">Coding</li>
-                  <li class="hover:text-pink-500 transition-all">Cooking</li>
-                  <li class="hover:text-pink-500 transition-all">Travel</li>
+                  <% for (let i = 0; i < friend.dislikes.length; i++) {
+                  const element = friend.dislikes[i];%>
+
+                  <li class="hover:text-pink-500 transition-all">
+                    <%=element%>
+                  </li>
+
+                <%}%>
                 </ul>
               </div>
             </div>
@@ -300,7 +329,7 @@
                   clip-rule="evenodd"
                 />
               </svg>
-              09192772359
+              <%= friend.contact_number || "-" %>
             </p>
             <p class="font-semibold text-neutral-500 mt-3">Email</p>
             <p
@@ -319,7 +348,8 @@
                 />
               </svg>
 
-              ayessamaedeguzman@gmail.com
+              <%= friend.email || "-" %>
+
             </p>
             <p class="font-semibold text-neutral-500 mt-3">Address</p>
             <p
@@ -336,7 +366,8 @@
                 />
               </svg>
 
-              ABC Street, Malolos City, Bulacan
+              <%= friend.address || "-" %>
+
             </p>
           </div>
         </div>
