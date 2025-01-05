@@ -141,7 +141,7 @@
       <div class="flex items-center justify-end mt-8 lg:mt-0">
         <a
           href="/logout"
-          class="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-yellow-400 font-bold text-lg"
+          class="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-yellow-400 font-bold text-lg drop-shadow-sm"
         >
           Log Out
         </a>
@@ -206,7 +206,7 @@
               <p class="font-medium ml-3 text-neutral-600 text-xs">
                 <%= element.name %>
               </p>
-              <% const zodiacColors = {"Aries": "red", "Taurus": "green", "Gemini": "yellow", "Cancer": "indigo", "Leo": "orange", "Virgo": "brown", "Libra": "pink", "Scorpio": "zinc", "Sagittarius": "violet", "Capricorn": "gray", "Aquarius": "sky", "Pisces": "teal"} %>
+              <% const zodiacColors = {"Aries": "red", "Taurus": "green", "Gemini": "yellow", "Cancer": "indigo", "Leo": "orange", "Virgo": "amber", "Libra": "pink", "Scorpio": "purple", "Sagittarius": "violet", "Capricorn": "blue", "Aquarius": "sky", "Pisces": "teal"} %>
             <div class="flex gap-1 ml-3 mt-2.5">
               <div
               class="text-xs font-semibold <%= `bg-${zodiacColors[element.zodiac]}-100` %> <%= element.zodiac ? "border": "" %> <%= `border-${zodiacColors[element.zodiac]}-200` %> w-fit text-<%= zodiacColors[element.zodiac] %>-400 px-2 rounded-full"

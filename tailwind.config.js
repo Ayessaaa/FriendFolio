@@ -9,9 +9,9 @@ module.exports = {
     },
   },
   safelist: [
-    { pattern: /^bg-(red|green|yellow|indigo|orange|brown|pink|zinc|violet|gray|sky|teal)-(100|200)$/ },
-    { pattern: /^text-(red|green|yellow|indigo|orange|brown|pink|zinc|violet|gray|sky|teal)-(400)$/ },
-    { pattern: /^border-(red|green|yellow|indigo|orange|brown|pink|zinc|violet|gray|sky|teal)-(200)$/ },
+    { pattern: /^bg-(red|green|yellow|indigo|orange|amber|pink|purple|violet|blue|sky|teal)-(100|200)$/ },
+    { pattern: /^text-(red|green|yellow|indigo|orange|amber|pink|purple|violet|blue|sky|teal)-(400)$/ },
+    { pattern: /^border-(red|green|yellow|indigo|orange|amber|pink|purple|violet|blue|sky|teal)-(200)$/ },
   ],
   plugins: [],
 };
