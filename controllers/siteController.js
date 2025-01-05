@@ -204,10 +204,21 @@ const editFriendIDPost = (req, res) => {
   if (isLoggedIn) {
     const [zodiac, emoji] = zodiacFunction(req.body.birthday);
 
+    try {
+      var path = req.file.path;
+    } catch {
+      Friend.find({username: req.session.username, _id: req.params.id})
+      .then((result)=>{
+        var path = result[0].img
+        console.log(result)
+      })
+    }
+
     Friend.findOneAndUpdate(
       { _id: req.params.id },
       {
         name: req.body.name,
+        img: path,
         nickname: req.body.nickname,
         birthday: req.body.birthday,
         contact_number: req.body.contact,
@@ -268,12 +279,12 @@ const friendDelete = (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
-    console.log(req.params.id)
-    Friend.findOneAndDelete({_id : req.params.id})
-    .then((result)=>{
-      res.redirect("/friends");
-    })
-    .catch((err)=>console.log(err))
+    console.log(req.params.id);
+    Friend.findOneAndDelete({ _id: req.params.id })
+      .then((result) => {
+        res.redirect("/friends");
+      })
+      .catch((err) => console.log(err));
   } else {
     res.redirect("/log-in");
   }
@@ -536,5 +547,5 @@ module.exports = {
   createGift,
   createGiftPost,
   polariodDelete,
-  friendDelete
+  friendDelete,
 };

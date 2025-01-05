@@ -146,32 +146,41 @@
     </div>
 
 
-    <form class="xl:w-2/3 2xl:1/2 mx-auto mt-10 transition-all px-10 lg:px-0" method="POST">
+    <form class="xl:w-2/3 2xl:1/2 mx-auto mt-10 transition-all px-10 lg:px-0" method="POST" enctype="multipart/form-data" action="/edit-friend/<%= friend.id %>">
       <p
         class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400 font-bold text-3xl w-fit"
       >
         Edit Friend Profile
       </p>
+      <script>
+        function preview() {
+          pfp.src = URL.createObjectURL(event.target.files[0]);
+        }
+      </script>
       <div class="flex flex-col mt-5 gap-3 px-5">
         <div class="flex gap-2 mx-auto w-full flex-col md:flex-row">
           <div
             class="py-5 px-5 bg-gradient-to-r from-violet-200 w-full via-purple-100 to-pink-200 rounded-xl flex border-neutral-100 hover:shadow-md transition-all flex-1"
           >
-            <img src="<%=friend.img%>" alt="" class="w-20 rounded-lg" />
+            <img src="<%=friend.img%>" alt="" class="w-20 rounded-lg" id="pfp" />
+            
             <div class="leading-tight flex-col flex shrink">
               <input name="nickname" class="outline-0 focus:ring-2 focus:ring-violet-300 active:bg-white transition-all w-40 font-semibold ml-3 text-neutral-800 text-xl px-1 bg-neutral-50/70 rounded-lg hover:bg-neutral-50/90" value="<%= friend.nickname %>"/>
               <input name="name" class=" outline-0 focus:ring-2 focus:bg-white/60 focus:ring-violet-300 active:bg-white transition-all  w-40 font-medium ml-3 text-neutral-600 text-sm px-1 bg-neutral-50/40 rounded-md mt-1" value="<%= friend.name %>">
-                
-              
-              <p class="font-medium ml-3 text-neutral-500 text-sm mt-3">
-                <%= friend.age %>
-              </p>
+              <input
+                onchange="preview()"
+                class="transition-all text-xs ml-3 file:mr-2 file:hover:text-violet-400 file:active:bg-violet-200 file:hover:bg-violet-100 file:hover:border-violet-300 file:bg-neutral-100 file:border file:border-neutral-200 file:rounded-lg file:cursor-pointer file:text-neutral-400 mt-2 font-semibold text-neutral-500 group"
+                title="profile"
+                type="file"
+                name="image"
+                accept="image/png, image/jpeg"
+              />
             </div>
             <div class="flex-1">
               <div class="w-fit ml-auto">
                 <button
-                type="submit"
-                  title="edit"
+                  type="submit"
+                  title="submit"
                   class="active:bg-green-100 active:text-green-400 p-1 rounded-md bg-white border border-neutral-200 hover:bg-green-400 transition-all text-green-400 hover:text-white hover:border-green-400 hover:shadow-md hover:shadow-green-500/30"
                 >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-5">

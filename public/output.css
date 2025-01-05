@@ -2274,9 +2274,24 @@ video {
   --tw-shadow: var(--tw-shadow-colored);
 }
 
+.file\:hover\:border-violet-300:hover::file-selector-button {
+  --tw-border-opacity: 1;
+  border-color: rgb(196 181 253 / var(--tw-border-opacity, 1));
+}
+
 .file\:hover\:bg-violet-300:hover::file-selector-button {
   --tw-bg-opacity: 1;
   background-color: rgb(196 181 253 / var(--tw-bg-opacity, 1));
+}
+
+.file\:hover\:bg-violet-100:hover::file-selector-button {
+  --tw-bg-opacity: 1;
+  background-color: rgb(237 233 254 / var(--tw-bg-opacity, 1));
+}
+
+.file\:hover\:text-violet-400:hover::file-selector-button {
+  --tw-text-opacity: 1;
+  color: rgb(167 139 250 / var(--tw-text-opacity, 1));
 }
 
 .focus\:bg-neutral-100:focus {
@@ -2518,6 +2533,11 @@ video {
 .file\:active\:bg-neutral-200:active::file-selector-button {
   --tw-bg-opacity: 1;
   background-color: rgb(229 229 229 / var(--tw-bg-opacity, 1));
+}
+
+.file\:active\:bg-violet-200:active::file-selector-button {
+  --tw-bg-opacity: 1;
+  background-color: rgb(221 214 254 / var(--tw-bg-opacity, 1));
 }
 
 .group:hover .group-hover\:mb-10 {

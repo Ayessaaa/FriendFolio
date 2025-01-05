@@ -90,7 +90,7 @@ app.get("/friend/:id", siteController.friendID)
 
 app.get("/edit-friend", siteController.editFriend);
 app.get("/edit-friend/:id", siteController.editFriendID);
-app.post("/edit-friend/:id", siteController.editFriendIDPost);
+app.post("/edit-friend/:id", upload.single('image'), siteController.editFriendIDPost);
 
 app.get("/polariods", siteController.polariods)
 
