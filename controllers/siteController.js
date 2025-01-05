@@ -9,6 +9,7 @@ const cloudinary = require("cloudinary").v2;
 
 const User = require("../models/user");
 const Friend = require("../models/friend");
+const Polariod = require("../models/polariod");
 
 const home = (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
@@ -17,7 +18,7 @@ const home = (req, res) => {
     Friend.find({ username: req.session.username })
       .exec()
       .then((result) => {
-        res.render("home", {friends: result});
+        res.render("home", { friends: result });
       })
       .catch((err) => console.log(err));
   } else {
@@ -212,11 +213,10 @@ const editFriendIDPost = (req, res) => {
         zodiac: zodiac,
         emoji: emoji,
       }
-    )
-    .catch((err) => {
+    ).catch((err) => {
       console.log(err);
     });
-    res.redirect("/friend/"+req.params.id)
+    res.redirect("/friend/" + req.params.id);
   } else {
     res.redirect("/log-in");
   }
@@ -256,13 +256,82 @@ const friendID = (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
-    Friend.find({ _id: req.params.id })
-      .then((result) => {
-        res.render("friend", { friend: result[0] });
+    Friend.find({ _id: req.params.id, username: req.session.username })
+      .then((resultFriend) => {
+        Polariod.find({
+          friend_id: req.params.id,
+          username: req.session.username,
+        })
+        .sort({date: "desc"})
+          .then((resultPolariod) => {
+            res.render("friend", {
+              friend: resultFriend[0],
+              polariods: resultPolariod,
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);
       });
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
+const addPolariod = (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    res.redirect("/polariods");
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
+const addPolariodID = (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    Friend.find({ _id: req.params.id }).then((result) => {
+      res.render("addPolariod", { friend: result[0] });
+    });
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
+const addPolariodIDPost = (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  var path = "https://fl-1.cdn.flockler.com/embed/no-image.svg";
+
+  try {
+    path = req.file.path;
+  } catch {
+    path = "https://fl-1.cdn.flockler.com/embed/no-image.svg";
+  }
+
+  if (isLoggedIn) {
+    const polariod = new Polariod({
+      username: req.session.username,
+      img: path,
+      friend_id: req.params.id,
+      nickname: req.body.nickname,
+      date: req.body.date,
+      title: req.body.title,
+      body: req.body.body,
+    });
+
+    polariod
+      .save()
+      .then()
+      .catch((err) => {
+        console.log(err);
+      });
+    res.redirect("/friend/" + req.params.id);
   } else {
     res.redirect("/log-in");
   }
@@ -279,4 +348,7 @@ module.exports = {
   editFriend,
   editFriendID,
   editFriendIDPost,
+  addPolariod,
+  addPolariodID,
+  addPolariodIDPost,
 };

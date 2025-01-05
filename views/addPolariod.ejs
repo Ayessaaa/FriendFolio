@@ -148,16 +148,34 @@
         <p>Add Polariod</p>
       </div>
 
-      <div class="flex gap-5 md:flex-row flex-col">
+      <script>
+        function preview() {
+          img.src = URL.createObjectURL(event.target.files[0]);
+        }
+      </script>
+
+
+      <form class="flex gap-5 md:flex-row flex-col" method="POST" enctype="multipart/form-data">
         <div
           class="mx-auto bg-white rounded-md w-fit pb-7 pt-7 px-7 mt-5 hover:bg-violet-400 transition-all group shadow-md shadow-neutral-300/30 hover:shadow-lg hover:shadow-violet-500/30"
         >
-          <img src="img/pfp.jpg" alt="" class="mb-3 rounded-sm max-w-64" />
-          <div class="flex items-center">
-            <p class="font-semibold text-2xl flex-1 group-hover:text-white">
-              Yessa
-            </p>
-          </div>
+          <img id="img" src="https://fl-1.cdn.flockler.com/embed/no-image.svg" alt="" class="mb-3 rounded-sm max-w-64 bg-white/20" />
+
+            <input
+            required
+            onchange="preview()"
+            class="group-hover:text-white file:hover:bg-violet-300 file:group-hover:bg-violet-200 file:group-hover:text-violet-400 w-56 text-sm transition-all file:mr-2 file:active:bg-neutral-200 file:bg-neutral-100 file:border file:border-neutral-200 file:rounded-lg file:cursor-pointer file:text-neutral-400 font-semibold text-neutral-500 group"
+            title="profile"
+            type="file"
+            name="image"
+            accept="image/png, image/jpeg"
+          /><br>
+            <input 
+              name="nickname" 
+              value="<%= friend.nickname %>" 
+              class="transition-all  outline-none rounded-md px-1 active:bg-violet-100/20 font-semibold text-2xl w-56 flex-1 group-hover:text-white mt-3  bg-transparent"/>
+              
+
         </div>
 
         <div
@@ -170,7 +188,7 @@
             >Date</label
           >
           <input
-            required
+            
             type="date"
             name="date"
             id="date"
@@ -180,7 +198,7 @@
             >Title</label
           >
           <input
-            required
+            
             type="text"
             name="title"
             id="title"
@@ -190,7 +208,7 @@
             >Body</label
           >
           <textarea
-            required
+            
             type="text"
             name="body"
             id="body"
@@ -199,13 +217,14 @@
 
           <div class="mx-auto w-fit">
             <button
+            type="submit"
               class="active:bg-orange-100 active:text-orange-400 font-semibold text-white bg-orange-400 text-lg px-5 py-1 rounded-md mt-5 hover:bg-orange-500 transition-all shadow-md shadow-orange-500/20 hover:shadow-orange-500/40"
             >
               Add Polariod
             </button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </body>
 </html>

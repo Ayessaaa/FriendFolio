@@ -733,26 +733,6 @@ video {
   height: 100%;
 }
 
-.h-3 {
-  height: 0.75rem;
-}
-
-.h-36 {
-  height: 9rem;
-}
-
-.h-4 {
-  height: 1rem;
-}
-
-.h-44 {
-  height: 11rem;
-}
-
-.h-2 {
-  height: 0.5rem;
-}
-
 .w-1\/3 {
   width: 33.333333%;
 }
@@ -769,14 +749,6 @@ video {
   width: 5rem;
 }
 
-.w-28 {
-  width: 7rem;
-}
-
-.w-32 {
-  width: 8rem;
-}
-
 .w-4\/5 {
   width: 80%;
 }
@@ -787,6 +759,10 @@ video {
 
 .w-52 {
   width: 13rem;
+}
+
+.w-56 {
+  width: 14rem;
 }
 
 .w-64 {
@@ -814,16 +790,48 @@ video {
   width: 100%;
 }
 
-.w-2 {
-  width: 0.5rem;
+.w-60 {
+  width: 15rem;
 }
 
-.w-24 {
-  width: 6rem;
+.min-w-5 {
+  min-width: 1.25rem;
 }
 
-.w-4 {
-  width: 1rem;
+.min-w-6 {
+  min-width: 1.5rem;
+}
+
+.min-w-64 {
+  min-width: 16rem;
+}
+
+.min-w-60 {
+  min-width: 15rem;
+}
+
+.min-w-7 {
+  min-width: 1.75rem;
+}
+
+.min-w-96 {
+  min-width: 24rem;
+}
+
+.min-w-8 {
+  min-width: 2rem;
+}
+
+.min-w-80 {
+  min-width: 20rem;
+}
+
+.min-w-4 {
+  min-width: 1rem;
+}
+
+.min-w-40 {
+  min-width: 10rem;
 }
 
 .max-w-64 {
@@ -856,10 +864,6 @@ video {
 
 .basis-2\/6 {
   flex-basis: 33.333333%;
-}
-
-.basis-3\/5 {
-  flex-basis: 60%;
 }
 
 .basis-4\/6 {
@@ -1116,6 +1120,10 @@ video {
   background-color: rgb(248 113 113 / 0.2);
 }
 
+.bg-transparent {
+  background-color: transparent;
+}
+
 .bg-violet-100\/50 {
   background-color: rgb(237 233 254 / 0.5);
 }
@@ -1150,6 +1158,10 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+.bg-white\/20 {
+  background-color: rgb(255 255 255 / 0.2);
 }
 
 .bg-gradient-to-br {
@@ -1707,6 +1719,10 @@ video {
   transition-duration: 300ms;
 }
 
+.duration-150 {
+  transition-duration: 150ms;
+}
+
 .file\:mr-2::file-selector-button {
   margin-right: 0.5rem;
 }
@@ -2001,6 +2017,11 @@ video {
   --tw-shadow: var(--tw-shadow-colored);
 }
 
+.file\:hover\:bg-violet-300:hover::file-selector-button {
+  --tw-bg-opacity: 1;
+  background-color: rgb(196 181 253 / var(--tw-bg-opacity, 1));
+}
+
 .focus\:bg-white\/60:focus {
   background-color: rgb(255 255 255 / 0.6);
 }
@@ -2064,6 +2085,11 @@ video {
   border-color: rgb(234 179 8 / var(--tw-border-opacity, 1));
 }
 
+.active\:bg-green-100:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 252 231 / var(--tw-bg-opacity, 1));
+}
+
 .active\:bg-neutral-300\/50:active {
   background-color: rgb(212 212 212 / 0.5);
 }
@@ -2101,9 +2127,23 @@ video {
   background-color: rgb(219 39 119 / 0.9);
 }
 
+.active\:bg-red-100:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity, 1));
+}
+
 .active\:bg-red-200:active {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity, 1));
+}
+
+.active\:bg-violet-100:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(237 233 254 / var(--tw-bg-opacity, 1));
+}
+
+.active\:bg-violet-100\/50:active {
+  background-color: rgb(237 233 254 / 0.5);
 }
 
 .active\:bg-violet-200:active {
@@ -2138,19 +2178,8 @@ video {
   background-color: rgb(250 204 21 / var(--tw-bg-opacity, 1));
 }
 
-.active\:bg-green-100:active {
-  --tw-bg-opacity: 1;
-  background-color: rgb(220 252 231 / var(--tw-bg-opacity, 1));
-}
-
-.active\:bg-red-100:active {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 226 226 / var(--tw-bg-opacity, 1));
-}
-
-.active\:bg-violet-100:active {
-  --tw-bg-opacity: 1;
-  background-color: rgb(237 233 254 / var(--tw-bg-opacity, 1));
+.active\:bg-violet-100\/20:active {
+  background-color: rgb(237 233 254 / 0.2);
 }
 
 .active\:from-orange-500\/80:active {
@@ -2173,6 +2202,11 @@ video {
   --tw-gradient-to: rgb(234 179 8 / 0.8) var(--tw-gradient-to-position);
 }
 
+.active\:text-green-400:active {
+  --tw-text-opacity: 1;
+  color: rgb(74 222 128 / var(--tw-text-opacity, 1));
+}
+
 .active\:text-orange-400:active {
   --tw-text-opacity: 1;
   color: rgb(251 146 60 / var(--tw-text-opacity, 1));
@@ -2191,16 +2225,6 @@ video {
 .active\:text-white:active {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-}
-
-.active\:text-green-400:active {
-  --tw-text-opacity: 1;
-  color: rgb(74 222 128 / var(--tw-text-opacity, 1));
-}
-
-.active\:text-green-500:active {
-  --tw-text-opacity: 1;
-  color: rgb(34 197 94 / var(--tw-text-opacity, 1));
 }
 
 .file\:active\:bg-neutral-200:active::file-selector-button {
@@ -2293,6 +2317,16 @@ video {
 .group:hover .group-hover\:shadow-violet-500\/50 {
   --tw-shadow-color: rgb(139 92 246 / 0.5);
   --tw-shadow: var(--tw-shadow-colored);
+}
+
+.group:hover .file\:group-hover\:bg-violet-200::file-selector-button {
+  --tw-bg-opacity: 1;
+  background-color: rgb(221 214 254 / var(--tw-bg-opacity, 1));
+}
+
+.group:hover .file\:group-hover\:text-violet-400::file-selector-button {
+  --tw-text-opacity: 1;
+  color: rgb(167 139 250 / var(--tw-text-opacity, 1));
 }
 
 .group:active .group-active\:text-orange-400 {

@@ -309,7 +309,7 @@
         </div>
         <div class="flex gap-3 flex-col 2xl:flex-row xl:flex-col lg:flex-row basis-1/2">
           
-          <div class="bg-white rounded-xl py-2 px-5 h-fit">
+          <div class="bg-white rounded-xl py-2 px-5 h-fit min-w-80">
             <p
               class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400 font-bold text-xl mb-3"
             >
@@ -374,7 +374,7 @@
               </p>
             </div>
           </div>
-          <div class="shrink py-2 px-5 bg-white rounded-xl h-fit  transition-all group  basis-1/2 w-full">
+          <div class="shrink py-2 px-5 bg-white rounded-xl h-fit  transition-all group  basis-1/2 w-full min-w-40">
             <p
               class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-red-400 font-bold text-xl w-fit mb-1"
             >
@@ -393,6 +393,7 @@
       </p>
       <div class="w-fit mx-auto">
         <button
+        onclick="window.location.href = '/add-polariod/<%= friend._id %>'"
           class="bg-pink-100 px-5 py-1 text-pink-400 font-semibold transition-all rounded-full flex items-center gap-1 hover:bg-violet-200 hover:text-violet-500 hover:border-violet-400 active:bg-violet-400 active:border-violet-500 active:text-white"
         >
           <svg
@@ -410,46 +411,24 @@
       </div>
       <div class="w-4/5 mx-auto mt-5 transition-all px-10 lg:px-0">
         <div class="flex gap-3 w-fit mx-auto flex-wrap justify-center">
-          <div class="bg-white w-52 pb-5 pt-4 px-4 rounded-md">
-            <img src="img/pfp.jpg" alt="" class="rounded-sm mb-2" />
+
+          <% for (let i = 0; i < polariods.length; i++) {
+            const element = polariods[i];%>
+            
+          
+          <button
+            onclick="window.location.href = '/polariod/<%= element._id%>'" 
+            class="active:bg-violet-100 active:text-violet-400 bg-white w-52 pb-5 pt-4 px-4 rounded-md h-fit hover:bg-violet-400 transition-all group hover:text-white hover:shadow-md hover:shadow-violet-500/30">
+            <img src="<%= element.img %>" alt="" class="rounded-sm mb-2" />
             <div class="flex items-center">
-              <p class="font-medium flex-1">Yessa</p>
-              <p class="text-neutral-500 font-semibold text-xs">12/07/24</p>
+              <p class="font-medium flex-1 text-left"><%= element.nickname %></p>
+              <p class="text-neutral-500 font-semibold text-xs group-hover:text-violet-500"><%= element.date ? element.date.toString().split(" ")[1]+" "+element.date.toString().split(" ")[2]+" "+element.date.toString().split(" ")[3] : "" %></p>
             </div>
-            <p class="text-xs">our first date smh</p>
-          </div>
-          <div class="bg-white w-52 pb-5 pt-4 px-4 rounded-md">
-            <img src="img/pfp.jpg" alt="" class="rounded-sm mb-2" />
-            <div class="flex items-center">
-              <p class="font-medium flex-1">Yessa</p>
-              <p class="text-neutral-500 font-semibold text-xs">12/07/24</p>
-            </div>
-            <p class="text-xs">our first date smh</p>
-          </div>
-          <div class="bg-white w-52 pb-5 pt-4 px-4 rounded-md">
-            <img src="img/pfp.jpg" alt="" class="rounded-sm mb-2" />
-            <div class="flex items-center">
-              <p class="font-medium flex-1">Yessa</p>
-              <p class="text-neutral-500 font-semibold text-xs">12/07/24</p>
-            </div>
-            <p class="text-xs">our first date smh</p>
-          </div>
-          <div class="bg-white w-52 pb-5 pt-4 px-4 rounded-md">
-            <img src="img/pfp.jpg" alt="" class="rounded-sm mb-2" />
-            <div class="flex items-center">
-              <p class="font-medium flex-1">Yessa</p>
-              <p class="text-neutral-500 font-semibold text-xs">12/07/24</p>
-            </div>
-            <p class="text-xs">our first date smh</p>
-          </div>
-          <div class="bg-white w-52 pb-5 pt-4 px-4 rounded-md">
-            <img src="img/pfp.jpg" alt="" class="rounded-sm mb-2" />
-            <div class="flex items-center">
-              <p class="font-medium flex-1">Yessa</p>
-              <p class="text-neutral-500 font-semibold text-xs">12/07/24</p>
-            </div>
-            <p class="text-xs">our first date smh</p>
-          </div>
+            <p class="text-xs text-left"><%= element.title %></p>
+          </button>
+
+        <% } %>
+          
         </div>
       </div>
     </div>
