@@ -186,7 +186,7 @@
         </div>
         <div class="flex gap-2 mt-5">
           <button
-          onclick="window.location.href = '/edit-polariod/<%= polariod.id %>'"
+            onclick="window.location.href = '/edit-polariod/<%= polariod.id %>'"
             title="edit"
             class="active:bg-violet-200 active:text-violet-400 font-medium text-lg py-1 px-3 flex items-center gap-2 rounded-md bg-white shadow-sm border-neutral-200 hover:bg-violet-400 transition-all text-violet-400 hover:text-white hover:border-violet-400 hover:shadow-md hover:shadow-violet-500/30"
           >
@@ -205,7 +205,16 @@
             Edit
           </button>
 
+          <script>
+            function deleteConfirm(){
+              if (confirm("Are you sure to delete this friend?") == true) {
+                window.location.href = '/polariod/delete/<%= polariod.id %>';
+              } 
+            }
+          </script>
+
           <button
+            onclick="deleteConfirm()"
             title="delete"
             class="active:bg-red-200 active:text-red-400 font-medium text-lg py-1 px-3 flex items-center gap-2 rounded-md bg-white shadow-sm border-neutral-200 hover:bg-red-400 transition-all text-red-400 hover:text-white hover:border-red-400 hover:shadow-md hover:shadow-red-500/30"
           >

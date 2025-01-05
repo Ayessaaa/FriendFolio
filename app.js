@@ -85,6 +85,7 @@ app.get("/friends", siteController.friends)
 app.post("/friends", upload.single('image'), siteController.friendsPost)
 
 app.get("/friend", siteController.friend)
+app.get("/friend/delete/:id", siteController.friendDelete)
 app.get("/friend/:id", siteController.friendID)
 
 app.get("/edit-friend", siteController.editFriend);
@@ -94,7 +95,7 @@ app.post("/edit-friend/:id", siteController.editFriendIDPost);
 app.get("/polariods", siteController.polariods)
 
 app.get("/polariod", siteController.polariod)
-
+app.get("/polariod/delete/:id", siteController.polariodDelete)
 app.get("/polariod/:id", siteController.polariodID)
 
 app.get("/edit-polariod", siteController.editPolariod)

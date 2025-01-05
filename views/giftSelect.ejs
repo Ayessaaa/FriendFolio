@@ -179,18 +179,14 @@
               <p class="font-medium ml-3 text-neutral-600 text-xs">
                 <%= element.name %>
               </p>
-              <div class="flex gap-1 ml-3 mt-2.5">
-                <div
-                  class="text-xs font-semibold bg-emerald-100 border border-emerald-200 w-fit text-emerald-400 px-2 rounded-full"
-                >
-                  school
-                </div>
-                <div
-                  class="text-xs font-semibold bg-indigo-100 border border-indigo-200 w-fit text-indigo-400 px-2 rounded-full"
-                >
-                  coding
-                </div>
+              <% const zodiacColors = {"Aries": "red", "Taurus": "green", "Gemini": "yellow", "Cancer": "indigo", "Leo": "orange", "Virgo": "brown", "Libra": "pink", "Scorpio": "zinc", "Sagittarius": "violet", "Capricorn": "gray", "Aquarius": "sky", "Pisces": "teal"} %>
+            <div class="flex gap-1 ml-3 mt-2.5">
+              <div
+              class="text-xs font-semibold <%= `bg-${zodiacColors[element.zodiac]}-100` %> <%= element.zodiac ? "border": "" %> <%= `border-${zodiacColors[element.zodiac]}-200` %> w-fit text-<%= zodiacColors[element.zodiac] %>-400 px-2 rounded-full"
+              >
+              <%= element.zodiac %>
               </div>
+            </div>
             </div>
           </button>
 

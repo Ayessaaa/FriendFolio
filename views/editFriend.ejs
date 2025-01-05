@@ -181,23 +181,6 @@
                 </svg>
                 
                 </button>
-                <button
-                  title="delete"
-                  class="active:bg-red-100 active:text-red-400 p-1 rounded-md bg-white border border-neutral-200 hover:bg-red-400 transition-all text-red-400 hover:text-white hover:border-red-400 hover:shadow-md hover:shadow-red-500/30"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 16 16"
-                    fill="currentColor"
-                    class="size-5"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M5 3.25V4H2.75a.75.75 0 0 0 0 1.5h.3l.815 8.15A1.5 1.5 0 0 0 5.357 15h5.285a1.5 1.5 0 0 0 1.493-1.35l.815-8.15h.3a.75.75 0 0 0 0-1.5H11v-.75A2.25 2.25 0 0 0 8.75 1h-1.5A2.25 2.25 0 0 0 5 3.25Zm2.25-.75a.75.75 0 0 0-.75.75V4h3v-.75a.75.75 0 0 0-.75-.75h-1.5ZM6.05 6a.75.75 0 0 1 .787.713l.275 5.5a.75.75 0 0 1-1.498.075l-.275-5.5A.75.75 0 0 1 6.05 6Zm3.9 0a.75.75 0 0 1 .712.787l-.275 5.5a.75.75 0 0 1-1.498-.075l.275-5.5a.75.75 0 0 1 .786-.711Z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </button>
               </div>
             </div>
           </div>
@@ -215,7 +198,7 @@
               </p>
               <div class="flex-1 px-3 flex items-center py-4">
 
-                <input value="<%= (friend.birthday.getFullYear())+"-"+String(friend.birthday.getMonth()+1).padStart(2, "0")+"-"+String(friend.birthday.getDate()).padStart(2, "0") %>" name="birthday" type="date" class="outline-0 focus:ring-2 focus:ring-violet-400 text-violet-300 w-ful text-sm p-1 rounded-lg text-center hover:bg-white/80 transition-all hover:text-violet-400"/>
+                <input value="<%= friend.birthday ? (friend.birthday.getFullYear())+"-"+String(friend.birthday.getMonth()+1).padStart(2, "0")+"-"+String(friend.birthday.getDate()).padStart(2, "0") : "" %>" name="birthday" type="date" class="outline-0 focus:ring-2 focus:ring-violet-400 text-violet-300 w-ful text-sm p-1 rounded-lg text-center hover:bg-white/80 transition-all hover:text-violet-400"/>
               </div>
             </div>
           </div>

@@ -170,7 +170,7 @@
             <div class="flex-1">
               <div class="w-fit ml-auto">
                 <button
-                onclick="window.location.href = '/edit-friend/<%= friend._id %>'"
+                  onclick="window.location.href = '/edit-friend/<%= friend._id %>'"
                   title="edit"
                   class="active:bg-violet-100 active:text-violet-400 p-1 rounded-md bg-white border border-neutral-200 hover:bg-violet-400 transition-all text-violet-400 hover:text-white hover:border-violet-400 hover:shadow-md hover:shadow-violet-500/30"
                 >
@@ -187,7 +187,15 @@
                     />
                   </svg>
                 </button>
+                <script>
+                  function deleteConfirm(){
+                    if (confirm("Are you sure to delete this friend?") == true) {
+                      window.location.href = '/friend/delete/<%= friend._id %>';
+                    } 
+                  }
+                </script>
                 <button
+                  onclick="deleteConfirm()"
                   title="delete"
                   class="active:bg-red-100 active:text-red-400 p-1 rounded-md bg-white border border-neutral-200 hover:bg-red-400 transition-all text-red-400 hover:text-white hover:border-red-400 hover:shadow-md hover:shadow-red-500/30"
                 >

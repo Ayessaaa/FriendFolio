@@ -264,6 +264,21 @@ const friend = (req, res) => {
   }
 };
 
+const friendDelete = (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    console.log(req.params.id)
+    Friend.findOneAndDelete({_id : req.params.id})
+    .then((result)=>{
+      res.redirect("/friends");
+    })
+    .catch((err)=>console.log(err))
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
 const friendID = (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
@@ -359,6 +374,19 @@ const polariod = (req, res) => {
   }
 };
 
+const polariodDelete = (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    Polariod.findOneAndDelete({ _id: req.params.id })
+      .then((result) => {
+        res.redirect("/polariods");
+      })
+      .catch((err) => console.log(err));
+  } else {
+    res.redirect("/log-in");
+  }
+};
 
 const polariodID = (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
@@ -415,15 +443,20 @@ const editPolariodIDPost = (req, res) => {
 };
 
 const gift = (req, res) => {
-  Gift.find({_id: req.params.id})
-  .then((resultGift)=>{
-    Polariod.find({friend_id: resultGift[0].friend_id})
-    .sort({date: "asc"})
-    .then((resultPolariod)=>{
-      res.render("gift", {gift:resultGift[0], polariods: resultPolariod});
+  Gift.find({ _id: req.params.id })
+    .then((resultGift) => {
+      Polariod.find({ friend_id: resultGift[0].friend_id })
+        .sort({ date: "asc" })
+        .then((resultPolariod) => {
+          res.render("gift", {
+            gift: resultGift[0],
+            polariods: resultPolariod,
+          });
+        });
     })
-  })
-  .catch((err)=>{console.log(err)})
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 const giftSelect = (req, res) => {
@@ -469,8 +502,7 @@ const createGiftPost = (req, res) => {
     gift
       .save()
       .then((result) => {
-
-        res.redirect("/gift/"+gift.id);
+        res.redirect("/gift/" + gift.id);
       })
       .catch((err) => {
         console.log(err);
@@ -503,4 +535,6 @@ module.exports = {
   giftSelect,
   createGift,
   createGiftPost,
+  polariodDelete,
+  friendDelete
 };
