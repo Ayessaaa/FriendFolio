@@ -17,8 +17,15 @@ const home = (req, res) => {
   if (isLoggedIn) {
     Friend.find({ username: req.session.username })
       .exec()
-      .then((result) => {
-        res.render("home", { friends: result });
+      .then((resultFriend) => {
+        Polariod.find({ username: req.session.username })
+          .sort({ date: "desc" })
+          .then((resultPolariod) => {
+            res.render("home", {
+              friends: resultFriend,
+              polariods: resultPolariod,
+            });
+          });
       })
       .catch((err) => console.log(err));
   } else {
@@ -236,7 +243,11 @@ const polariods = (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
-    res.render("polariods");
+    Polariod.find({ username: req.session.username })
+      .sort({ date: "desc" })
+      .then((result) => {
+        res.render("polariods", { polariods: result });
+      });
   } else {
     res.redirect("/log-in");
   }
@@ -394,12 +405,30 @@ const editPolariodIDPost = (req, res) => {
         body: req.body.body,
       }
     ).then((result) => {
-      res.redirect("/polariod/"+req.params.id);
+      res.redirect("/polariod/" + req.params.id);
     });
   } else {
     res.redirect("/log-in");
   }
 };
+
+const gift = (req, res)=>{
+  res.render("gift")
+}
+
+const giftSelect = (req, res)=>{
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    Friend.find({ username: req.session.username })
+    .then((result) => {
+      res.render("giftSelect", { friends: result });
+    })
+    .catch((err) => console.log(err));
+  } else {
+    res.redirect("/log-in");
+  }
+}
 
 module.exports = {
   home,
@@ -420,4 +449,6 @@ module.exports = {
   editPolariod,
   editPolariodID,
   editPolariodIDPost,
+  gift,
+  giftSelect
 };

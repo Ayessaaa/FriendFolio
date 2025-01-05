@@ -1,5 +1,7 @@
 // https://dev.to/evansitworld/upload-images-with-nodejs-and-express-to-the-cloud-using-cloudinary-26e4
 // https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
+// https://www.peterfisher.me.uk/blog/javascript-sort-by-soonest-date-object/
+
 require('dotenv').config();
 const express = require("express");
 const morgan = require("morgan");
@@ -101,6 +103,10 @@ app.post("/edit-polariod/:id", siteController.editPolariodIDPost)
 app.get("/add-polariod", siteController.addPolariod)
 app.get("/add-polariod/:id", siteController.addPolariodID)
 app.post("/add-polariod/:id", upload.single('image'), siteController.addPolariodIDPost)
+
+app.get("/gift/:gift_id", siteController.gift)
+
+app.get("/gift-select", siteController.giftSelect)
 
 
 

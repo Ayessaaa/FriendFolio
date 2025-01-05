@@ -123,6 +123,17 @@
             />
           </svg>
         </button>
+        <button
+          onclick="window.location.href = '/gift-select'"
+          title="gift"
+          class="flex items-center h-full w-fit px-3 py-1 rounded-full gap-2 hover:bg-indigo-200 transition-all active:bg-indigo-400 group"
+        >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" 
+          class="size-5 text-indigo-400 group-active:text-white">
+          <path fill-rule="evenodd" d="M14 6a2.5 2.5 0 0 0-4-3 2.5 2.5 0 0 0-4 3H3.25C2.56 6 2 6.56 2 7.25v.5C2 8.44 2.56 9 3.25 9h6V6h1.5v3h6C17.44 9 18 8.44 18 7.75v-.5C18 6.56 17.44 6 16.75 6H14Zm-1-1.5a1 1 0 0 1-1 1h-1v-1a1 1 0 1 1 2 0Zm-6 0a1 1 0 0 0 1 1h1v-1a1 1 0 0 0-2 0Z" clip-rule="evenodd" />
+          <path d="M9.25 10.5H3v4.75A2.75 2.75 0 0 0 5.75 18h3.5v-7.5ZM10.75 18v-7.5H17v4.75A2.75 2.75 0 0 1 14.25 18h-3.5Z" />
+        </svg>
+        </button>
       </div>
       <div class="flex items-center justify-end mt-8 lg:mt-0">
         <a
@@ -193,13 +204,43 @@
       <p
         class="text-transparent bg-clip-text bg-gradient-to-r mt-12 from-violet-400 to-pink-400 font-bold text-3xl text-center w-fit mx-auto"
       >
-        Friends
+        Upcoming Birthdays
       </p>
+
+      <%
+        const sortBySoonest = function (events) {
+          const currentDate = new Date()
+          return events.sort(function (a, b) {
+            let dateA = new Date((a.birthday.getMonth()+1)+"-"+a.birthday.getDate()+"-"+currentDate.getFullYear())
+            let dateB = new Date((b.birthday.getMonth()+1)+"-"+b.birthday.getDate()+"-"+currentDate.getFullYear())
+            // Move all the dates that are in the past to the end of the array
+            if (dateA < currentDate || dateB < currentDate) {
+                return -1;
+            }
+            // Order by soonest
+            return dateA - dateB;
+          });
+        }
+
+        for (let i = 0; i < friends.length; i++) {
+          const element = friends[i];
+
+          if(element.birthday === null){
+            friends.splice(i, 1);
+          }
+          
+        }
+
+        friends = friends.filter(item => item.birthday !== null)
+
+        friends = sortBySoonest(friends)
+
+      %>
 
       <div
         class="bg-white p-5 border rounded-xl mt-3 flex flex-wrap gap-3 w-fit justify-center"
       >
-      <% for (let i = 0; i < friends.length; i++) {
+      <% for (let i = 0; i < 2; i++) {
         const element = friends[i]; %>
         
       
@@ -225,8 +266,28 @@
                 coding
               </div>
             </div>
+
+            
           </div>
+          
         </button>
+        <div
+            class="rounded-xl bg-violet-300 font-bold text-white flex-col flex items-center justify-center w-20 group hover:bg-violet-400/70 transition-all hover:shadow-md hover:shadow-violet-500/30"
+          >
+            <p
+              class="bg-violet-400/70 basis-2/6 px-5 pt-1.5 rounded-t-xl text-lg text-violet-600/80 w-full text-center drop-shadow-md group-hover:bg-violet-500/50 transition-all group-hover:text-violet-600"
+            >
+            <% // const monthsShort = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+            // const bday = element.bday.toString()
+            %>
+            <%= element.birthday ?  element.birthday.toString().split(" ")[1] : "-" %>
+            </p>
+            <p
+              class="text-3xl basis-4/6 pt-2 drop-shadow-md group-hover:scale-105 transition-all"
+            >
+            <%= element.birthday ?  element.birthday.toString().split(" ")[2] : "-" %>
+            </p>
+          </div>
 
       <% } %>
       </div>
@@ -244,33 +305,42 @@
       </p>
 
       <div class="flex flex-col">
+        <% for (let i = 0; i < polariods.length; i++) {
+          const element = polariods[i]; %>
+          
+        
         <button
+          onclick="window.location.href = '/polariod/<%= element.id %>'"
           class="w-80 mx-auto bg-white rounded-md pb-7 pt-7 px-7 mt-5 hover:bg-violet-400 transition-all group shadow-md shadow-neutral-300/30 hover:shadow-lg hover:shadow-violet-500/30"
         >
-          <img src="img/pfp.jpg" alt="" class="mb-3 rounded-sm" />
+          <img src="<%= element.img %>" alt="" class="mb-3 rounded-sm" />
           <div class="flex items-center">
             <p
               class="font-semibold text-xl flex-1 group-hover:text-white text-left"
             >
-              Yessa
+              <%= element.nickname %>
             </p>
             <p
               class="font-semibold text-sm text-neutral-500 group-hover:text-violet-700"
             >
-              12/24/24
+            <%= element.date ? element.date.toString().split(" ")[1]+" "+element.date.toString().split(" ")[2]+" "+element.date.toString().split(" ")[3] : "" %>
             </p>
           </div>
           <p
             class="group-hover:text-violet-100 font-base mt-2 text-neutral-600 text-left"
           >
-            Title title title
+            <%= element.title %>
+
           </p>
           <p
             class="group-hover:text-violet-200 text-xs text-neutral-500 text-left"
           >
-            Just some lengthy description here lmao more more more
+            <%= element.body %>
+
           </p>
         </button>
+
+        <% } %>
       </div>
     </div>
   </body>

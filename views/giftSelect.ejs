@@ -11,7 +11,7 @@
       rel="stylesheet"
     />
 
-    <title>Polariod - FriendFolio</title>
+    <title>Friends - FriendFolio</title>
     <link
       rel="icon"
       type="image/x-icon"
@@ -21,6 +21,9 @@
     <style>
       body {
         font-family: "Poppins";
+      }
+      .w-100 {
+        width: 30rem;
       }
     </style>
   </head>
@@ -105,13 +108,13 @@
         <button
           onclick="window.location.href = '/polariods'"
           title="polariods"
-          class="flex items-center h-full w-fit group bg-orange-400 px-3 py-1 rounded-full gap-2 shadow-md shadow-orange-500/50 hover:bg-orange-500/80 transition-all active:bg-orange-200"
+          class="flex items-center h-full w-fit px-3 py-1 rounded-full gap-2 hover:bg-orange-200 transition-all active:bg-orange-400 group"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            class="size-5 text-white group-active:text-orange-400"
+            class="size-5 text-orange-400 group-active:text-white"
           >
             <path
               fill-rule="evenodd"
@@ -119,21 +122,22 @@
               clip-rule="evenodd"
             />
           </svg>
-          <p class="font-medium text-white group-active:text-orange-400">
-            Polariods
-          </p>
         </button>
         <button
           onclick="window.location.href = '/gift-select'"
-          title="gift"
-          class="flex items-center h-full w-fit px-3 py-1 rounded-full gap-2 hover:bg-indigo-200 transition-all active:bg-indigo-400 group"
+          title="polariods"
+          class="flex items-center h-full w-fit group bg-indigo-400 px-3 py-1 rounded-full gap-2 shadow-md shadow-indigo-500/50 hover:bg-indigo-500/80 transition-all active:bg-indigo-200"
         >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" 
-          class="size-5 text-indigo-400 group-active:text-white">
+          class="size-5 text-white group-active:text-indigo-400">
           <path fill-rule="evenodd" d="M14 6a2.5 2.5 0 0 0-4-3 2.5 2.5 0 0 0-4 3H3.25C2.56 6 2 6.56 2 7.25v.5C2 8.44 2.56 9 3.25 9h6V6h1.5v3h6C17.44 9 18 8.44 18 7.75v-.5C18 6.56 17.44 6 16.75 6H14Zm-1-1.5a1 1 0 0 1-1 1h-1v-1a1 1 0 1 1 2 0Zm-6 0a1 1 0 0 0 1 1h1v-1a1 1 0 0 0-2 0Z" clip-rule="evenodd" />
           <path d="M9.25 10.5H3v4.75A2.75 2.75 0 0 0 5.75 18h3.5v-7.5ZM10.75 18v-7.5H17v4.75A2.75 2.75 0 0 1 14.25 18h-3.5Z" />
         </svg>
+        <p class="font-medium text-white group-active:text-pink-400">
+          Gift
+        </p>
         </button>
+        
       </div>
       <div class="flex items-center justify-end mt-8 lg:mt-0">
         <a
@@ -145,86 +149,73 @@
       </div>
     </div>
 
-    <div class="lg:w-2/3 xl:w-1/2 mx-auto mt-10 transition-all px-10 lg:px-0">
-      <p
-        class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400 font-bold text-4xl w-fit mx-auto"
-      >
-        Polariods
-      </p>
-      <div
-        class="rounded-full bg-violet-300/50 w-fit px-8 py-0.5 font-bold text-violet-500 mx-auto mt-5"
-      >
-        <p><%= polariod.nickname %>'s Polariod</p>
+    <div
+      class="w-100 mx-auto mt-10 transition-all px-2 md:px-0 bg-white rounded-xl py-5 border"
+    >
+      <div class="bg-indigo-400 w-fit p-1.5 rounded-lg mx-auto mb-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-9 text-white stroke-2">
+          <path d="M9.375 3a1.875 1.875 0 0 0 0 3.75h1.875v4.5H3.375A1.875 1.875 0 0 1 1.5 9.375v-.75c0-1.036.84-1.875 1.875-1.875h3.193A3.375 3.375 0 0 1 12 2.753a3.375 3.375 0 0 1 5.432 3.997h3.943c1.035 0 1.875.84 1.875 1.875v.75c0 1.036-.84 1.875-1.875 1.875H12.75v-4.5h1.875a1.875 1.875 0 1 0-1.875-1.875V6.75h-1.5V4.875C11.25 3.839 10.41 3 9.375 3ZM11.25 12.75H3v6.75a2.25 2.25 0 0 0 2.25 2.25h6v-9ZM12.75 12.75v9h6.75a2.25 2.25 0 0 0 2.25-2.25v-6.75h-9Z" />
+        </svg>
       </div>
 
-      <div class="w-96 mx-auto">
-        <div
-          class="bg-white rounded-md pb-7 pt-7 px-7 mt-5 hover:bg-violet-400 transition-all group shadow-md shadow-neutral-300/30 hover:shadow-lg hover:shadow-violet-500/30"
-        >
-          <img src="<%= polariod.img %>" alt="" class="mb-3 rounded-sm" />
-          <div class="flex items-center">
-            <p class="font-semibold text-2xl flex-1">
-              <a class=" group-hover:text-white hover:underline" href="/friend/<%= polariod.friend_id %>">
-                <%= polariod.nickname %>
-              </a>
-            </p>
-            
+      <p
+        class="drop-shadow-md text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400 font-bold text-3xl w-fit mx-auto"
+      >
+        Create a Gift Link
+      </p>
+      <p class="text-sm font-medium text-neutral-400 mb-5 text-center">Select a friend to compile your polariods</p>
+
+      
+      <div class="flex flex-col mt-5 gap-2 px-5">
+        <% for (let i = 0; i < friends.length; i++) { 
+        const element = friends[i];%>
+        <div class="flex gap-2 mx-auto w-full">
+          <button onclick="window.location.href = '/friend/<%= element._id %>'"
+            class="py-3 px-3 bg-gradient-to-br w-72 rounded-xl flex border-neutral-100 hover:shadow-md transition-all flex-1"
+          >
+            <img src="<%= element.img %>" alt="" class="w-16 rounded-lg" />
+            <div class="leading-tight flex-col flex text-left">
+              <p class="font-medium ml-3 text-neutral-800"><%= element.nickname %></p>
+              <p class="font-medium ml-3 text-neutral-600 text-xs">
+                <%= element.name %>
+              </p>
+              <div class="flex gap-1 ml-3 mt-2.5">
+                <div
+                  class="text-xs font-semibold bg-emerald-100 border border-emerald-200 w-fit text-emerald-400 px-2 rounded-full"
+                >
+                  school
+                </div>
+                <div
+                  class="text-xs font-semibold bg-indigo-100 border border-indigo-200 w-fit text-indigo-400 px-2 rounded-full"
+                >
+                  coding
+                </div>
+              </div>
+            </div>
+          </button>
+
+          <div
+            class="rounded-xl bg-violet-300 font-bold text-white flex-col flex items-center justify-center w-20 group hover:bg-violet-400/70 transition-all hover:shadow-md hover:shadow-violet-500/30"
+          >
             <p
-              class="font-semibold text-base text-neutral-500 group-hover:text-violet-600"
+              class="bg-violet-400/70 basis-2/6 px-5 pt-1.5 rounded-t-xl text-lg text-violet-600/80 w-full text-center drop-shadow-md group-hover:bg-violet-500/50 transition-all group-hover:text-violet-600"
             >
-            <%= polariod.date ? polariod.date.toString().split(" ")[1]+" "+polariod.date.toString().split(" ")[2]+" "+polariod.date.toString().split(" ")[3] : "" %>
+            <% // const monthsShort = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+            // const bday = element.bday.toString()
+            %>
+            <%= element.birthday ?  element.birthday.toString().split(" ")[1] : "-" %>
+            </p>
+            <p
+              class="text-3xl basis-4/6 pt-2 drop-shadow-md group-hover:scale-105 transition-all"
+            >
+            <%= element.birthday ?  element.birthday.toString().split(" ")[2] : "-" %>
             </p>
           </div>
-          <p
-            class="group-hover:text-violet-100 font-medium mt-2 text-neutral-600"
-          >
-            <%= polariod.title %>
-          </p>
-          <p class="group-hover:text-violet-200 text-sm text-neutral-500">
-            <%= polariod.body %>
-          </p>
         </div>
-        <div class="flex gap-2 mt-5">
-          <button
-          onclick="window.location.href = '/edit-polariod/<%= polariod.id %>'"
-            title="edit"
-            class="active:bg-violet-200 active:text-violet-400 font-medium text-lg py-1 px-3 flex items-center gap-2 rounded-md bg-white shadow-sm border-neutral-200 hover:bg-violet-400 transition-all text-violet-400 hover:text-white hover:border-violet-400 hover:shadow-md hover:shadow-violet-500/30"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-              class="size-5"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M11.013 2.513a1.75 1.75 0 0 1 2.475 2.474L6.226 12.25a2.751 2.751 0 0 1-.892.596l-2.047.848a.75.75 0 0 1-.98-.98l.848-2.047a2.75 2.75 0 0 1 .596-.892l7.262-7.261Z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            Edit
-          </button>
-
-          <button
-            title="delete"
-            class="active:bg-red-200 active:text-red-400 font-medium text-lg py-1 px-3 flex items-center gap-2 rounded-md bg-white shadow-sm border-neutral-200 hover:bg-red-400 transition-all text-red-400 hover:text-white hover:border-red-400 hover:shadow-md hover:shadow-red-500/30"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-              class="size-5"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M5 3.25V4H2.75a.75.75 0 0 0 0 1.5h.3l.815 8.15A1.5 1.5 0 0 0 5.357 15h5.285a1.5 1.5 0 0 0 1.493-1.35l.815-8.15h.3a.75.75 0 0 0 0-1.5H11v-.75A2.25 2.25 0 0 0 8.75 1h-1.5A2.25 2.25 0 0 0 5 3.25Zm2.25-.75a.75.75 0 0 0-.75.75V4h3v-.75a.75.75 0 0 0-.75-.75h-1.5ZM6.05 6a.75.75 0 0 1 .787.713l.275 5.5a.75.75 0 0 1-1.498.075l-.275-5.5A.75.75 0 0 1 6.05 6Zm3.9 0a.75.75 0 0 1 .712.787l-.275 5.5a.75.75 0 0 1-1.498-.075l.275-5.5a.75.75 0 0 1 .786-.711Z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            Delete
-          </button>
-        </div>
+        <% } %>
       </div>
+
+      
     </div>
   </body>
 </html>
