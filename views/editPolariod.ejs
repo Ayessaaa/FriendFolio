@@ -146,7 +146,7 @@
         <p><%= polariod.nickname %>'s Polariod</p>
       </div>
 
-      <div class="w-96 mx-auto">
+      <form class="w-96 mx-auto" method="POST">
         <div
           class="bg-white rounded-md pb-7 pt-7 px-7 mt-5 hover:bg-violet-400 transition-all group shadow-md shadow-neutral-300/30 hover:shadow-lg hover:shadow-violet-500/30"
         >
@@ -155,40 +155,42 @@
             <p class="font-semibold text-2xl flex-1 group-hover:text-white">
               <%= polariod.nickname %>
             </p>
-            <p
-              class="font-semibold text-base text-neutral-500 group-hover:text-violet-600"
-            >
-            <%= polariod.date ? polariod.date.toString().split(" ")[1]+" "+polariod.date.toString().split(" ")[2]+" "+polariod.date.toString().split(" ")[3] : "" %>
-            </p>
+            <input
+            type="date"
+            name="date"
+            value="<%= (polariod.date.getFullYear())+"-"+String(polariod.date.getMonth()+1).padStart(2, "0")+"-"+String(polariod.date.getDate()).padStart(2, "0") %>"
+              class="px-1.5 py-0.5 w-36 font-semibold text-base text-neutral-500 group-hover:text-violet-600 transition-all outline-none focus:ring-neutral-300 focus:ring-2 group-hover:focus:ring-violet-500  border rounded-md group-hover:bg-violet-200/40"
+            />
+            
           </div>
-          <p
-            class="group-hover:text-violet-100 font-medium mt-2 text-neutral-600"
-          >
-            <%= polariod.title %>
-          </p>
-          <p class="group-hover:text-violet-200 text-sm text-neutral-500">
-            <%= polariod.body %>
-          </p>
+          <div class="flex flex-col mt-3">
+
+            <label for="title" class="text-xs ml-1 font-medium text-neutral-400 group-hover:text-violet-100">Title</label>
+            <input
+              name="title"
+              class="transition-all outline-none focus:ring-neutral-300 focus:ring-2 group-hover:focus:ring-violet-500 group-hover:text-white font-medium text-neutral-600 px-1.5 py-0.5 border rounded-md group-hover:bg-violet-200/40"
+              value="<%= polariod.title %>"
+            >
+
+            <label for="body" class="mt-2 text-xs ml-1 font-medium text-neutral-400 group-hover:text-violet-100">Body</label>
+            <textarea
+              name="body"
+              class="transition-all outline-none focus:ring-neutral-300 focus:ring-2 group-hover:focus:ring-violet-500 group-hover:text-violet-50 text-sm text-neutral-500 px-1.5 py-0.5 border rounded-md group-hover:bg-violet-200/40"
+              
+            ><%= polariod.body %></textarea>
+            
+  
+          </div>
         </div>
         <div class="flex gap-2 mt-5">
           <button
-          onclick="window.location.href = '/edit-polariod/<%= polariod.id %>'"
-            title="edit"
-            class="active:bg-violet-200 active:text-violet-400 font-medium text-lg py-1 px-3 flex items-center gap-2 rounded-md bg-white shadow-sm border-neutral-200 hover:bg-violet-400 transition-all text-violet-400 hover:text-white hover:border-violet-400 hover:shadow-md hover:shadow-violet-500/30"
+            title="save"
+            class="active:bg-green-200 active:text-green-400 font-medium text-lg py-1 px-3 flex items-center gap-2 rounded-md bg-white shadow-sm border-neutral-200 hover:bg-green-400 transition-all text-green-400 hover:text-white hover:border-green-400 hover:shadow-md hover:shadow-green-500/30"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-              class="size-5"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M11.013 2.513a1.75 1.75 0 0 1 2.475 2.474L6.226 12.25a2.751 2.751 0 0 1-.892.596l-2.047.848a.75.75 0 0 1-.98-.98l.848-2.047a2.75 2.75 0 0 1 .596-.892l7.262-7.261Z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            Edit
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-5">
+            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Zm3.844-8.791a.75.75 0 0 0-1.188-.918l-3.7 4.79-1.649-1.833a.75.75 0 1 0-1.114 1.004l2.25 2.5a.75.75 0 0 0 1.15-.043l4.25-5.5Z" clip-rule="evenodd" />
+          </svg>
+            Save
           </button>
 
           <button
@@ -210,7 +212,7 @@
             Delete
           </button>
         </div>
-      </div>
+      </form>
     </div>
   </body>
 </html>

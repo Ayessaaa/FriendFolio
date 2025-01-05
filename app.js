@@ -91,8 +91,18 @@ app.post("/edit-friend/:id", siteController.editFriendIDPost);
 
 app.get("/polariods", siteController.polariods)
 
+app.get("/polariod", siteController.polariod)
+app.get("/polariod/:id", siteController.polariodID)
+
+app.get("/edit-polariod", siteController.editPolariod)
+app.get("/edit-polariod/:id", siteController.editPolariodID)
+app.post("/edit-polariod/:id", siteController.editPolariodIDPost)
+
 app.get("/add-polariod", siteController.addPolariod)
 app.get("/add-polariod/:id", siteController.addPolariodID)
 app.post("/add-polariod/:id", upload.single('image'), siteController.addPolariodIDPost)
+
+
+
 
 

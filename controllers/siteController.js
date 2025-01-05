@@ -262,7 +262,7 @@ const friendID = (req, res) => {
           friend_id: req.params.id,
           username: req.session.username,
         })
-        .sort({date: "desc"})
+          .sort({ date: "desc" })
           .then((resultPolariod) => {
             res.render("friend", {
               friend: resultFriend[0],
@@ -337,6 +337,70 @@ const addPolariodIDPost = (req, res) => {
   }
 };
 
+const polariod = (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    res.redirect("/polariods");
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
+const polariodID = (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    Polariod.find({ _id: req.params.id }).then((result) => {
+      res.render("polariod", { polariod: result[0] });
+    });
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
+const editPolariod = (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    res.redirect("/polariods");
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
+const editPolariodID = (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    Polariod.find({ _id: req.params.id }).then((result) => {
+      res.render("editPolariod", { polariod: result[0] });
+    });
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
+const editPolariodIDPost = (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    Polariod.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        username: req.body.username,
+        date: req.body.date,
+        title: req.body.title,
+        body: req.body.body,
+      }
+    ).then((result) => {
+      res.redirect("/polariod/"+req.params.id);
+    });
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
 module.exports = {
   home,
   addFriend,
@@ -351,4 +415,9 @@ module.exports = {
   addPolariod,
   addPolariodID,
   addPolariodIDPost,
+  polariod,
+  polariodID,
+  editPolariod,
+  editPolariodID,
+  editPolariodIDPost,
 };
