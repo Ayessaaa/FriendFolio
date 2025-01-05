@@ -359,6 +359,7 @@ const polariod = (req, res) => {
   }
 };
 
+
 const polariodID = (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 

@@ -254,16 +254,12 @@
             <p class="font-medium ml-3 text-neutral-600 text-xs text-left">
               <%= element.name %>
             </p>
+            <% const zodiacColors = {"Aries": "red", "Taurus": "green", "Gemini": "yellow", "Cancer": "indigo", "Leo": "orange", "Virgo": "brown", "Libra": "pink", "Scorpio": "zinc", "Sagittarius": "violet", "Capricorn": "gray", "Aquarius": "sky", "Pisces": "teal"} %>
             <div class="flex gap-1 ml-3 mt-2.5">
               <div
-                class="text-xs font-semibold bg-emerald-100 border border-emerald-200 w-fit text-emerald-400 px-2 rounded-full"
+              class="text-xs font-semibold <%= `bg-${zodiacColors[element.zodiac]}-100` %> border <%= `border-${zodiacColors[element.zodiac]}-200` %> w-fit text-<%= zodiacColors[element.zodiac] %>-400 px-2 rounded-full"
               >
-                school
-              </div>
-              <div
-                class="text-xs font-semibold bg-indigo-100 border border-indigo-200 w-fit text-indigo-400 px-2 rounded-full"
-              >
-                coding
+              <%= element.zodiac %>
               </div>
             </div>
 
@@ -272,7 +268,7 @@
           
         </button>
         <div
-            class="rounded-xl bg-violet-300 font-bold text-white flex-col flex items-center justify-center w-20 group hover:bg-violet-400/70 transition-all hover:shadow-md hover:shadow-violet-500/30"
+            class="rounded-xl -ml-1 bg-violet-300 font-bold text-white flex-col flex items-center justify-center w-20 group hover:bg-violet-400/70 transition-all hover:shadow-md hover:shadow-violet-500/30"
           >
             <p
               class="bg-violet-400/70 basis-2/6 px-5 pt-1.5 rounded-t-xl text-lg text-violet-600/80 w-full text-center drop-shadow-md group-hover:bg-violet-500/50 transition-all group-hover:text-violet-600"

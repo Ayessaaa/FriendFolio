@@ -94,6 +94,7 @@ app.post("/edit-friend/:id", siteController.editFriendIDPost);
 app.get("/polariods", siteController.polariods)
 
 app.get("/polariod", siteController.polariod)
+
 app.get("/polariod/:id", siteController.polariodID)
 
 app.get("/edit-polariod", siteController.editPolariod)
