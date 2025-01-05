@@ -104,11 +104,12 @@ app.get("/add-polariod", siteController.addPolariod)
 app.get("/add-polariod/:id", siteController.addPolariodID)
 app.post("/add-polariod/:id", upload.single('image'), siteController.addPolariodIDPost)
 
-app.get("/gift/:gift_id", siteController.gift)
+app.get("/gift/:id", siteController.gift)
 
 app.get("/gift-select", siteController.giftSelect)
 
-
+app.get("/create-gift/:id", siteController.createGift)
+app.post("/create-gift/:id", siteController.createGiftPost)
 
 
 

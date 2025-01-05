@@ -10,6 +10,7 @@ const cloudinary = require("cloudinary").v2;
 const User = require("../models/user");
 const Friend = require("../models/friend");
 const Polariod = require("../models/polariod");
+const Gift = require("../models/gift");
 
 const home = (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
@@ -412,23 +413,71 @@ const editPolariodIDPost = (req, res) => {
   }
 };
 
-const gift = (req, res)=>{
-  res.render("gift")
-}
+const gift = (req, res) => {
+  Gift.find({_id: req.params.id})
+  .then((resultGift)=>{
+    Polariod.find({friend_id: resultGift[0].friend_id})
+    .sort({date: "asc"})
+    .then((resultPolariod)=>{
+      res.render("gift", {gift:resultGift[0], polariods: resultPolariod});
+    })
+  })
+  .catch((err)=>{console.log(err)})
+};
 
-const giftSelect = (req, res)=>{
+const giftSelect = (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
     Friend.find({ username: req.session.username })
-    .then((result) => {
-      res.render("giftSelect", { friends: result });
-    })
-    .catch((err) => console.log(err));
+      .then((result) => {
+        res.render("giftSelect", { friends: result });
+      })
+      .catch((err) => console.log(err));
   } else {
     res.redirect("/log-in");
   }
-}
+};
+
+const createGift = (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    Friend.find({ username: req.session.username, _id: req.params.id })
+      .then((result) => {
+        res.render("createGift", { friend: result[0] });
+      })
+      .catch((err) => console.log(err));
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
+const createGiftPost = (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    const gift = new Gift({
+      username: req.session.username,
+      friend_id: req.params.id,
+      title: req.body.title,
+      greeting: req.body.greeting,
+      message: req.body.message,
+    });
+
+    gift
+      .save()
+      .then((result) => {
+
+        res.redirect("/gift/"+gift.id);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    res.redirect("/log-in");
+  }
+};
 
 module.exports = {
   home,
@@ -450,5 +499,7 @@ module.exports = {
   editPolariodID,
   editPolariodIDPost,
   gift,
-  giftSelect
+  giftSelect,
+  createGift,
+  createGiftPost,
 };
