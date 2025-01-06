@@ -25,6 +25,7 @@ const home = (req, res) => {
             res.render("home", {
               friends: resultFriend,
               polariods: resultPolariod,
+              username: req.session.username
             });
           });
       })
