@@ -48,7 +48,9 @@ app.use(
   })
 );
 
-// app.get("/guide", siteController.guide);
+app.get("/guide", (req, res)=>{
+  res.render("guide")
+});
 
 app.get("/sign-up", authController.signUp);
 
