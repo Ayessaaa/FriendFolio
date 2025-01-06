@@ -155,13 +155,15 @@ This link is accessible for everyone, no need for signing up!
 
 
 ## 📚 Resources
-I have used ChatGPT to help me from some code and debugging some parts of the project. Additionally Here are some resources that helped me create FriendFolio:
+I have used ChatGPT to help me from some code and debugging some parts of the project. Additionally, here are some resources that helped me create FriendFolio:
 - [Log In, Sign Up](https://blog.logrocket.com/building-simple-login-form-node-js/)
 - [Hashing Passwords](https://www.freecodecamp.org/news/how-to-hash-passwords-with-bcrypt-in-nodejs/)
 - [Session Managment](https://dev.to/saint_vandora/how-to-implement-session-management-in-nodejs-applications-5emm)
 - [Cloudinary Image Upload](https://dev.to/evansitworld/upload-images-with-nodejs-and-express-to-the-cloud-using-cloudinary-26e4)
 - [Image Preview](https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded)
 - [Birthday Sort](https://www.peterfisher.me.uk/blog/javascript-sort-by-soonest-date-object/)
+
+Images that are used on the snapshots of the website are from pinterest
 
 ## 📝 Contributing
 
