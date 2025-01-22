@@ -2,7 +2,7 @@
 // https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
 // https://www.peterfisher.me.uk/blog/javascript-sort-by-soonest-date-object/
 
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
@@ -10,10 +10,13 @@ const dotenv = require("dotenv");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
 
-const cloudinary = require('cloudinary').v2;
+const cloudinary = require("cloudinary").v2;
 
-const { storage } = require('./storage/storage');
-const multer = require('multer');
+const nodemailer = require("nodemailer");
+const schedule = require("node-schedule");
+
+const { storage } = require("./storage/storage");
+const multer = require("multer");
 const upload = multer({ storage });
 
 const { render } = require("ejs");
@@ -48,8 +51,54 @@ app.use(
   })
 );
 
-app.get("/guide", (req, res)=>{
-  res.render("guide")
+
+const transporter = nodemailer.createTransport({
+  host: "gmail",
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: "aisamae28@gmail.com",
+    pass: "zjhu qskf uaot vwzf",
+  },
+});
+
+// const mailOptions = {
+//   from: {
+//     name: "FriendFolio",
+//     address: "aisamae28@gmail.com"
+//   }, // sender address
+//   to: "ayessamaedeguzman78@gmail.com", // list of receivers
+//   subject: "Hello ✔", // Subject line
+//   text: "Hello world?", // plain text body
+//   html: "<b>Hello world?</b>", // html body
+// };
+
+// const sendMail = async (transporter, mailOptions) =>{
+//   try {
+//     await transporter.sendMail(mailOptions)
+//     console.log("email sent")
+//   } catch (err){
+//     console.log(err)
+//   }
+// }
+// const now = new Date();
+// const targetDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes() +1 ) // YYYY, MM-1, DD, HH, MM (e.g., Jan 22, 2025, at 9:00 AM)
+
+// schedule.scheduleJob(targetDate, () => {
+//   sendMail(transporter, mailOptions, (error, info) => {
+//     if (error) {
+//       console.error("Error sending email:", error);
+//     } else {
+//       console.log("Email sent successfully:", info.response);
+//     }
+//   });
+// });
+
+
+
+app.get("/guide", (req, res) => {
+  res.render("guide");
 });
 
 app.get("/sign-up", authController.signUp);
@@ -82,38 +131,42 @@ app.get("/home", siteController.home);
 
 app.get("/add-friend", siteController.addFriend);
 
+app.get("/friends", siteController.friends);
+app.post("/friends", upload.single("image"), siteController.friendsPost);
 
-app.get("/friends", siteController.friends)
-app.post("/friends", upload.single('image'), siteController.friendsPost)
-
-app.get("/friend", siteController.friend)
-app.get("/friend/delete/:id", siteController.friendDelete)
-app.get("/friend/:id", siteController.friendID)
+app.get("/friend", siteController.friend);
+app.get("/friend/delete/:id", siteController.friendDelete);
+app.get("/friend/:id", siteController.friendID);
 
 app.get("/edit-friend", siteController.editFriend);
 app.get("/edit-friend/:id", siteController.editFriendID);
-app.post("/edit-friend/:id", upload.single('image'), siteController.editFriendIDPost);
+app.post(
+  "/edit-friend/:id",
+  upload.single("image"),
+  siteController.editFriendIDPost
+);
 
-app.get("/polariods", siteController.polariods)
+app.get("/polariods", siteController.polariods);
 
-app.get("/polariod", siteController.polariod)
-app.get("/polariod/delete/:id", siteController.polariodDelete)
-app.get("/polariod/:id", siteController.polariodID)
+app.get("/polariod", siteController.polariod);
+app.get("/polariod/delete/:id", siteController.polariodDelete);
+app.get("/polariod/:id", siteController.polariodID);
 
-app.get("/edit-polariod", siteController.editPolariod)
-app.get("/edit-polariod/:id", siteController.editPolariodID)
-app.post("/edit-polariod/:id", siteController.editPolariodIDPost)
+app.get("/edit-polariod", siteController.editPolariod);
+app.get("/edit-polariod/:id", siteController.editPolariodID);
+app.post("/edit-polariod/:id", siteController.editPolariodIDPost);
 
-app.get("/add-polariod", siteController.addPolariod)
-app.get("/add-polariod/:id", siteController.addPolariodID)
-app.post("/add-polariod/:id", upload.single('image'), siteController.addPolariodIDPost)
+app.get("/add-polariod", siteController.addPolariod);
+app.get("/add-polariod/:id", siteController.addPolariodID);
+app.post(
+  "/add-polariod/:id",
+  upload.single("image"),
+  siteController.addPolariodIDPost
+);
 
-app.get("/gift/:id", siteController.gift)
+app.get("/gift/:id", siteController.gift);
 
-app.get("/gift-select", siteController.giftSelect)
+app.get("/gift-select", siteController.giftSelect);
 
-app.get("/create-gift/:id", siteController.createGift)
-app.post("/create-gift/:id", siteController.createGiftPost)
-
-
-
+app.get("/create-gift/:id", siteController.createGift);
+app.post("/create-gift/:id", siteController.createGiftPost);

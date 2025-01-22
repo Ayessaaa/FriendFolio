@@ -65,7 +65,7 @@
       </p>
     </div>
 
-    <% if (error){ %>
+    <% if (error === "username-taken"){ %>
 
     <div
       class="w-96 mx-auto bg-red-400/20 border-2 border-red-500/50 rounded-lg text-center text-red-500/80 font-semibold py-1"
@@ -73,7 +73,15 @@
       <p>Username taken!</p>
     </div>
 
-    <% } %>
+    <% } else if (error === "email-taken"){ %>
+
+    <div
+      class="w-96 mx-auto bg-red-400/20 border-2 border-red-500/50 rounded-lg text-center text-red-500/80 font-semibold py-1"
+    >
+      <p>Email taken!</p>
+    </div>
+
+    <%}%>
 
     <form
       method="POST"
@@ -86,6 +94,7 @@
       </p>
       <div class="w-full flex justify-end items-center relative mt-5">
         <input
+          pattern="[A-Za-z1-9]+"
           required
           placeholder="Username"
           type="text"
@@ -104,6 +113,30 @@
             stroke-linecap="round"
             stroke-linejoin="round"
             d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+          />
+        </svg>
+      </div>
+
+      <div class="w-full flex justify-end items-center relative mt-1">
+        <input
+          required
+          placeholder="Email"
+          type="email"
+          name="email"
+          class="border-2 font-medium focus:ring-0 active:bg-violet-200 focus:outline-violet-500 focus:outline-2 text-violet-500 rounded-lg pr-2 py-1.5 w-full pl-14 bg-white border-violet-500/80 placeholder-violet-400/70 transition-all hover:bg-violet-100"
+        />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="absolute w-10 size-6 left-3 stroke-violet-400 stroke-2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25"
           />
         </svg>
       </div>
