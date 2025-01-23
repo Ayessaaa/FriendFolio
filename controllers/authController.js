@@ -77,7 +77,7 @@ const authLogIn = async (req, res) => {
           if (result) {
             req.session.isLoggedIn = true;
             req.session.username = username;
-            req.session.email = email;
+            req.session.email = result[0].email;
             res.redirect("/home");
           } else {
             res.redirect("/log-in/wrong-password");
@@ -89,16 +89,17 @@ const authLogIn = async (req, res) => {
       if (result.length == 0) {
         res.redirect("/log-in/acc-not-exists");
       } else {
-        bcrypt.compare(password, result[0].password, (err, result) => {
+        bcrypt.compare(password, result[0].password, (err, resultCompare) => {
           if (err) {
             console.error("Error comparing passwords:", err);
             return;
           }
   
-          if (result) {
+          if (resultCompare) {
+
             req.session.isLoggedIn = true;
             req.session.username = username;
-            req.session.email = email;
+            req.session.email = result[0].email;
             res.redirect("/home");
           } else {
             res.redirect("/log-in/wrong-password");

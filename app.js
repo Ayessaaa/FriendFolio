@@ -52,52 +52,6 @@ app.use(
 );
 
 
-const transporter = nodemailer.createTransport({
-  host: "gmail",
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
-  auth: {
-    user: "aisamae28@gmail.com",
-    pass: "zjhu qskf uaot vwzf",
-  },
-});
-
-// const mailOptions = {
-//   from: {
-//     name: "FriendFolio",
-//     address: "aisamae28@gmail.com"
-//   }, // sender address
-//   to: "ayessamaedeguzman78@gmail.com", // list of receivers
-//   subject: "Hello ✔", // Subject line
-//   text: "Hello world?", // plain text body
-//   html: "<b>Hello world?</b>", // html body
-// };
-
-// const sendMail = async (transporter, mailOptions) =>{
-//   try {
-//     await transporter.sendMail(mailOptions)
-//     console.log("email sent")
-//   } catch (err){
-//     console.log(err)
-//   }
-// }
-// const now = new Date();
-// const targetDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes() +1 ) // YYYY, MM-1, DD, HH, MM (e.g., Jan 22, 2025, at 9:00 AM)
-
-// schedule.scheduleJob(targetDate, () => {
-//   sendMail(transporter, mailOptions, (error, info) => {
-//     if (error) {
-//       console.error("Error sending email:", error);
-//     } else {
-//       console.log("Email sent successfully:", info.response);
-//     }
-//   });
-// });
-
-// console.log((new Date().toISOString()))
-
-
 app.get("/guide", (req, res) => {
   res.render("guide");
 });
