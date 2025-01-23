@@ -179,31 +179,35 @@ const friendsPost = async (req, res) => {
         console.log(err);
       });
 
-      
-      if (req.body.birthday !== "") {
-        async function callAPI() {
-          // Create a headers object and add content type
-          const myHeaders = new Headers();
-          myHeaders.append("Content-Type", "application/json");
-          
-          const birthday = new Date(req.body.birthday);
-          console.log(birthday)
+    if (req.body.birthday !== "") {
+      async function callAPI() {
+        // Create a headers object and add content type
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
 
-          birthday.setHours(0)
-          
-          const bdayUTC = Date.UTC(birthday.getFullYear(), birthday.getMonth+1, birthday.getDate(), birthday.getHours())
-          
-          console.log(birthday)
-          console.log(birthday.toString())
+        const birthday = new Date(req.body.birthday);
+        birthday.setHours(0);
+        const bdayUTC = Date.UTC(
+          birthday.getFullYear(),
+          birthday.getMonth + 1,
+          birthday.getDate(),
+          birthday.getHours()
+        );
 
-          console.log(bdayUTC)
-          
+        eventbridgeDate = Date.now()
+
+        await Friend.findOneAndUpdate({_id: friend._id}, {eventbridge_rule_name: `sendEmailRule-${eventbridgeDate}`})
+
+
         // Create the JSON payload
         const payload = await JSON.stringify({
           to: req.session.email,
           subject: `${req.body.nickname}'s Birthday Today!`,
           text: `Hi, ${req.session.username}! Its your friend ${req.body.nickname}'s birthday today! Be sure to greet them on their special day ʕ•́ᴥ•̀ʔっ`,
-          scheduleTime: `0 ${birthday.getUTCHours()} ${birthday.getUTCDate()} ${birthday.getUTCMonth()+1} ? *`,
+          scheduleTime: `0 ${birthday.getUTCHours()} ${birthday.getUTCDate()} ${
+            birthday.getUTCMonth() + 1
+          } ? *`,
+          date: eventbridgeDate,
         });
 
         // Set up the request options

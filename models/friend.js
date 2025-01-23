@@ -18,6 +18,7 @@ const friendSchema = new Schema(
     notes: { type: String, require: false },
     zodiac: { type: String, require: false },
     emoji: { type: String, require: false },
+    eventbridge_rule_name: { type: String, require: false },
 
   },
   { timestamps: true }
