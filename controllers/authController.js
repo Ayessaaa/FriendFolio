@@ -60,7 +60,7 @@ const logInError = (req, res) => {
 };
 
 const authLogIn = async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, email } = req.body;
   try {
     if (username.includes("@")){
       const result = await User.find({ email: username });
@@ -77,6 +77,7 @@ const authLogIn = async (req, res) => {
           if (result) {
             req.session.isLoggedIn = true;
             req.session.username = username;
+            req.session.email = email;
             res.redirect("/home");
           } else {
             res.redirect("/log-in/wrong-password");
@@ -97,6 +98,7 @@ const authLogIn = async (req, res) => {
           if (result) {
             req.session.isLoggedIn = true;
             req.session.username = username;
+            req.session.email = email;
             res.redirect("/home");
           } else {
             res.redirect("/log-in/wrong-password");

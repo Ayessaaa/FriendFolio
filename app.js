@@ -95,6 +95,7 @@ const transporter = nodemailer.createTransport({
 //   });
 // });
 
+// console.log((new Date().toISOString()))
 
 
 app.get("/guide", (req, res) => {

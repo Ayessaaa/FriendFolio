@@ -25,7 +25,7 @@ const home = (req, res) => {
             res.render("home", {
               friends: resultFriend,
               polariods: resultPolariod,
-              username: req.session.username
+              username: req.session.username,
             });
           });
       })
@@ -138,7 +138,7 @@ function zodiacFunction(bday) {
   }
 }
 
-const friendsPost = (req, res) => {
+const friendsPost = async (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   const [zodiac, emoji] = zodiacFunction(req.body.birthday);
@@ -178,6 +178,56 @@ const friendsPost = (req, res) => {
       .catch((err) => {
         console.log(err);
       });
+
+    console.log(req.body.birthday);
+
+    if (req.body.birthday !== "") {
+      async function callAPI() {
+        // Create a headers object and add content type
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const birthday = req.body.birthday;
+
+        // Create the JSON payload
+        const payload = await JSON.stringify({
+          to: req.session.email,
+          subject: `${req.body.nickname}'s Birthday Today!`,
+          text: `Hi, ${req.session.username}! Its your friend ${req.body.nickname}'s birthday today! Be sure to greet them on their special day ʕ•́ᴥ•̀ʔっ`,
+          scheduleTime: "54 3 23 1 ? *",
+        });
+
+        // const payload = await JSON.stringify({
+        //   to: req.session.email,
+        //   subject: `${req.body.nickname}'s Birthday Today!`,
+        //   text: `Hi, ${req.session.username}! Its your friend ${req.body.nickname}'s birthday today! Be sure to greet them on their special day ʕ•́ᴥ•̀ʔっ`,
+        //   scheduleTime: "4 3 23 1 ? *",
+        // });
+
+        // Set up the request options
+        const requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: payload,
+          redirect: "follow",
+        };
+
+        // Make the API call
+        await fetch(
+          "https://kxev6v3gc2.execute-api.ap-southeast-1.amazonaws.com/dev",
+          requestOptions
+        )
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text();
+          })
+          .then((result) => console.log(result))
+          .catch((error) => console.error("error", error));
+      }
+      await callAPI();
+    }
   } else {
     res.redirect("/log-in");
   }
@@ -199,7 +249,7 @@ const editFriendID = (req, res) => {
   }
 };
 
-const editFriendIDPost = (req, res) => {
+const editFriendIDPost = async (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
@@ -208,14 +258,16 @@ const editFriendIDPost = (req, res) => {
     try {
       var path = req.file.path;
     } catch {
-      Friend.find({username: req.session.username, _id: req.params.id})
-      .then((result)=>{
-        var path = result[0].img
-        console.log(result)
-      })
+      await Friend.find({
+        username: req.session.username,
+        _id: req.params.id,
+      }).then((result) => {
+        var path = result[0].img;
+        console.log(result);
+      });
     }
 
-    Friend.findOneAndUpdate(
+    await Friend.findOneAndUpdate(
       { _id: req.params.id },
       {
         name: req.body.name,
