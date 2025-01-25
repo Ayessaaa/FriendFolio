@@ -187,12 +187,6 @@ const friendsPost = async (req, res) => {
 
         const birthday = new Date(req.body.birthday);
         birthday.setHours(0);
-        const bdayUTC = Date.UTC(
-          birthday.getFullYear(),
-          birthday.getMonth + 1,
-          birthday.getDate(),
-          birthday.getHours()
-        );
 
         eventbridgeDate = Date.now();
 
@@ -294,7 +288,96 @@ const editFriendIDPost = async (req, res) => {
         emoji: emoji,
       }
     )
-    .then((result)=>{
+    .then(async (result)=>{
+      if(new Date(result.birthday).getTime() !== new Date(req.body.birthday).getTime()){
+        // delete
+        async function deleteAPI() {
+          // Create a headers object and add content type
+          const myHeaders = new Headers();
+          myHeaders.append("Content-Type", "application/json");
+  
+          // Create the JSON payload
+          const payload = await JSON.stringify({
+            date: result.eventbridge_rule_name,
+          });
+  
+  
+          // Set up the request options
+          const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: payload,
+            redirect: "follow",
+          };
+  
+          // Make the API call
+          await fetch(
+            "https://kxev6v3gc2.execute-api.ap-southeast-1.amazonaws.com/dev/delete",
+            requestOptions
+          )
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+              return response.text();
+            })
+            .then((result) => console.log(result))
+            .catch((error) => console.error("error", error));
+        }
+        await deleteAPI();
+
+        // add
+        async function callAPI() {
+          // Create a headers object and add content type
+          const myHeaders = new Headers();
+          myHeaders.append("Content-Type", "application/json");
+  
+          const birthday = new Date(req.body.birthday);
+          birthday.setHours(0);
+  
+          eventbridgeDate = Date.now();
+  
+          await Friend.findOneAndUpdate(
+            { _id: friend._id },
+            { eventbridge_rule_name: eventbridgeDate }
+          );
+  
+          // Create the JSON payload
+          const payload = await JSON.stringify({
+            to: req.session.email,
+            subject: `${req.body.nickname}'s Birthday Today!`,
+            text: `Hi, ${req.session.username}! Its your friend ${req.body.nickname}'s birthday today! Be sure to greet them on their special day ʕ•́ᴥ•̀ʔっ`,
+            scheduleTime: `0 ${birthday.getUTCHours()} ${birthday.getUTCDate()} ${
+              birthday.getUTCMonth() + 1
+            } ? *`,
+            date: eventbridgeDate,
+          });
+  
+          // Set up the request options
+          const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: payload,
+            redirect: "follow",
+          };
+  
+          // Make the API call
+          await fetch(
+            "https://kxev6v3gc2.execute-api.ap-southeast-1.amazonaws.com/dev",
+            requestOptions
+          )
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+              return response.text();
+            })
+            .then((result) => console.log(result))
+            .catch((error) => console.error("error", error));
+        }
+        await callAPI();
+        
+      }
     }).catch((err) => {
       console.log(err);
     });
