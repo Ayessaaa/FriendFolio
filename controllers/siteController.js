@@ -194,10 +194,12 @@ const friendsPost = async (req, res) => {
           birthday.getHours()
         );
 
-        eventbridgeDate = Date.now()
+        eventbridgeDate = Date.now();
 
-        await Friend.findOneAndUpdate({_id: friend._id}, {eventbridge_rule_name: `sendEmailRule-${eventbridgeDate}`})
-
+        await Friend.findOneAndUpdate(
+          { _id: friend._id },
+          { eventbridge_rule_name: eventbridgeDate }
+        );
 
         // Create the JSON payload
         const payload = await JSON.stringify({
@@ -291,7 +293,9 @@ const editFriendIDPost = async (req, res) => {
         zodiac: zodiac,
         emoji: emoji,
       }
-    ).catch((err) => {
+    )
+    .then((result)=>{
+    }).catch((err) => {
       console.log(err);
     });
     res.redirect("/friend/" + req.params.id);
@@ -334,13 +338,52 @@ const friend = (req, res) => {
   }
 };
 
-const friendDelete = (req, res) => {
+const friendDelete = async (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
     console.log(req.params.id);
-    Friend.findOneAndDelete({ _id: req.params.id })
-      .then((result) => {
+    await Friend.find({_id: req.params.id})
+    .then(async (resultFriend)=>{
+
+      async function callAPI() {
+        // Create a headers object and add content type
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        // Create the JSON payload
+        const payload = await JSON.stringify({
+          date: resultFriend[0].eventbridge_rule_name,
+        });
+
+
+        // Set up the request options
+        const requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: payload,
+          redirect: "follow",
+        };
+
+        // Make the API call
+        await fetch(
+          "https://kxev6v3gc2.execute-api.ap-southeast-1.amazonaws.com/dev/delete",
+          requestOptions
+        )
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text();
+          })
+          .then((result) => console.log(result))
+          .catch((error) => console.error("error", error));
+      }
+      await callAPI();
+
+    })
+    await Friend.findOneAndDelete({ _id: req.params.id })
+      .then(async (result) => {
         res.redirect("/friends");
       })
       .catch((err) => console.log(err));
