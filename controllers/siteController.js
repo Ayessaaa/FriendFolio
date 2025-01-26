@@ -11,6 +11,7 @@ const User = require("../models/user");
 const Friend = require("../models/friend");
 const Polariod = require("../models/polariod");
 const Gift = require("../models/gift");
+const { error } = require("console");
 
 const home = (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
@@ -170,7 +171,7 @@ const friendsPost = async (req, res) => {
       emoji: emoji,
     });
 
-    friend
+    await friend
       .save()
       .then((result) => {
         res.redirect("/friends");
@@ -186,6 +187,7 @@ const friendsPost = async (req, res) => {
         myHeaders.append("Content-Type", "application/json");
 
         const birthday = new Date(req.body.birthday);
+        const birthdaySplit = birthday.toDateString().split(" ");
         birthday.setHours(0);
 
         eventbridgeDate = Date.now();
@@ -193,18 +195,24 @@ const friendsPost = async (req, res) => {
         await Friend.findOneAndUpdate(
           { _id: friend._id },
           { eventbridge_rule_name: eventbridgeDate }
-        );
+        ).catch((err)=>{
+          console.log(err)
+        })
 
         // Create the JSON payload
         const payload = await JSON.stringify({
           to: req.session.email,
-          subject: `${req.body.nickname}'s Birthday Today!`,
-          text: `Hi, ${req.session.username}! Its your friend ${req.body.nickname}'s birthday today! Be sure to greet them on their special day ʕ•́ᴥ•̀ʔっ`,
+          birthday: birthdaySplit[1] + " " + birthdaySplit[2],
+          username: req.session.username,
+          birthday_name: req.body.nickname,
+          birthday_img: path,
           scheduleTime: `0 ${birthday.getUTCHours()} ${birthday.getUTCDate()} ${
             birthday.getUTCMonth() + 1
           } ? *`,
           date: eventbridgeDate,
         });
+
+        console.log(payload);
 
         // Set up the request options
         const requestOptions = {
@@ -288,99 +296,110 @@ const editFriendIDPost = async (req, res) => {
         emoji: emoji,
       }
     )
-    .then(async (result)=>{
-      if(new Date(result.birthday).getTime() !== new Date(req.body.birthday).getTime()){
-        // delete
-        async function deleteAPI() {
-          // Create a headers object and add content type
-          const myHeaders = new Headers();
-          myHeaders.append("Content-Type", "application/json");
-  
-          // Create the JSON payload
-          const payload = await JSON.stringify({
-            date: result.eventbridge_rule_name,
-          });
-  
-  
-          // Set up the request options
-          const requestOptions = {
-            method: "POST",
-            headers: myHeaders,
-            body: payload,
-            redirect: "follow",
-          };
-  
-          // Make the API call
-          await fetch(
-            "https://kxev6v3gc2.execute-api.ap-southeast-1.amazonaws.com/dev/delete",
-            requestOptions
-          )
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-              }
-              return response.text();
-            })
-            .then((result) => console.log(result))
-            .catch((error) => console.error("error", error));
-        }
-        await deleteAPI();
+      .then(async (result) => {
+        if (
+          new Date(result.birthday).getTime() !==
+          new Date(req.body.birthday).getTime()
+        ) {
+          // delete
+          async function deleteAPI() {
+            // Create a headers object and add content type
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
 
-        // add
-        async function callAPI() {
-          // Create a headers object and add content type
-          const myHeaders = new Headers();
-          myHeaders.append("Content-Type", "application/json");
-  
-          const birthday = new Date(req.body.birthday);
-          birthday.setHours(0);
-  
-          eventbridgeDate = Date.now();
-  
-          await Friend.findOneAndUpdate(
-            { _id: friend._id },
-            { eventbridge_rule_name: eventbridgeDate }
-          );
-  
-          // Create the JSON payload
-          const payload = await JSON.stringify({
-            to: req.session.email,
-            subject: `${req.body.nickname}'s Birthday Today!`,
-            text: `Hi, ${req.session.username}! Its your friend ${req.body.nickname}'s birthday today! Be sure to greet them on their special day ʕ•́ᴥ•̀ʔっ`,
-            scheduleTime: `0 ${birthday.getUTCHours()} ${birthday.getUTCDate()} ${
-              birthday.getUTCMonth() + 1
-            } ? *`,
-            date: eventbridgeDate,
-          });
-  
-          // Set up the request options
-          const requestOptions = {
-            method: "POST",
-            headers: myHeaders,
-            body: payload,
-            redirect: "follow",
-          };
-  
-          // Make the API call
-          await fetch(
-            "https://kxev6v3gc2.execute-api.ap-southeast-1.amazonaws.com/dev",
-            requestOptions
-          )
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-              }
-              return response.text();
-            })
-            .then((result) => console.log(result))
-            .catch((error) => console.error("error", error));
+            console.log(result)
+
+            // Create the JSON payload
+            const payload = await JSON.stringify({
+              date: result.eventbridge_rule_name,
+            });
+
+            // Set up the request options
+            const requestOptions = {
+              method: "POST",
+              headers: myHeaders,
+              body: payload,
+              redirect: "follow",
+            };
+
+            // Make the API call
+            await fetch(
+              "https://kxev6v3gc2.execute-api.ap-southeast-1.amazonaws.com/dev/delete",
+              requestOptions
+            )
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.text();
+              })
+              .then((result) => console.log(result))
+              .catch((error) => console.error("error", error));
+          }
+          await deleteAPI();
+
+          // add
+          async function callAPI() {
+            // Create a headers object and add content type
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            const birthday = new Date(req.body.birthday);
+            const birthdaySplit = birthday.toDateString().split(" ");
+            birthday.setHours(0);
+
+
+            await Friend.findOneAndUpdate(
+              { _id: friend._id },
+              { eventbridge_rule_name: result.eventbridge_rule_name }
+            );
+
+            const friendResult = await Friend.find({_id: req.params.id})
+
+            console.log(friendResult[0].img);
+
+            // Create the JSON payload
+            const payload = await JSON.stringify({
+              to: req.session.email,
+              birthday: birthdaySplit[1] + " " + birthdaySplit[2],
+              username: req.session.username,
+              birthday_name: req.body.nickname,
+              birthday_img: friendResult[0].img,
+              scheduleTime: `0 ${birthday.getUTCHours()} ${birthday.getUTCDate()} ${
+                birthday.getUTCMonth() + 1
+              } ? *`,
+              date: eventbridgeDate,
+            });
+            // Set up the request options
+            const requestOptions = {
+              method: "POST",
+              headers: myHeaders,
+              body: payload,
+              redirect: "follow",
+            };
+
+            console.log(payload);
+
+            // Make the API call
+            await fetch(
+              "https://kxev6v3gc2.execute-api.ap-southeast-1.amazonaws.com/dev",
+              requestOptions
+            )
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.text();
+              })
+              .then((result) => console.log(result))
+              .catch((error) => console.error("error", error));
+          }
+          await callAPI();
         }
-        await callAPI();
-        
-      }
-    }).catch((err) => {
-      console.log(err);
-    });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     res.redirect("/friend/" + req.params.id);
   } else {
     res.redirect("/log-in");
@@ -426,10 +445,8 @@ const friendDelete = async (req, res) => {
 
   if (isLoggedIn) {
     console.log(req.params.id);
-    await Friend.find({_id: req.params.id})
-    .then(async (resultFriend)=>{
-
-      async function callAPI() {
+    await Friend.find({ _id: req.params.id }).then(async (resultFriend) => {
+      async function deleteAPI() {
         // Create a headers object and add content type
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -438,7 +455,6 @@ const friendDelete = async (req, res) => {
         const payload = await JSON.stringify({
           date: resultFriend[0].eventbridge_rule_name,
         });
-
 
         // Set up the request options
         const requestOptions = {
@@ -462,9 +478,8 @@ const friendDelete = async (req, res) => {
           .then((result) => console.log(result))
           .catch((error) => console.error("error", error));
       }
-      await callAPI();
-
-    })
+      await deleteAPI();
+    });
     await Friend.findOneAndDelete({ _id: req.params.id })
       .then(async (result) => {
         res.redirect("/friends");
