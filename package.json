@@ -15,6 +15,7 @@
     "multer": "^1.4.5-lts.1",
     "multer-storage-cloudinary": "^4.0.0",
     "node": "^23.5.0",
+    "node-fetch": "^3.3.2",
     "node-schedule": "^2.1.1",
     "nodemailer": "^6.9.16",
     "nodemon": "^3.1.9"

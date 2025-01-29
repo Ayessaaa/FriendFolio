@@ -694,6 +694,10 @@ video {
   display: grid;
 }
 
+.hidden {
+  display: none;
+}
+
 .size-12 {
   width: 3rem;
   height: 3rem;

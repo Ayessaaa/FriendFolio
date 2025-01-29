@@ -18,7 +18,7 @@ const signUpError = (req, res) => {
 };
 
 const authSignUp = async (req, res) => {
-  const { username, password, email } = req.body;
+  const { username, password, email, timezone } = req.body;
   try {
     const result = await User.find({ username: username });
     const emailResult = await User.find({ email: email });
@@ -29,12 +29,14 @@ const authSignUp = async (req, res) => {
           username: username,
           email: email,
           password: hashedPassword,
+          timezone: timezone
         });
   
         await newUser.save();
         req.session.isLoggedIn = true;
         req.session.username = username;
         req.session.email = email;
+        req.session.timezone = timezone
   
         res.redirect("/home");
       } else {
@@ -78,6 +80,8 @@ const authLogIn = async (req, res) => {
             req.session.isLoggedIn = true;
             req.session.username = username;
             req.session.email = result[0].email;
+            req.session.timezone = result[0].timezone;
+            
             res.redirect("/home");
           } else {
             res.redirect("/log-in/wrong-password");
@@ -96,10 +100,10 @@ const authLogIn = async (req, res) => {
           }
   
           if (resultCompare) {
-
             req.session.isLoggedIn = true;
             req.session.username = username;
             req.session.email = result[0].email;
+            req.session.timezone = result[0].timezone;
             res.redirect("/home");
           } else {
             res.redirect("/log-in/wrong-password");

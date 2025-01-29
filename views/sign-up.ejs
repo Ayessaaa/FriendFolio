@@ -164,6 +164,7 @@
           />
         </svg>
       </div>
+      <input type="hidden" id="timezone" name="timezone">
       <div class="w-fit mx-auto mt-5">
         <button
           type="submit"
@@ -181,5 +182,12 @@
         >Log In here.</a
       >
     </div>
+    <script>
+      // Get the user's timezone
+      var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      
+      // Set the timezone value to the hidden input field
+      document.getElementById('timezone').value = timezone;
+  </script>
   </body>
 </html>

@@ -1,3 +1,7 @@
+
+const { Headers } = require('node-fetch'); // Import Headers
+const { DateTime } = require('luxon');
+
 const { render } = require("ejs");
 const express = require("express");
 const morgan = require("morgan");
@@ -187,10 +191,27 @@ const friendsPost = async (req, res) => {
         myHeaders.append("Content-Type", "application/json");
 
         const birthday = new Date(req.body.birthday);
-        const birthdaySplit = birthday.toDateString().split(" ");
-        birthday.setHours(0);
 
-        eventbridgeDate = Date.now();
+        // Convert birthday to Luxon DateTime and get UTC time
+        const utcTime = DateTime.fromJSDate(birthday).toUTC(); 
+
+        // Convert UTC time to the user's local time using the session timezone
+        const localTime = utcTime.setZone(req.session.timezone);
+
+        // Set local time to midnight
+        const localMidnight = localTime.set({
+          hour: 0,
+          minute: 0,
+          second: 0,
+          millisecond: 0
+        });
+
+        // Convert local midnight back to UTC
+        const utcMidnight = localMidnight.toUTC(); 
+        
+        const birthdaySplit = birthday.toDateString().split(" ");
+
+        const eventbridgeDate = Date.now();
 
         await Friend.findOneAndUpdate(
           { _id: friend._id },
@@ -206,9 +227,7 @@ const friendsPost = async (req, res) => {
           username: req.session.username,
           birthday_name: req.body.nickname,
           birthday_img: path,
-          scheduleTime: `0 ${birthday.getUTCHours()} ${birthday.getUTCDate()} ${
-            birthday.getUTCMonth() + 1
-          } ? *`,
+          scheduleTime: `0 ${utcMidnight.hour} ${utcMidnight.day} ${utcMidnight.month} ? *`,
           date: eventbridgeDate,
         });
 
@@ -345,6 +364,24 @@ const editFriendIDPost = async (req, res) => {
             myHeaders.append("Content-Type", "application/json");
 
             const birthday = new Date(req.body.birthday);
+
+            // Convert birthday to Luxon DateTime and get UTC time
+            const utcTime = DateTime.fromJSDate(birthday).toUTC(); 
+
+            // Convert UTC time to the user's local time using the session timezone
+            const localTime = utcTime.setZone(req.session.timezone);
+
+            // Set local time to midnight
+            const localMidnight = localTime.set({
+              hour: 0,
+              minute: 0,
+              second: 0,
+              millisecond: 0
+            });
+
+            // Convert local midnight back to UTC
+            const utcMidnight = localMidnight.toUTC(); 
+            
             const birthdaySplit = birthday.toDateString().split(" ");
             birthday.setHours(0);
 
@@ -365,10 +402,8 @@ const editFriendIDPost = async (req, res) => {
               username: req.session.username,
               birthday_name: req.body.nickname,
               birthday_img: friendResult[0].img,
-              scheduleTime: `0 ${birthday.getUTCHours()} ${birthday.getUTCDate()} ${
-                birthday.getUTCMonth() + 1
-              } ? *`,
-              date: eventbridgeDate,
+              scheduleTime: `0 ${utcMidnight.hour} ${utcMidnight.day} ${utcMidnight.month} ? *`,
+              date: friendResult[0].eventbridge_rule_name,
             });
             // Set up the request options
             const requestOptions = {
@@ -765,6 +800,25 @@ const unsubscribeEmailConfirm = async (req, res) =>{
 }
 
 const unsubscribeDone = (req, res) =>{
+  
+  const utcTime = DateTime.utc();
+
+// Step 2: Convert UTC time to the user's local timezone (from req.session.timezone)
+const localTime = utcTime.setZone("Asia/Taipei");
+
+// Step 3: Set the time to midnight (00:00:00) in the local timezone
+const localMidnight = localTime.set({
+  hour: 0,
+  minute: 0,
+  second: 0,
+  millisecond: 0
+});
+
+// Step 4: Convert that local midnight time back to UTC
+const utcMidnight = localMidnight.toUTC();
+
+console.log("Local Time at Midnight:", localMidnight.hour, localMidnight.day, localMidnight.month);  // Local midnight time
+  
   res.render("unsubscribeDone")
 }
 
