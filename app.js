@@ -126,3 +126,7 @@ app.get("/gift-select", siteController.giftSelect);
 
 app.get("/create-gift/:id", siteController.createGift);
 app.post("/create-gift/:id", siteController.createGiftPost);
+
+app.get("/unsubscribe-email/:date", siteController.unsubscribeEmail)
+app.get("/unsubscribe-email-confirm/:date", siteController.unsubscribeEmailConfirm)
+app.get("/unsubscribe-done", siteController.unsubscribeDone)

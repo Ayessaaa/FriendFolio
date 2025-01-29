@@ -723,6 +723,51 @@ const createGiftPost = (req, res) => {
   }
 };
 
+const unsubscribeEmail = (req, res) =>{
+  res.render("unsubscribeEmail", {date: req.params.date})
+}
+
+const unsubscribeEmailConfirm = async (req, res) =>{
+  async function deleteAPI(date) {
+    // Create a headers object and add content type
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    // Create the JSON payload
+    const payload = await JSON.stringify({
+      date: req.params.date,
+    });
+
+    // Set up the request options
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: payload,
+      redirect: "follow",
+    };
+
+    // Make the API call
+    await fetch(
+      "https://kxev6v3gc2.execute-api.ap-southeast-1.amazonaws.com/dev/delete",
+      requestOptions
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+  }
+  await deleteAPI()
+  res.redirect("/unsubscribe-done")
+}
+
+const unsubscribeDone = (req, res) =>{
+  res.render("unsubscribeDone")
+}
+
 module.exports = {
   home,
   addFriend,
@@ -748,4 +793,7 @@ module.exports = {
   createGiftPost,
   polariodDelete,
   friendDelete,
+  unsubscribeEmail,
+  unsubscribeEmailConfirm,
+  unsubscribeDone
 };
