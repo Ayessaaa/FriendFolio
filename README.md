@@ -29,6 +29,12 @@ https://www.youtube.com/watch?v=ZF_nH2YcO6Y
   <img src="https://1000logos.net/wp-content/uploads/2020/08/MongoDB-Emblem.jpg" height="30" alt="mongodb logo"  />
   <img width="12" />
   <img src="https://yt3.googleusercontent.com/AC0Ia-7Akfvhnkwy9s4kx2Qt3XFXFYe95SfmEba4pK46t22K0tAnS40R8AAa7_YPkSeu6t5TxA=s900-c-k-c0x00ffffff-no-rj" height="30" alt="cloudinary logo"  />
+  <img width="12" />
+  <img src="https://raw.githubusercontent.com/pulumi/pulumi-aws-apigateway/main/assets/logo.png" height="30" alt="api gateway logo"  />
+  <img width="12" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Amazon_Lambda_architecture_logo.svg/1200px-Amazon_Lambda_architecture_logo.svg.png" height="30" alt="lambda logo"  />
+  <img width="12" />
+  <img src="https://boyney123.gallerycdn.vsassets.io/extensions/boyney123/eventbridgelens/0.0.6/1727626671746/Microsoft.VisualStudio.Services.Icons.Default" height="30" alt="eventbridge logo"  />
 </div>
 
 ## ⚙️ Installation
@@ -82,6 +88,17 @@ nodemon app
 ## ❕ Features
 ### Responsive Design
 FriendFolio is built to be compatible on both mobile and desktop devices.
+
+### 📧 Friend's Birthday Notification Email
+![sdfsdfsdfsd](https://github.com/user-attachments/assets/9ada1cf7-1eb6-424e-8742-96f1d2086ca0)
+
+This email is sent to the users email address
+
+- Sent at around **12am on their local timezone** to remind them about their friends special day. 
+- This also the ability to **unsubscribe** to upcoming emails from this friend.
+
+- Intergrated using AWS Lambda, AWS API Gateway, AWS Eventbridge
+
 
 ### 👤 Sign Up and Log In
 ![asfdsfs](https://github.com/user-attachments/assets/ee713f97-8372-4967-87c1-1709a1f11a1a)
