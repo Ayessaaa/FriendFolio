@@ -11,7 +11,7 @@ https://www.youtube.com/watch?v=ZF_nH2YcO6Y
 
 ### 🔧 Built Using
 
-**Owe No!** is built using these technologies:
+**FriendFolio** is built using these technologies:
 
 <div align="left">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="30" alt="javascript logo"  />
