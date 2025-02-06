@@ -48,7 +48,7 @@
       </div>
 
       <p
-        class="font-bold text-6xl text-center mt-3 drop-shadow-md w-fit mx-auto"
+        class="font-bold md:text-6xl text-5xl text-center mt-3 drop-shadow-md w-fit mx-auto"
       >
         <span
           class="bg-gradient-to-r from-violet-400 to-pink-400 bg-clip-text text-transparent"
@@ -59,7 +59,7 @@
         >
       </p>
       <p
-        class="font-medium text-lg text-center cursor-default delay-150 text-neutral-400 group-hover:bg-violet-400 group-hover:text-white group-hover:shadow-violet-500/50 w-fit mx-auto group-hover:mt-1 group-hover:mb-10 mb-11 duration-300 px-5 rounded-full group-hover:shadow-md py-0.5 group-hover:text-lg transition-all"
+        class="font-medium md:text-lg text-base text-center cursor-default delay-150 text-neutral-400 group-hover:bg-violet-400 group-hover:text-white group-hover:shadow-violet-500/50 w-fit mx-auto group-hover:mt-1 group-hover:mb-10 mb-11 duration-300 px-5 rounded-full group-hover:shadow-md py-0.5 group-hover:text-lg transition-all"
       >
         never forget a birthday again !
       </p>
@@ -68,14 +68,14 @@
     <% if (error === "acc-not-exists"){ %>
 
     <div
-      class="w-96 mx-auto bg-red-400/20 border-2 border-red-500/50 rounded-lg text-center text-red-500/80 font-semibold py-1"
+      class="md:w-96 w-80 mx-auto bg-red-400/20 border-2 border-red-500/50 rounded-lg text-center text-red-500/80 font-semibold py-1 md:text-base text-sm"
     >
       <p>Account Does Not Exists!</p>
     </div>
 
     <% } else if (error === "wrong-password") { %>
     <div
-      class="w-96 mx-auto bg-red-400/20 border-2 border-red-500/50 rounded-lg text-center text-red-500/80 font-semibold py-1"
+      class="md:w-96 w-80 mx-auto bg-red-400/20 border-2 border-red-500/50 rounded-lg text-center text-red-500/80 font-semibold py-1 md:text-base text-sm"
     >
       <p>Password Incorrect!</p>
     </div>
@@ -84,13 +84,13 @@
     <form
       method="POST"
       action="/auth/log-in"
-      class="w-96 mt-2 rounded-lg mx-auto py-5 px-8 border-2 group bg-pink-400 transition-all border-pink-500/30 shadow-md shadow-pink-500/30"
+      class="md:w-96 w-80  mt-2 rounded-lg mx-auto py-5 px-8 border-2 group bg-pink-400 transition-all border-pink-500/30 shadow-md shadow-pink-500/30"
     >
       <p class="font-semibold text-xl text-center text-white">Log In</p>
       <p class="font-medium text-sm text-center text-white">
         Access your Account
       </p>
-      <div class="w-full flex justify-end items-center relative mt-5">
+      <div class="md:w-full flex justify-end items-center relative mt-5 text-sm md:text-base">
         <input
           name="username"
           required
@@ -114,7 +114,7 @@
         </svg>
       </div>
 
-      <div class="w-full flex justify-end items-center relative mt-1">
+      <div class="md:w-full flex justify-end items-center relative mt-1 text-sm md:text-base">
         <input
           name="password"
           required
@@ -139,14 +139,14 @@
       </div>
       <div class="w-fit mx-auto mt-5">
         <button
-          class="transition-all hover:bg-pink-600/70 hover:scale-105 active:bg-pink-600/90 hover:shadow-md hover:shadow-pink-500/50 hover:border-pink-700 bg-pink-500 px-3 py-1 rounded-lg text-white border-2 border-pink-600 font-medium"
+          class="transition-all text-sm md:text-base hover:bg-pink-600/70 hover:scale-105 active:bg-pink-600/90 hover:shadow-md hover:shadow-pink-500/50 hover:border-pink-700 bg-pink-500 px-3 py-1 rounded-lg text-white border-2 border-pink-600 font-medium"
         >
           Log In
         </button>
       </div>
     </form>
     <div
-      class="bg-pink-200/50 w-96 mx-auto text-center mt-5 py-2 rounded-lg border-2 border-pink-200 text-pink-400 font-medium hover:bg-pink-200/80 transition-all hover:border-pink-300/50"
+      class="md:w-96 w-80 bg-pink-200/50 mx-auto text-center mt-5 py-2 rounded-lg border-2 border-pink-200 text-pink-400 font-medium hover:bg-pink-200/80 transition-all hover:border-pink-300/50 md:text-base text-sm"
     >
       Create an Account?
       <a href="/sign-up" class="text-pink-500 underline underline-offset-2"

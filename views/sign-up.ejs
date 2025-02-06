@@ -48,7 +48,7 @@
       </div>
 
       <p
-        class="font-bold text-6xl text-center mt-3 drop-shadow-md w-fit mx-auto"
+        class="font-bold md:text-6xl text-5xl text-center mt-3 drop-shadow-md w-fit mx-auto"
       >
         <span
           class="bg-gradient-to-r from-violet-400 to-pink-400 bg-clip-text text-transparent"
@@ -59,7 +59,7 @@
         >
       </p>
       <p
-        class="font-medium text-lg text-center cursor-default delay-150 text-neutral-400 group-hover:bg-violet-400 group-hover:text-white group-hover:shadow-violet-500/50 w-fit mx-auto group-hover:mt-1 group-hover:mb-10 mb-11 duration-300 px-5 rounded-full group-hover:shadow-md py-0.5 group-hover:text-lg transition-all"
+        class="font-medium md:text-lg text-base text-center cursor-default delay-150 text-neutral-400 group-hover:bg-violet-400 group-hover:text-white group-hover:shadow-violet-500/50 w-fit mx-auto group-hover:mt-1 group-hover:mb-10 mb-11 duration-300 px-5 rounded-full group-hover:shadow-md py-0.5 group-hover:text-lg transition-all"
       >
         never forget a birthday again !
       </p>
@@ -68,7 +68,7 @@
     <% if (error === "username-taken"){ %>
 
     <div
-      class="w-96 mx-auto bg-red-400/20 border-2 border-red-500/50 rounded-lg text-center text-red-500/80 font-semibold py-1"
+      class="md:w-96 w-80 md:text-base text-sm mx-auto bg-red-400/20 border-2 border-red-500/50 rounded-lg text-center text-red-500/80 font-semibold py-1"
     >
       <p>Username taken!</p>
     </div>
@@ -76,7 +76,7 @@
     <% } else if (error === "email-taken"){ %>
 
     <div
-      class="w-96 mx-auto bg-red-400/20 border-2 border-red-500/50 rounded-lg text-center text-red-500/80 font-semibold py-1"
+      class="md:w-96 w-80 md:text-base text-sm mx-auto bg-red-400/20 border-2 border-red-500/50 rounded-lg text-center text-red-500/80 font-semibold py-1"
     >
       <p>Email taken!</p>
     </div>
@@ -86,7 +86,7 @@
     <form
       method="POST"
       action="/auth/sign-up"
-      class="w-96 mt-2 rounded-lg mx-auto py-5 px-8 border-2 group bg-violet-400 transition-all border-violet-500/30 shadow-md shadow-violet-500/30"
+      class="md:w-96 w-80 mt-2 rounded-lg mx-auto py-5 px-8 border-2 group bg-violet-400 transition-all border-violet-500/30 shadow-md shadow-violet-500/30"
     >
       <p class="font-semibold text-xl text-center text-white">Sign Up</p>
       <p class="font-medium text-sm text-center text-white">
@@ -99,7 +99,7 @@
           placeholder="Username"
           type="text"
           name="username"
-          class="border-2 font-medium focus:ring-0 active:bg-violet-200 focus:outline-violet-500 focus:outline-2 text-violet-500 rounded-lg pr-2 py-1.5 w-full pl-14 bg-white border-violet-500/80 placeholder-violet-400/70 transition-all hover:bg-violet-100"
+          class="md:text-base text-sm border-2  font-medium focus:ring-0 active:bg-violet-200 focus:outline-violet-500 focus:outline-2 text-violet-500 rounded-lg pr-2 py-1.5 w-full pl-14 bg-white border-violet-500/80 placeholder-violet-400/70 transition-all hover:bg-violet-100"
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +123,7 @@
           placeholder="Email"
           type="email"
           name="email"
-          class="border-2 font-medium focus:ring-0 active:bg-violet-200 focus:outline-violet-500 focus:outline-2 text-violet-500 rounded-lg pr-2 py-1.5 w-full pl-14 bg-white border-violet-500/80 placeholder-violet-400/70 transition-all hover:bg-violet-100"
+          class="md:text-base text-sm border-2 font-medium focus:ring-0 active:bg-violet-200 focus:outline-violet-500 focus:outline-2 text-violet-500 rounded-lg pr-2 py-1.5 w-full pl-14 bg-white border-violet-500/80 placeholder-violet-400/70 transition-all hover:bg-violet-100"
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -147,7 +147,7 @@
           placeholder="Password"
           type="password"
           name="password"
-          class="border-2 font-medium focus:ring-0 active:bg-violet-200 focus:outline-violet-500 focus:outline-2 text-violet-500 rounded-lg pr-2 py-1.5 w-full pl-14 bg-white border-violet-500/80 placeholder-violet-400/70 transition-all hover:bg-violet-100"
+          class="md:text-base text-sm border-2 font-medium focus:ring-0 active:bg-violet-200 focus:outline-violet-500 focus:outline-2 text-violet-500 rounded-lg pr-2 py-1.5 w-full pl-14 bg-white border-violet-500/80 placeholder-violet-400/70 transition-all hover:bg-violet-100"
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -168,14 +168,14 @@
       <div class="w-fit mx-auto mt-5">
         <button
           type="submit"
-          class="transition-all hover:bg-violet-600/70 hover:scale-105 active:bg-violet-600/90 hover:shadow-md hover:shadow-violet-500/50 hover:border-violet-700 bg-violet-500 px-3 py-1 rounded-lg text-white border-2 border-violet-600 font-medium"
+          class="md:text-base text-sm transition-all hover:bg-violet-600/70 hover:scale-105 active:bg-violet-600/90 hover:shadow-md hover:shadow-violet-500/50 hover:border-violet-700 bg-violet-500 px-3 py-1 rounded-lg text-white border-2 border-violet-600 font-medium"
         >
           Sign Up
         </button>
       </div>
     </form>
     <div
-      class="bg-violet-200/50 w-96 mx-auto text-center mt-5 py-2 rounded-lg border-2 border-violet-200 text-violet-400 font-medium hover:bg-violet-200/80 transition-all hover:border-violet-300/50"
+      class="md:text-base text-sm md:w-96 w-80 bg-violet-200/50 mx-auto text-center mt-5 py-2 rounded-lg border-2 border-violet-200 text-violet-400 font-medium hover:bg-violet-200/80 transition-all hover:border-violet-300/50"
     >
       Already have an account?
       <a href="/log-in" class="text-violet-500 underline underline-offset-2"

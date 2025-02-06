@@ -145,7 +145,7 @@
       </div>
     </div>
 
-    <div class="lg:w-2/3 xl:w-1/2 mx-auto mt-10 transition-all px-10 lg:px-0">
+    <div class="lg:w-2/3 xl:w-1/2 mx-auto mt-10 transition-all px-10 lg:px-0 lg:text-left text-center">
       <p class="font-semibold text-xl text-neutral-500">
         Welcome Back,
         <span
@@ -153,11 +153,11 @@
           ><%= username %>!</span
         >
       </p>
-      <p class="font-medium text-sm text-neutral-400">
+      <p class="font-medium md:text-sm text-xs text-neutral-400 transition-all">
         Got something new to treasure?
       </p>
       <div
-        class="rounded-full bg-violet-300/50 w-fit px-8 py-0.5 font-bold text-violet-500 mx-auto mt-5"
+        class="rounded-full bg-violet-300/50 w-fit px-8 py-0.5 font-bold text-violet-500 mx-auto mt-8 md:text-base text-sm"
       >
       <% const months = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] %>
       <% const dateToday = new Date() %>
@@ -166,7 +166,7 @@
       <div class="flex gap-3 mx-auto w-fit mt-3 lg:text-2xl md:text-xl text-lg">
         <button
           onclick="window.location.href = '/friends'"
-          class="items-center py-4 px-8 rounded-lg text-white font-semibold bg-gradient-to-br from-violet-400 to-pink-400 flex gap-2 hover:scale-105 transition-all hover:shadow-md hover:shadow-pink-500/30 active:from-violet-500/80 active:to-pink-500/80"
+          class="items-center md:text-base text-sm md:py-4 py-3 md:px-8 px-4 rounded-lg text-white font-semibold bg-gradient-to-br from-violet-400 to-pink-400 flex gap-2 hover:scale-105 transition-all hover:shadow-md hover:shadow-pink-500/30 active:from-violet-500/80 active:to-pink-500/80"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -183,7 +183,7 @@
 
         <button
           onclick="window.location.href = '/add-friend'"
-          class="items-center py-4 px-8 rounded-lg text-white font-semibold bg-gradient-to-br from-orange-400 to-yellow-400 flex gap-2 hover:scale-105 transition-all hover:shadow-md hover:shadow-yellow-500/30 active:from-orange-500/80 active:to-yellow-500/80"
+          class="items-center md:text-base text-sm md:py-4 py-3 md:px-8 px-4 rounded-lg text-white font-semibold bg-gradient-to-br from-orange-400 to-yellow-400 flex gap-2 hover:scale-105 transition-all hover:shadow-md hover:shadow-yellow-500/30 active:from-orange-500/80 active:to-yellow-500/80"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -202,11 +202,11 @@
       </div>
 
       <p
-        class="text-transparent bg-clip-text bg-gradient-to-r mt-12 from-violet-400 to-pink-400 font-bold text-3xl text-center w-fit mx-auto"
+        class="text-transparent bg-clip-text bg-gradient-to-r mt-12 from-violet-400 to-pink-400 font-bold md:text-3xl text-2xl transition-all text-center w-fit mx-auto"
       >
         Upcoming Birthdays
       </p>
-      <p class="text-neutral-400 font-medium text-sm text-center mt-1">Which birthday is coming next? Be sure to greet them!</p>
+      <p class="text-neutral-400 font-medium md:text-sm text-xs transition-all text-center mt-1">Which birthday is coming next? Be sure to greet them!</p>
 
 
       <%
@@ -262,11 +262,11 @@
       
         <button
         onclick="window.location.href = '/friend/<%= element._id %>'"
-          class="py-3 px-3 bg-gradient-to-br w-64 rounded-xl flex border-neutral-100 hover:shadow-md transition-all grow"
+          class="py-3 px-3 bg-gradient-to-br md:w-64 w-52 rounded-xl flex border-neutral-100 hover:shadow-md transition-all grow"
         >
           <img src="<%= element.img %>" alt="" class="w-16 rounded-lg" />
           <div class="leading-tight flex-col flex">
-            <p class="font-medium ml-3 text-neutral-800 text-left"><%= element.nickname %></p>
+            <p class="font-medium ml-3 text-neutral-800 text-left md:text-base text-sm transition-all"><%= element.nickname %></p>
             <p class="font-medium ml-3 text-neutral-600 text-xs text-left">
               <%= element.name %>
             </p>
@@ -284,10 +284,10 @@
           
         </button>
         <div
-            class="rounded-xl  bg-violet-300 font-bold text-white flex-col flex items-center justify-center w-20 group hover:bg-violet-400/70 transition-all hover:shadow-md hover:shadow-violet-500/30"
+            class="rounded-xl  bg-violet-300 font-bold text-white flex-col flex items-center justify-center md:w-20 w-16 group hover:bg-violet-400/70 transition-all hover:shadow-md hover:shadow-violet-500/30"
           >
             <p
-              class="bg-violet-400/70 basis-2/6 px-5 pt-1.5 rounded-t-xl text-lg text-violet-600/80 w-full text-center drop-shadow-md group-hover:bg-violet-500/50 transition-all group-hover:text-violet-600"
+              class="bg-violet-400/70 basis-2/6 md:px-5 px-3 pt-1.5 rounded-t-xl md:text-lg text-base text-violet-600/80 w-full text-center drop-shadow-md group-hover:bg-violet-500/50 transition-all group-hover:text-violet-600"
             >
             <% // const monthsShort = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
             // const bday = element.bday.toString()
@@ -311,9 +311,9 @@
      %>
       </div>
 
-      <p class="mt-12 font-bold text-3xl text-center w-fit mx-auto">
+      <p class="mt-12 font-bold text-center w-fit mx-auto md:text-3xl text-2xl transition-all">
         <span
-          class="text-transparent bg-clip-text bg-gradient-to-r mt-12 from-violet-400 to-pink-400"
+          class="text-transparent bg-clip-text bg-gradient-to-r mt-12 from-violet-400 to-pink-400 "
         >
           Polariod</span
         >
@@ -322,7 +322,7 @@
           >Feed</span
         >
       </p>
-      <p class="text-neutral-400 font-medium text-sm text-center">Explore memories you treasure the most with these people!</p>
+      <p class="text-neutral-400 font-medium text-center md:text-sm text-xs transition-all">Explore memories you treasure the most with these people!</p>
 
 
       <div class="flex flex-col">
@@ -362,7 +362,7 @@
         </button>
 
         <% }} else { %>
-          <p class="text-neutral-400 font-medium text-sm text-center bg-white px-10 w-fit mx-auto py-5 mt-3 border rounded-xl">No data to show. Add polariods!</p>
+          <p class="text-neutral-400 font-medium md:text-sm text-xs transition-all text-center bg-white px-10 w-fit mx-auto py-5 mt-3 border rounded-xl">No data to show. Add polariods!</p>
         <% } %>
       </div>
     </div>
