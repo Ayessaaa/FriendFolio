@@ -14,6 +14,7 @@ const User = require("../models/user");
 const Friend = require("../models/friend");
 const Polariod = require("../models/polariod");
 const Gift = require("../models/gift");
+const Profile = require("../models/profile");
 const { error } = require("console");
 
 const home = (req, res) => {
@@ -798,29 +799,6 @@ const unsubscribeEmailConfirm = async (req, res) => {
 };
 
 const unsubscribeDone = (req, res) => {
-  const utcTime = DateTime.utc();
-
-  // Step 2: Convert UTC time to the user's local timezone (from req.session.timezone)
-  const localTime = utcTime.setZone("Asia/Taipei");
-
-  // Step 3: Set the time to midnight (00:00:00) in the local timezone
-  const localMidnight = localTime.set({
-    hour: 0,
-    minute: 0,
-    second: 0,
-    millisecond: 0,
-  });
-
-  // Step 4: Convert that local midnight time back to UTC
-  const utcMidnight = localMidnight.toUTC();
-
-  console.log(
-    "Local Time at Midnight:",
-    localMidnight.hour,
-    localMidnight.day,
-    localMidnight.month
-  ); // Local midnight time
-
   res.render("unsubscribeDone");
 };
 
@@ -828,7 +806,8 @@ const myProfile = (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
-    res.render("myProfile")
+    
+    res.render("myProfile");
   } else {
     res.redirect("/log-in");
   }
@@ -838,7 +817,56 @@ const editProfile = (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
-    res.render("editProfile")
+    res.render("editProfile");
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
+const createProfile = (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    res.render("createProfile");
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
+const createProfilePost = async (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  var path = "https://fl-1.cdn.flockler.com/embed/no-image.svg";
+
+  if (req.body.pfp_default === 100) {
+    try {
+      path = req.file.path;
+    } catch {
+      path = "https://fl-1.cdn.flockler.com/embed/no-image.svg";
+    }
+  } else {
+    path = `/img/pfps/${req.body.pfp_default}.png`
+  }
+
+  if (isLoggedIn) {
+    console.log(req.body);
+    const profile = new Profile({
+      username: req.session.username,
+      img: path,
+      name: req.body.name,
+      nickname: req.body.nickname,
+      birthday: req.body.birthday,
+      contact_number: req.body.contact,
+      email: req.body.email,
+      address: req.body.address,
+      hobbies: req.body.hobbies,
+      dream: req.body.dream,
+      likes: req.body.likes,
+      dislikes: req.body.dislikes,
+    });
+
+    await profile.save();
+    res.render("createProfile");
   } else {
     res.redirect("/log-in");
   }
@@ -872,6 +900,8 @@ module.exports = {
   unsubscribeEmail,
   unsubscribeEmailConfirm,
   unsubscribeDone,
-  myProfile, 
-  editProfile
+  myProfile,
+  editProfile,
+  createProfile,
+  createProfilePost,
 };

@@ -51,8 +51,6 @@ app.use(
   })
 );
 
-
-
 app.get("/guide", (req, res) => {
   res.render("guide");
 });
@@ -102,8 +100,15 @@ app.post(
   siteController.editFriendIDPost
 );
 
-app.get("/my-profile", siteController.myProfile)
-app.get("/edit-profile", siteController.editProfile)
+app.get("/my-profile", siteController.myProfile);
+app.get("/edit-profile", siteController.editProfile);
+
+app.get("/create-profile", siteController.createProfile);
+app.post(
+  "/create-profile",
+  upload.single("image"),
+  siteController.createProfilePost
+);
 
 app.get("/polariods", siteController.polariods);
 
@@ -130,7 +135,9 @@ app.get("/gift-select", siteController.giftSelect);
 app.get("/create-gift/:id", siteController.createGift);
 app.post("/create-gift/:id", siteController.createGiftPost);
 
-app.get("/unsubscribe-email/:date", siteController.unsubscribeEmail)
-app.get("/unsubscribe-email-confirm/:date", siteController.unsubscribeEmailConfirm)
-app.get("/unsubscribe-done", siteController.unsubscribeDone)
-
+app.get("/unsubscribe-email/:date", siteController.unsubscribeEmail);
+app.get(
+  "/unsubscribe-email-confirm/:date",
+  siteController.unsubscribeEmailConfirm
+);
+app.get("/unsubscribe-done", siteController.unsubscribeDone);
