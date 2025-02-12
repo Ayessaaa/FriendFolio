@@ -186,10 +186,7 @@
 
     
 
-    <form
-      enctype="multipart/form-data"
-      action="/friends"
-      method="POST"
+    <div
       class="xl:w-1/3 w-96 mx-auto transition-all lg:px-10 px-0 bg-white rounded-xl py-8 border mt-8"
     >
       <p
@@ -200,7 +197,7 @@
       <div class="mx-8 mt-5 gap-3 text-sm w-fit">
         <div class="flex gap-3">
           <div class="w-1/3">
-            <img id="pfp" src="/img/no-image.svg" alt="" class="rounded-xl h-full" />
+            <img id="pfp" src="/img/pfps/8.png" alt="" class="rounded-xl h-full" />
           </div>
           <div class="w-2/3 bg-gradient-to-br rounded-xl flex p-1.5 ">
             <img id="pfp" src="https://miro.medium.com/v2/resize:fit:390/1*j0Deq-58NF5euXPEZqgILg.png" alt="" class="rounded-xl w-1/2 " />
@@ -212,22 +209,22 @@
 
         <div class="flex flex-col flex-1 mt-5 gap-0.5">
           <p class="text-sm md:text-base transition-all">
-            <span class="font-semibold text-neutral-400">Username: </span
-            ><span class="font-semibold text-neutral-500">yessa</span>
+            <span class="font-semibold text-neutral-500">Username: </span
+            ><span class="font-medium text-neutral-400">yessa</span>
           </p>
           <p class="text-sm md:text-base transition-all">
-            <span class="font-semibold text-neutral-400">Nickname: </span
-            ><span class="font-semibold text-neutral-500">aye</span>
+            <span class="font-semibold text-neutral-500">Nickname: </span
+            ><span class="font-medium text-neutral-400">aye</span>
           </p>
           <p class="text-sm md:text-base transition-all">
-            <span class="font-semibold text-neutral-400">Name: </span
-            ><span class="font-semibold text-neutral-500"
+            <span class="font-semibold text-neutral-500">Name: </span
+            ><span class="font-medium text-neutral-400"
               >Ayessa De Guzman</span
             >
           </p>
           <p class="text-sm md:text-base transition-all">
-            <span class="font-semibold text-neutral-400">Birthday: </span
-            ><span class="font-semibold text-neutral-500"
+            <span class="font-semibold text-neutral-500">Birthday: </span
+            ><span class="font-medium text-neutral-400"
               >June 28, 2007</span
             >
           </p>
@@ -243,20 +240,20 @@
         </div>
         <div class="flex flex-col text-sm mx-5 px-5 mt-3 py-3 bg-orange-50 rounded-xl border border-orange-200 gap-0.5">
           <p class="text-xs md:text-sm transition-all">
-            <span class="font-semibold text-neutral-400">Contact Number: </span
-            ><span class="font-semibold text-neutral-500"
+            <span class="font-semibold text-neutral-500">Contact Number: </span
+            ><span class="font-medium text-neutral-400"
               >0927382738</span
             >
           </p>
           <p class="text-xs md:text-sm transition-all">
-            <span class="font-semibold text-neutral-400">Email: </span
-            ><span class="font-semibold text-neutral-500"
+            <span class="font-semibold text-neutral-500">Email: </span
+            ><span class="font-medium text-neutral-400"
               >ayessa32516@gmail.com</span
             >
           </p>
           <p class="text-xs md:text-sm transition-all">
-            <span class="font-semibold text-neutral-400">Address: </span
-            ><span class="font-semibold text-neutral-500"
+            <span class="font-semibold text-neutral-500">Address: </span
+            ><span class="font-medium text-neutral-400"
               >123 Street, ABC City, Province</span
             >
           </p>
@@ -272,26 +269,26 @@
         </div>
         <div class="flex flex-col text-sm mx-5 px-5 mt-3 py-3 bg-purple-50 rounded-xl border border-purple-200 gap-0.5">
           <p class="text-xs md:text-sm transition-all">
-            <span class="font-semibold text-neutral-400">Hobbies: </span
-            ><span class="font-semibold text-neutral-500"
+            <span class="font-semibold text-neutral-500">Hobbies: </span
+            ><span class="font-medium text-neutral-400"
               >Art, Music, Programming</span
             >
           </p>
           <p class="text-xs md:text-sm transition-all">
-            <span class="font-semibold text-neutral-400">Dream: </span
-            ><span class="font-semibold text-neutral-500"
+            <span class="font-semibold text-neutral-500">Dream: </span
+            ><span class="font-medium text-neutral-400"
               >Cloud Architect</span
             >
           </p>
           <p class="text-xs md:text-sm transition-all">
-            <span class="font-semibold text-neutral-400">Likes: </span
-            ><span class="font-semibold text-neutral-500"
+            <span class="font-semibold text-neutral-500">Likes: </span
+            ><span class="font-medium text-neutral-400"
               >Hirono, Chocolates, Pink</span
             >
           </p>
           <p class="text-xs md:text-sm transition-all">
-            <span class="font-semibold text-neutral-400">Dislikes: </span
-            ><span class="font-semibold text-neutral-500"
+            <span class="font-semibold text-neutral-500">Dislikes: </span
+            ><span class="font-medium text-neutral-400"
               >Tofu, Mean ppl :(</span
             >
           </p>
@@ -299,6 +296,17 @@
         </div>
       </div>
 
-    </form>
+      <button
+        onclick="window.location.href = '/edit-profile'"
+        class="text-lg md:text-xl hover:bg-violet-500/90 hover:shadow-violet-500/50 active:bg-violet-500/80 hover:scale-105 transition-all flex items-center gap-3 mt-5 bg-violet-400 w-fit mx-auto font-semibold text-white px-4 py-1 rounded-lg shadow-md shadow-violet-500/20"
+      >
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+          <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32L19.513 8.2Z" />
+        </svg>
+        Edit
+      </button>
+
+    </div>
   </body>
 </html>

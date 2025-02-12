@@ -103,6 +103,7 @@ app.post(
 );
 
 app.get("/my-profile", siteController.myProfile)
+app.get("/edit-profile", siteController.editProfile)
 
 app.get("/polariods", siteController.polariods);
 
@@ -132,3 +133,4 @@ app.post("/create-gift/:id", siteController.createGiftPost);
 app.get("/unsubscribe-email/:date", siteController.unsubscribeEmail)
 app.get("/unsubscribe-email-confirm/:date", siteController.unsubscribeEmailConfirm)
 app.get("/unsubscribe-done", siteController.unsubscribeDone)
+

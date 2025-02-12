@@ -834,6 +834,16 @@ const myProfile = (req, res) => {
   }
 };
 
+const editProfile = (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    res.render("editProfile")
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
 module.exports = {
   home,
   addFriend,
@@ -862,5 +872,6 @@ module.exports = {
   unsubscribeEmail,
   unsubscribeEmailConfirm,
   unsubscribeDone,
-  myProfile
+  myProfile, 
+  editProfile
 };
