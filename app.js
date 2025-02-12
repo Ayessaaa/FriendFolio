@@ -102,6 +102,8 @@ app.post(
   siteController.editFriendIDPost
 );
 
+app.get("/my-profile", siteController.myProfile)
+
 app.get("/polariods", siteController.polariods);
 
 app.get("/polariod", siteController.polariod);

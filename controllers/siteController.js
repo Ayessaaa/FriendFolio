@@ -1,6 +1,5 @@
-
-const { Headers } = require('node-fetch'); // Import Headers
-const { DateTime } = require('luxon');
+const { Headers } = require("node-fetch"); // Import Headers
+const { DateTime } = require("luxon");
 
 const { render } = require("ejs");
 const express = require("express");
@@ -193,7 +192,7 @@ const friendsPost = async (req, res) => {
         const birthday = new Date(req.body.birthday);
 
         // Convert birthday to Luxon DateTime and get UTC time
-        const utcTime = DateTime.fromJSDate(birthday).toUTC(); 
+        const utcTime = DateTime.fromJSDate(birthday).toUTC();
 
         // Convert UTC time to the user's local time using the session timezone
         const localTime = utcTime.setZone(req.session.timezone);
@@ -203,12 +202,12 @@ const friendsPost = async (req, res) => {
           hour: 0,
           minute: 0,
           second: 0,
-          millisecond: 0
+          millisecond: 0,
         });
 
         // Convert local midnight back to UTC
-        const utcMidnight = localMidnight.toUTC(); 
-        
+        const utcMidnight = localMidnight.toUTC();
+
         const birthdaySplit = birthday.toDateString().split(" ");
 
         const eventbridgeDate = Date.now();
@@ -216,9 +215,9 @@ const friendsPost = async (req, res) => {
         await Friend.findOneAndUpdate(
           { _id: friend._id },
           { eventbridge_rule_name: eventbridgeDate }
-        ).catch((err)=>{
-          console.log(err)
-        })
+        ).catch((err) => {
+          console.log(err);
+        });
 
         // Create the JSON payload
         const payload = await JSON.stringify({
@@ -326,7 +325,7 @@ const editFriendIDPost = async (req, res) => {
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
 
-            console.log(result)
+            console.log(result);
 
             // Create the JSON payload
             const payload = await JSON.stringify({
@@ -366,7 +365,7 @@ const editFriendIDPost = async (req, res) => {
             const birthday = new Date(req.body.birthday);
 
             // Convert birthday to Luxon DateTime and get UTC time
-            const utcTime = DateTime.fromJSDate(birthday).toUTC(); 
+            const utcTime = DateTime.fromJSDate(birthday).toUTC();
 
             // Convert UTC time to the user's local time using the session timezone
             const localTime = utcTime.setZone(req.session.timezone);
@@ -376,22 +375,21 @@ const editFriendIDPost = async (req, res) => {
               hour: 0,
               minute: 0,
               second: 0,
-              millisecond: 0
+              millisecond: 0,
             });
 
             // Convert local midnight back to UTC
-            const utcMidnight = localMidnight.toUTC(); 
-            
+            const utcMidnight = localMidnight.toUTC();
+
             const birthdaySplit = birthday.toDateString().split(" ");
             birthday.setHours(0);
-
 
             await Friend.findOneAndUpdate(
               { _id: friend._id },
               { eventbridge_rule_name: result.eventbridge_rule_name }
             );
 
-            const friendResult = await Friend.find({_id: req.params.id})
+            const friendResult = await Friend.find({ _id: req.params.id });
 
             console.log(friendResult[0].img);
 
@@ -758,11 +756,11 @@ const createGiftPost = (req, res) => {
   }
 };
 
-const unsubscribeEmail = (req, res) =>{
-  res.render("unsubscribeEmail", {date: req.params.date})
-}
+const unsubscribeEmail = (req, res) => {
+  res.render("unsubscribeEmail", { date: req.params.date });
+};
 
-const unsubscribeEmailConfirm = async (req, res) =>{
+const unsubscribeEmailConfirm = async (req, res) => {
   async function deleteAPI(date) {
     // Create a headers object and add content type
     const myHeaders = new Headers();
@@ -795,32 +793,46 @@ const unsubscribeEmailConfirm = async (req, res) =>{
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
   }
-  await deleteAPI()
-  res.redirect("/unsubscribe-done")
-}
+  await deleteAPI();
+  res.redirect("/unsubscribe-done");
+};
 
-const unsubscribeDone = (req, res) =>{
-  
+const unsubscribeDone = (req, res) => {
   const utcTime = DateTime.utc();
 
-// Step 2: Convert UTC time to the user's local timezone (from req.session.timezone)
-const localTime = utcTime.setZone("Asia/Taipei");
+  // Step 2: Convert UTC time to the user's local timezone (from req.session.timezone)
+  const localTime = utcTime.setZone("Asia/Taipei");
 
-// Step 3: Set the time to midnight (00:00:00) in the local timezone
-const localMidnight = localTime.set({
-  hour: 0,
-  minute: 0,
-  second: 0,
-  millisecond: 0
-});
+  // Step 3: Set the time to midnight (00:00:00) in the local timezone
+  const localMidnight = localTime.set({
+    hour: 0,
+    minute: 0,
+    second: 0,
+    millisecond: 0,
+  });
 
-// Step 4: Convert that local midnight time back to UTC
-const utcMidnight = localMidnight.toUTC();
+  // Step 4: Convert that local midnight time back to UTC
+  const utcMidnight = localMidnight.toUTC();
 
-console.log("Local Time at Midnight:", localMidnight.hour, localMidnight.day, localMidnight.month);  // Local midnight time
-  
-  res.render("unsubscribeDone")
-}
+  console.log(
+    "Local Time at Midnight:",
+    localMidnight.hour,
+    localMidnight.day,
+    localMidnight.month
+  ); // Local midnight time
+
+  res.render("unsubscribeDone");
+};
+
+const myProfile = (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    res.render("myProfile")
+  } else {
+    res.redirect("/log-in");
+  }
+};
 
 module.exports = {
   home,
@@ -849,5 +861,6 @@ module.exports = {
   friendDelete,
   unsubscribeEmail,
   unsubscribeEmailConfirm,
-  unsubscribeDone
+  unsubscribeDone,
+  myProfile
 };
