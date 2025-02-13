@@ -102,6 +102,11 @@ app.post(
 
 app.get("/my-profile", siteController.myProfile);
 app.get("/edit-profile", siteController.editProfile);
+app.post(
+  "/edit-profile",
+  upload.single("image"),
+  siteController.editProfilePost
+);
 
 app.get("/create-profile", siteController.createProfile);
 app.post(

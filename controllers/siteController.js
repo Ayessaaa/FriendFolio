@@ -15,7 +15,7 @@ const Friend = require("../models/friend");
 const Polariod = require("../models/polariod");
 const Gift = require("../models/gift");
 const Profile = require("../models/profile");
-const { error } = require("console");
+const { error, profile } = require("console");
 
 const home = (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
@@ -802,22 +802,69 @@ const unsubscribeDone = (req, res) => {
   res.render("unsubscribeDone");
 };
 
-const myProfile = (req, res) => {
+const myProfile = async (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
-    
-    res.render("myProfile");
+    await Profile.find({ username: req.session.username }).then((result) => {
+      res.render("myProfile", { profile: result[0] });
+    });
   } else {
     res.redirect("/log-in");
   }
 };
 
-const editProfile = (req, res) => {
+const editProfile = async (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
-    res.render("editProfile");
+    await Profile.find({ username: req.session.username }).then((result) => {
+      res.render("editProfile", { profile: result[0] });
+    });
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
+const editProfilePost = async (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  var path = "https://fl-1.cdn.flockler.com/embed/no-image.svg";
+
+  if (req.body.pfp_default === "100") {
+    try {
+      path = req.file.path;
+    } catch {
+      path = "https://fl-1.cdn.flockler.com/embed/no-image.svg";
+    }
+  } else {
+    path = `/img/pfps/${req.body.pfp_default}.png`;
+  }
+
+  if (isLoggedIn) {
+    console.log(req.body);
+    await Profile.findOneAndUpdate(
+      { username: req.session.username },
+      {
+        img: path,
+        name: req.body.name,
+        nickname: req.body.nickname,
+        birthday: req.body.birthday,
+        contact_number: req.body.contact,
+        email: req.body.email,
+        address: req.body.address,
+        hobbies: req.body.hobbies,
+        dream: req.body.dream,
+        likes: req.body.likes,
+        dislikes: req.body.dislikes,
+      }
+    )
+      .then(res)
+      .catch((err) => {
+        console.log(err);
+      });
+
+    res.redirect("/my-profile");
   } else {
     res.redirect("/log-in");
   }
@@ -845,7 +892,7 @@ const createProfilePost = async (req, res) => {
       path = "https://fl-1.cdn.flockler.com/embed/no-image.svg";
     }
   } else {
-    path = `/img/pfps/${req.body.pfp_default}.png`
+    path = `/img/pfps/${req.body.pfp_default}.png`;
   }
 
   if (isLoggedIn) {
@@ -904,4 +951,5 @@ module.exports = {
   editProfile,
   createProfile,
   createProfilePost,
+  editProfilePost,
 };

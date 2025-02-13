@@ -1810,11 +1810,6 @@ video {
   color: rgb(147 51 234 / var(--tw-text-opacity, 1));
 }
 
-.text-red-300 {
-  --tw-text-opacity: 1;
-  color: rgb(252 165 165 / var(--tw-text-opacity, 1));
-}
-
 .text-red-400 {
   --tw-text-opacity: 1;
   color: rgb(248 113 113 / var(--tw-text-opacity, 1));
@@ -2877,6 +2872,11 @@ video {
     height: 2rem;
   }
 
+  .md\:size-9 {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
   .md\:w-20 {
     width: 5rem;
   }
@@ -2903,6 +2903,14 @@ video {
 
   .md\:flex-row {
     flex-direction: row;
+  }
+
+  .md\:gap-5 {
+    gap: 1.25rem;
+  }
+
+  .md\:p-2 {
+    padding: 0.5rem;
   }
 
   .md\:px-0 {

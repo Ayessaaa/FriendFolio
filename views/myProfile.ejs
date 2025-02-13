@@ -195,11 +195,11 @@
         My Profile
       </p>
       <div class="mx-8 mt-5 gap-3 text-sm w-fit">
-        <div class="flex gap-3">
+        <div class="flex md:gap-5 gap-3">
           <div class="w-1/3">
-            <img id="pfp" src="/img/pfps/8.png" alt="" class="rounded-xl h-full" />
+            <img id="pfp" src="<%= profile.img %>" alt="" class="rounded-xl h-full" />
           </div>
-          <div class="w-2/3 bg-gradient-to-br rounded-xl flex p-1.5 ">
+          <div class="w-2/3 bg-gradient-to-br rounded-xl flex md:p-2 p-1.5 ">
             <img id="pfp" src="https://miro.medium.com/v2/resize:fit:390/1*j0Deq-58NF5euXPEZqgILg.png" alt="" class="rounded-xl w-1/2 " />
             <div class="flex items-center justify-center px-3">
               <p class="font-medium text-neutral-400 md:text-sm text-xs ">Share this <span class="text-neutral-500 font-semibold">QR code</span> to add you as a friend.</p>
@@ -210,22 +210,22 @@
         <div class="flex flex-col flex-1 mt-5 gap-0.5">
           <p class="text-sm md:text-base transition-all">
             <span class="font-semibold text-neutral-500">Username: </span
-            ><span class="font-medium text-neutral-400">yessa</span>
+            ><span class="font-medium text-neutral-400"><%= profile.username %></span>
           </p>
           <p class="text-sm md:text-base transition-all">
             <span class="font-semibold text-neutral-500">Nickname: </span
-            ><span class="font-medium text-neutral-400">aye</span>
+            ><span class="font-medium text-neutral-400"><%= profile.nickname %></span>
           </p>
           <p class="text-sm md:text-base transition-all">
             <span class="font-semibold text-neutral-500">Name: </span
             ><span class="font-medium text-neutral-400"
-              >Ayessa De Guzman</span
+              ><%= profile.name %></span
             >
           </p>
           <p class="text-sm md:text-base transition-all">
             <span class="font-semibold text-neutral-500">Birthday: </span
             ><span class="font-medium text-neutral-400"
-              >June 28, 2007</span
+              ><%= profile.birthday.toDateString().split(" ")[1] +" "+ profile.birthday.toDateString().split(" ")[2] + ", "+ profile.birthday.toDateString().split(" ")[3] %></span
             >
           </p>
         </div>
@@ -242,19 +242,19 @@
           <p class="text-xs md:text-sm transition-all">
             <span class="font-semibold text-neutral-500">Contact Number: </span
             ><span class="font-medium text-neutral-400"
-              >0927382738</span
+              ><%= profile.contact_number %></span
             >
           </p>
           <p class="text-xs md:text-sm transition-all">
             <span class="font-semibold text-neutral-500">Email: </span
             ><span class="font-medium text-neutral-400"
-              >ayessa32516@gmail.com</span
+              ><%= profile.email %></span
             >
           </p>
           <p class="text-xs md:text-sm transition-all">
             <span class="font-semibold text-neutral-500">Address: </span
             ><span class="font-medium text-neutral-400"
-              >123 Street, ABC City, Province</span
+              ><%= profile.address %></span
             >
           </p>
           
@@ -271,25 +271,25 @@
           <p class="text-xs md:text-sm transition-all">
             <span class="font-semibold text-neutral-500">Hobbies: </span
             ><span class="font-medium text-neutral-400"
-              >Art, Music, Programming</span
+              ><%= profile.hobbies %></span
             >
           </p>
           <p class="text-xs md:text-sm transition-all">
             <span class="font-semibold text-neutral-500">Dream: </span
             ><span class="font-medium text-neutral-400"
-              >Cloud Architect</span
+              ><%= profile.dream %></span
             >
           </p>
           <p class="text-xs md:text-sm transition-all">
             <span class="font-semibold text-neutral-500">Likes: </span
             ><span class="font-medium text-neutral-400"
-              >Hirono, Chocolates, Pink</span
+              ><%= profile.likes %></span
             >
           </p>
           <p class="text-xs md:text-sm transition-all">
             <span class="font-semibold text-neutral-500">Dislikes: </span
             ><span class="font-medium text-neutral-400"
-              >Tofu, Mean ppl :(</span
+              ><%= profile.dislikes %></span
             >
           </p>
           
