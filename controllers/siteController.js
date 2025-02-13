@@ -807,8 +807,18 @@ const myProfile = async (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
-    await Profile.find({ username: req.session.username }).then((result) => {
-      res.render("myProfile", { profile: result[0] });
+    
+    await Profile.find({ username: req.session.username }).then(async(result) => {
+      try {
+        const url = 'https://careful-magic-larch.glitch.me/add-friend-qr/'+result[0]._id;
+        console.log(url)
+        const qrCodeImage = await QRCode.toDataURL(url);
+        res.render("myProfile", { profile: result[0] , qr: qrCodeImage});
+      } catch (err) {
+        console.error('Error generating QR code:', err);
+        res.status(500).send('Internal Server Error');
+      }
+      
     });
   } else {
     res.redirect("/log-in");
