@@ -108,6 +108,9 @@ app.post(
   siteController.editProfilePost
 );
 
+app.get("/add-friend-qr/:id", siteController.addFriendQR)
+app.post("/add-friend-qr/:id", siteController.addFriendQRPost)
+
 app.get("/create-profile", siteController.createProfile);
 app.post(
   "/create-profile",

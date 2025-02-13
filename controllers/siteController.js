@@ -919,6 +919,31 @@ const createProfilePost = async (req, res) => {
   }
 };
 
+const addFriendQR = async (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    await Profile.find({ _id: req.params.id }).then((result) => {
+      res.render("addFriendQR", { profile: result[0] });
+    });
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
+const addFriendQRPost = async (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    await Profile.find({ _id: req.params.id }).then((result) => {
+      res.render("addFriendQR", { profile: result[0] });
+    });
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
+
 module.exports = {
   home,
   addFriend,
@@ -952,4 +977,6 @@ module.exports = {
   createProfile,
   createProfilePost,
   editProfilePost,
+  addFriendQR,
+  addFriendQRPost
 };
