@@ -208,15 +208,15 @@
             picCount -= 1;
           }
           defaultPic = true;
-          pfp.src = `/img/pfps/${picCount}.png`;
+          pfp.src = `https://res.cloudinary.com/dxetj5koj/image/upload/v1739449578/CloudinaryDemo/${picCount}.png`;
           pfp_default.value = picCount
         }
         function next() {
-          if (picCount + 1 <= 8) {
+          if (picCount + 1 <= 11) {
             picCount += 1;
           }
           defaultPic = true;
-          pfp.src = `/img/pfps/${picCount}.png`;
+          pfp.src = `https://res.cloudinary.com/dxetj5koj/image/upload/v1739449578/CloudinaryDemo/${picCount}.png`;
           pfp_default.value = picCount
         }
       </script>

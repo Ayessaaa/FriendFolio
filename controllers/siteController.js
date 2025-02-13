@@ -9,6 +9,7 @@ const dotenv = require("dotenv");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
 const cloudinary = require("cloudinary").v2;
+const QRCode = require('qrcode')
 
 const User = require("../models/user");
 const Friend = require("../models/friend");
@@ -838,7 +839,7 @@ const editProfilePost = async (req, res) => {
       path = "https://fl-1.cdn.flockler.com/embed/no-image.svg";
     }
   } else {
-    path = `/img/pfps/${req.body.pfp_default}.png`;
+    path = `https://res.cloudinary.com/dxetj5koj/image/upload/v1739449578/CloudinaryDemo/${req.body.pfp_default}.png`;
   }
 
   if (isLoggedIn) {
@@ -892,7 +893,7 @@ const createProfilePost = async (req, res) => {
       path = "https://fl-1.cdn.flockler.com/embed/no-image.svg";
     }
   } else {
-    path = `/img/pfps/${req.body.pfp_default}.png`;
+    path = `https://res.cloudinary.com/dxetj5koj/image/upload/v1739449578/CloudinaryDemo/${req.body.pfp_default}.png`;
   }
 
   if (isLoggedIn) {
@@ -934,15 +935,114 @@ const addFriendQR = async (req, res) => {
 const addFriendQRPost = async (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
+  const [zodiac, emoji] = zodiacFunction(req.body.birthday);
+
+
   if (isLoggedIn) {
-    await Profile.find({ _id: req.params.id }).then((result) => {
-      res.render("addFriendQR", { profile: result[0] });
+    const friend = new Friend({
+      username: req.session.username,
+      img: req.body.img,
+      name: req.body.name,
+      nickname: req.body.nickname,
+      birthday: req.body.birthday,
+      contact_number: req.body.contact,
+      email: req.body.email,
+      address: req.body.address,
+      hobbies: arraySplitter(req.body.hobbies),
+      dream: req.body.dream,
+      likes: arraySplitter(req.body.likes),
+      dislikes: arraySplitter(req.body.dislikes),
+      notes: req.body.notes,
+      zodiac: zodiac,
+      emoji: emoji,
     });
+
+    await friend
+      .save()
+      .then((result) => {
+        res.redirect("/friends");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    if (req.body.birthday !== "") {
+      async function callAPI() {
+        // Create a headers object and add content type
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const birthday = new Date(req.body.birthday);
+
+        // Convert birthday to Luxon DateTime and get UTC time
+        const utcTime = DateTime.fromJSDate(birthday).toUTC();
+
+        // Convert UTC time to the user's local time using the session timezone
+        const localTime = utcTime.setZone(req.session.timezone);
+
+        // Set local time to midnight
+        const localMidnight = localTime.set({
+          hour: 0,
+          minute: 0,
+          second: 0,
+          millisecond: 0,
+        });
+
+        // Convert local midnight back to UTC
+        const utcMidnight = localMidnight.toUTC();
+
+        const birthdaySplit = birthday.toDateString().split(" ");
+
+        const eventbridgeDate = Date.now();
+
+        await Friend.findOneAndUpdate(
+          { _id: friend._id },
+          { eventbridge_rule_name: eventbridgeDate }
+        ).catch((err) => {
+          console.log(err);
+        });
+
+        // Create the JSON payload
+        const payload = await JSON.stringify({
+          to: req.session.email,
+          birthday: birthdaySplit[1] + " " + birthdaySplit[2],
+          username: req.session.username,
+          birthday_name: req.body.nickname,
+          birthday_img: path,
+          scheduleTime: `0 ${utcMidnight.hour} ${utcMidnight.day} ${utcMidnight.month} ? *`,
+          date: eventbridgeDate,
+        });
+
+        console.log(payload);
+
+        // Set up the request options
+        const requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: payload,
+          redirect: "follow",
+        };
+
+        // Make the API call
+        await fetch(
+          "https://kxev6v3gc2.execute-api.ap-southeast-1.amazonaws.com/dev",
+          requestOptions
+        )
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text();
+          })
+          .then((result) => console.log(result))
+          .catch((error) => console.error("error", error));
+      }
+      await callAPI();
+    }
   } else {
     res.redirect("/log-in");
   }
 };
-
 
 module.exports = {
   home,
@@ -978,5 +1078,5 @@ module.exports = {
   createProfilePost,
   editProfilePost,
   addFriendQR,
-  addFriendQRPost
+  addFriendQRPost,
 };
