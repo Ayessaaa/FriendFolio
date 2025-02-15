@@ -1,22 +1,24 @@
-const { Headers } = require("node-fetch"); // Import Headers
-const { DateTime } = require("luxon");
+import { Headers } from "node-fetch";
+import { DateTime } from "luxon";
 
-const { render } = require("ejs");
-const express = require("express");
-const morgan = require("morgan");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const bcrypt = require("bcryptjs");
-const session = require("express-session");
-const cloudinary = require("cloudinary").v2;
-const QRCode = require('qrcode')
+import { render } from "ejs";
+import express from "express";
+import morgan from "morgan";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import bcrypt from "bcryptjs";
+import session from "express-session";
+import cloudinary from "cloudinary";
+import QRCode from "qrcode";
 
-const User = require("../models/user");
-const Friend = require("../models/friend");
-const Polariod = require("../models/polariod");
-const Gift = require("../models/gift");
-const Profile = require("../models/profile");
-const { error, profile } = require("console");
+import User from "../models/user.js";
+import Friend from "../models/friend.js";
+import Polariod from "../models/polariod.js";  // Note: Check spelling if you intended "polaroid"
+import Gift from "../models/gift.js";
+import Profile from "../models/profile.js";
+
+import OpenAI from "openai";
+
 
 const home = (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
@@ -525,10 +527,14 @@ const friendDelete = async (req, res) => {
   }
 };
 
-const friendID = (req, res) => {
+const friendID = async (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
+  
 
   if (isLoggedIn) {
+
+    const openai = new OpenAI();
+    
     Friend.find({ _id: req.params.id, username: req.session.username })
       .then((resultFriend) => {
         Polariod.find({
@@ -536,7 +542,21 @@ const friendID = (req, res) => {
           username: req.session.username,
         })
           .sort({ date: "desc" })
-          .then((resultPolariod) => {
+          .then(async (resultPolariod) => {
+            const completion = await openai.chat.completions.create({
+              model: "gpt-4o",
+              messages: [
+                  { role: "developer", content: "You are a helpful assistant." },
+                  {
+                      role: "user",
+                      content: `This user likes ${resultFriend[0].likes}. This user dislikes ${resultFriend[0].dislikes}. This users hobbies are ${resultFriend[0].hobbies}. This users dream is to be a ${resultFriend[0].dream}. What gift would you recommend to this user?`,
+                  },
+              ],
+              store: true,
+            });
+            
+            console.log(completion.choices[0].message);
+
             res.render("friend", {
               friend: resultFriend[0],
               polariods: resultPolariod,
@@ -1058,7 +1078,7 @@ const addFriendQRPost = async (req, res) => {
   }
 };
 
-module.exports = {
+export default {
   home,
   addFriend,
   friends,

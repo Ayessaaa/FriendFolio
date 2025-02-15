@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import mongoose from "mongoose";
+const { Schema } = mongoose;
 
 const polariodSchema = new Schema(
   {
@@ -15,4 +15,4 @@ const polariodSchema = new Schema(
 );
 
 const Polariod = mongoose.model("Polariod", polariodSchema);
-module.exports = Polariod;
+export default Polariod;

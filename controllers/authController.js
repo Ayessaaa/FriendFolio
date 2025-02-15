@@ -1,12 +1,7 @@
-const { render } = require("ejs");
-const express = require("express");
-const morgan = require("morgan");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const bcrypt = require("bcryptjs");
-const session = require("express-session");
 
-const User = require("../models/user");
+import bcrypt from "bcryptjs";
+
+import User from "../models/user.js";
 
 const signUp = (req, res) => {
   res.render("sign-up", { error: false });
@@ -116,7 +111,7 @@ const authLogIn = async (req, res) => {
   }
 };
 
-module.exports = {
+export default {
   signUp,
   signUpError,
   logIn,

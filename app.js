@@ -2,28 +2,24 @@
 // https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
 // https://www.peterfisher.me.uk/blog/javascript-sort-by-soonest-date-object/
 
-require("dotenv").config();
-const express = require("express");
-const morgan = require("morgan");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const bcrypt = require("bcryptjs");
-const session = require("express-session");
+import "dotenv/config";
+import OpenAI from "openai";
+import express from "express";
+import morgan from "morgan";
+import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
+import session from "express-session";
+import cloudinary from "cloudinary";
+import nodemailer from "nodemailer";
+import schedule from "node-schedule";
+import multer from "multer";
+import storage from "./storage/storage.js";
+import authController from "./controllers/authController.js";
+import siteController from "./controllers/siteController.js";
 
-const cloudinary = require("cloudinary").v2;
-
-const nodemailer = require("nodemailer");
-const schedule = require("node-schedule");
-
-const { storage } = require("./storage/storage");
-const multer = require("multer");
 const upload = multer({ storage });
 
-const { render } = require("ejs");
-dotenv.config({ path: ".env" });
 
-const authController = require("./controllers/authController");
-const siteController = require("./controllers/siteController");
 
 const app = express();
 
@@ -108,8 +104,8 @@ app.post(
   siteController.editProfilePost
 );
 
-app.get("/add-friend-qr/:id", siteController.addFriendQR)
-app.post("/add-friend-qr/:id", siteController.addFriendQRPost)
+app.get("/add-friend-qr/:id", siteController.addFriendQR);
+app.post("/add-friend-qr/:id", siteController.addFriendQRPost);
 
 app.get("/create-profile", siteController.createProfile);
 app.post(
