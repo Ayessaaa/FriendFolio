@@ -810,7 +810,7 @@ const myProfile = async (req, res) => {
     
     await Profile.find({ username: req.session.username }).then(async(result) => {
       try {
-        const url = 'https://careful-magic-larch.glitch.me/add-friend-qr/'+result[0]._id;
+        const url = 'https://closed-time-denim.glitch.me/add-friend-qr/'+result[0]._id;
         console.log(url)
         const qrCodeImage = await QRCode.toDataURL(url);
         res.render("myProfile", { profile: result[0] , qr: qrCodeImage});
@@ -938,7 +938,7 @@ const addFriendQR = async (req, res) => {
       res.render("addFriendQR", { profile: result[0] });
     });
   } else {
-    res.redirect("/log-in");
+    res.redirect("/log-in/qr-redirect/"+ req.params.id);
   }
 };
 
@@ -1018,7 +1018,7 @@ const addFriendQRPost = async (req, res) => {
           birthday: birthdaySplit[1] + " " + birthdaySplit[2],
           username: req.session.username,
           birthday_name: req.body.nickname,
-          birthday_img: path,
+          birthday_img: req.body.img,
           scheduleTime: `0 ${utcMidnight.hour} ${utcMidnight.day} ${utcMidnight.month} ? *`,
           date: eventbridgeDate,
         });
