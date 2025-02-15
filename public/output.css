@@ -686,6 +686,14 @@ video {
   margin-top: 2rem;
 }
 
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
+.mb-auto {
+  margin-bottom: auto;
+}
+
 .inline {
   display: inline;
 }
@@ -924,8 +932,16 @@ video {
   align-items: flex-start;
 }
 
+.items-end {
+  align-items: flex-end;
+}
+
 .items-center {
   align-items: center;
+}
+
+.items-baseline {
+  align-items: baseline;
 }
 
 .justify-end {
@@ -934,6 +950,10 @@ video {
 
 .justify-center {
   justify-content: center;
+}
+
+.justify-items-end {
+  justify-items: end;
 }
 
 .gap-0\.5 {
@@ -1657,6 +1677,10 @@ video {
 
 .text-justify {
   text-align: justify;
+}
+
+.align-baseline {
+  vertical-align: baseline;
 }
 
 .text-2xl {
