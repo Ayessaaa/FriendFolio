@@ -809,14 +809,18 @@ const myProfile = async (req, res) => {
   if (isLoggedIn) {
     
     await Profile.find({ username: req.session.username }).then(async(result) => {
-      try {
-        const url = 'https://closed-time-denim.glitch.me/add-friend-qr/'+result[0]._id;
-        console.log(url)
-        const qrCodeImage = await QRCode.toDataURL(url);
-        res.render("myProfile", { profile: result[0] , qr: qrCodeImage});
-      } catch (err) {
-        console.error('Error generating QR code:', err);
-        res.status(500).send('Internal Server Error');
+      if(result.length>0){
+        try {
+          const url = 'https://closed-time-denim.glitch.me/add-friend-qr/'+result[0]._id;
+          console.log(url)
+          const qrCodeImage = await QRCode.toDataURL(url);
+          res.render("myProfile", { profile: result[0] , qr: qrCodeImage});
+        } catch (err) {
+          console.error('Error generating QR code:', err);
+          res.status(500).send('Internal Server Error');
+        }
+      } else {
+        res.redirect("/create-profile")
       }
       
     });
@@ -885,7 +889,7 @@ const createProfile = (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
-    res.render("createProfile");
+    res.render("createProfile", {username: req.session.username});
   } else {
     res.redirect("/log-in");
   }
@@ -924,7 +928,7 @@ const createProfilePost = async (req, res) => {
     });
 
     await profile.save();
-    res.render("createProfile");
+    res.redirect("/my-profile")
   } else {
     res.redirect("/log-in");
   }

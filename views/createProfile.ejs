@@ -209,15 +209,15 @@
             picCount -= 1;
           }
           defaultPic = true;
-          pfp.src = `/img/pfps/${picCount}.png`;
+          pfp.src = `https://res.cloudinary.com/dxetj5koj/image/upload/v1739449578/CloudinaryDemo/${picCount}.png`;
           pfp_default.value = picCount
         }
         function next() {
-          if (picCount + 1 <= 8) {
+          if (picCount + 1 <= 11) {
             picCount += 1;
           }
           defaultPic = true;
-          pfp.src = `/img/pfps/${picCount}.png`;
+          pfp.src = `https://res.cloudinary.com/dxetj5koj/image/upload/v1739449578/CloudinaryDemo/${picCount}.png`;
           pfp_default.value = picCount
         }
       </script>
@@ -248,7 +248,7 @@
           <div class="w-1/3 mx-auto">
             <img
               id="pfp"
-              src="/img/pfps/1.png"
+              src="https://res.cloudinary.com/dxetj5koj/image/upload/v1739449578/CloudinaryDemo/1.png"
               alt=""
               class="rounded-xl h-full hover:scale-105 transition-all"
             />
@@ -293,7 +293,7 @@
           >
           <input
             disabled
-            value="yessa"
+            value="<%= username %>"
             type="text"
             name="username"
             id="username"
