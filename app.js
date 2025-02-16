@@ -87,6 +87,7 @@ app.post("/friends", upload.single("image"), siteController.friendsPost);
 app.get("/friend", siteController.friend);
 app.get("/friend/delete/:id", siteController.friendDelete);
 app.get("/friend/:id", siteController.friendID);
+app.get("/friend-gift-idea/:id", siteController.friendIDGiftIdea);
 
 app.get("/edit-friend", siteController.editFriend);
 app.get("/edit-friend/:id", siteController.editFriendID);

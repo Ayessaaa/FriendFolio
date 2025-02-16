@@ -123,6 +123,18 @@
             />
           </svg>
         </button>
+        
+        <button
+          onclick="window.location.href = '/gift-select'"
+          title="gift"
+          class="flex items-center h-full w-fit px-3 py-1 rounded-full gap-2 hover:bg-indigo-200 transition-all active:bg-indigo-400 group"
+        >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" 
+          class="size-5 text-indigo-400 group-active:text-white">
+          <path fill-rule="evenodd" d="M14 6a2.5 2.5 0 0 0-4-3 2.5 2.5 0 0 0-4 3H3.25C2.56 6 2 6.56 2 7.25v.5C2 8.44 2.56 9 3.25 9h6V6h1.5v3h6C17.44 9 18 8.44 18 7.75v-.5C18 6.56 17.44 6 16.75 6H14Zm-1-1.5a1 1 0 0 1-1 1h-1v-1a1 1 0 1 1 2 0Zm-6 0a1 1 0 0 0 1 1h1v-1a1 1 0 0 0-2 0Z" clip-rule="evenodd" />
+          <path d="M9.25 10.5H3v4.75A2.75 2.75 0 0 0 5.75 18h3.5v-7.5ZM10.75 18v-7.5H17v4.75A2.75 2.75 0 0 1 14.25 18h-3.5Z" />
+        </svg>
+        </button>
         <button
           onclick="window.location.href = '/my-profile'"
           title="my-profile"
@@ -136,17 +148,6 @@
           <path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-5.5-2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM10 12a5.99 5.99 0 0 0-4.793 2.39A6.483 6.483 0 0 0 10 16.5a6.483 6.483 0 0 0 4.793-2.11A5.99 5.99 0 0 0 10 12Z" clip-rule="evenodd" />
         </svg>
         
-        </button>
-        <button
-          onclick="window.location.href = '/gift-select'"
-          title="gift"
-          class="flex items-center h-full w-fit px-3 py-1 rounded-full gap-2 hover:bg-indigo-200 transition-all active:bg-indigo-400 group"
-        >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" 
-          class="size-5 text-indigo-400 group-active:text-white">
-          <path fill-rule="evenodd" d="M14 6a2.5 2.5 0 0 0-4-3 2.5 2.5 0 0 0-4 3H3.25C2.56 6 2 6.56 2 7.25v.5C2 8.44 2.56 9 3.25 9h6V6h1.5v3h6C17.44 9 18 8.44 18 7.75v-.5C18 6.56 17.44 6 16.75 6H14Zm-1-1.5a1 1 0 0 1-1 1h-1v-1a1 1 0 1 1 2 0Zm-6 0a1 1 0 0 0 1 1h1v-1a1 1 0 0 0-2 0Z" clip-rule="evenodd" />
-          <path d="M9.25 10.5H3v4.75A2.75 2.75 0 0 0 5.75 18h3.5v-7.5ZM10.75 18v-7.5H17v4.75A2.75 2.75 0 0 1 14.25 18h-3.5Z" />
-        </svg>
         </button>
       </div>
       <div class="flex items-center justify-end mt-5 lg:mx-0 mx-auto lg:col-span-1 col-span-3">
@@ -418,6 +419,26 @@
         </div>
     </div>
 
+    
+
+    <div class="xl:w-2/3 2xl:1/2 mx-auto mt-10 transition-all px-10 lg:px-0">
+      <p
+        class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400 font-bold text-3xl w-fit mx-auto "
+      >
+        Gift Idea!
+      </p>
+      <p class="font-medium text-neutral-400 text-center mb-5 text-sm">The gift idea generated is based on the information provided. Powered by OpenAI.</p>
+      <div class="bg-white p-5 rounded-xl mx-5 md:mx-32 transition-all">
+      <p class="text-neutral-500/80 font-medium text-sm" id="giftIdea"></p>
+      
+      </div>
+      <div class="w-fit mx-auto mt-5">
+        <button class="active:bg-white active:text-violet-400 hover:scale-105 transition-all hover:bg-violet-500 hover:shadow-lg hover:shadow-violet-500/40 bg-violet-400 text-white font-semibold text-lg px-5 py-1 rounded-lg" onclick="window.location.href = '/friend-gift-idea/<%= friend._id %>'">
+          Generate a Gift Idea
+        </button>
+      </div>
+    </div>
+
     <div class="xl:w-2/3 2xl:1/2 mx-auto mt-10 transition-all px-10 lg:px-0">
       <p
         class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400 font-bold text-3xl w-fit mx-auto mb-5"
@@ -465,5 +486,23 @@
         </div>
       </div>
     </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var i = 0;
+        var txt = "<%- giftIdea %>";  // Render the string
+        var speed = 30;
+
+        function typeWriter() {
+          if (i < txt.length) {
+            document.getElementById("giftIdea").innerHTML += txt.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+          }
+        }
+
+        typeWriter();
+      });
+    </script>
+
   </body>
 </html>
