@@ -141,3 +141,4 @@ app.get(
 app.get("/unsubscribe-done", siteController.unsubscribeDone);
 
 app.get("/letters", siteController.letters)
+app.get("/new-letter-capsule", siteController.newLetterCapsule)

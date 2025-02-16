@@ -1127,6 +1127,16 @@ const letters = async (req, res) => {
   }
 };
 
+const newLetterCapsule = async (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+      res.render("newLetterCapsule");
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
 export default {
   home,
   addFriend,
@@ -1163,5 +1173,6 @@ export default {
   addFriendQR,
   addFriendQRPost,
   friendIDGiftIdea,
-  letters
+  letters,
+  newLetterCapsule
 };

@@ -690,6 +690,10 @@ video {
   margin-top: 2rem;
 }
 
+.-mt-2 {
+  margin-top: -0.5rem;
+}
+
 .inline {
   display: inline;
 }
@@ -744,6 +748,16 @@ video {
 .size-9 {
   width: 2.25rem;
   height: 2.25rem;
+}
+
+.size-14 {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.size-16 {
+  width: 4rem;
+  height: 4rem;
 }
 
 .h-20 {
@@ -1626,6 +1640,16 @@ video {
   padding-bottom: 2rem;
 }
 
+.px-14 {
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
+}
+
+.py-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
 .pb-5 {
   padding-bottom: 1.25rem;
 }
@@ -1676,6 +1700,14 @@ video {
 
 .pt-7 {
   padding-top: 1.75rem;
+}
+
+.pt-5 {
+  padding-top: 1.25rem;
+}
+
+.pb-10 {
+  padding-bottom: 2.5rem;
 }
 
 .text-left {
@@ -2349,6 +2381,11 @@ video {
   background-color: rgb(244 114 182 / var(--tw-bg-opacity, 1));
 }
 
+.hover\:bg-pink-500:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 72 153 / var(--tw-bg-opacity, 1));
+}
+
 .hover\:fill-blue-400:hover {
   fill: #60a5fa;
 }
@@ -2469,6 +2506,11 @@ video {
 
 .hover\:shadow-yellow-500\/30:hover {
   --tw-shadow-color: rgb(234 179 8 / 0.3);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.hover\:shadow-pink-500\/40:hover {
+  --tw-shadow-color: rgb(236 72 153 / 0.4);
   --tw-shadow: var(--tw-shadow-colored);
 }
 
@@ -2767,6 +2809,11 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+.active\:text-pink-400:active {
+  --tw-text-opacity: 1;
+  color: rgb(244 114 182 / var(--tw-text-opacity, 1));
+}
+
 .file\:active\:bg-neutral-200:active::file-selector-button {
   --tw-bg-opacity: 1;
   background-color: rgb(229 229 229 / var(--tw-bg-opacity, 1));
@@ -3042,6 +3089,11 @@ video {
     padding-bottom: 1rem;
   }
 
+  .md\:px-14 {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
+
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
@@ -3158,6 +3210,16 @@ video {
 
   .xl\:flex-col {
     flex-direction: column;
+  }
+
+  .xl\:px-14 {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
+
+  .xl\:px-12 {
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 }
 
