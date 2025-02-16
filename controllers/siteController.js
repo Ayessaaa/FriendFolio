@@ -1147,6 +1147,16 @@ const letterCapsule = async (req, res) => {
   }
 };
 
+const addLetter = async (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+      res.render("addLetter");
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
 export default {
   home,
   addFriend,
@@ -1185,5 +1195,6 @@ export default {
   friendIDGiftIdea,
   letters,
   newLetterCapsule,
-  letterCapsule
+  letterCapsule,
+  addLetter
 };
