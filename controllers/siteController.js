@@ -543,19 +543,6 @@ const friendID = async (req, res) => {
         })
           .sort({ date: "desc" })
           .then(async (resultPolariod) => {
-            // const completion = await openai.chat.completions.create({
-            //   model: "gpt-4o",
-            //   messages: [
-            //       { role: "developer", content: "You are a helpful assistant." },
-            //       {
-            //           role: "user",
-            //           content: `This user likes ${resultFriend[0].likes}. This user dislikes ${resultFriend[0].dislikes}. This users hobbies are ${resultFriend[0].hobbies}. This users dream is to be a ${resultFriend[0].dream}. What gift would you recommend to this user? (Make it a paragraph and dont do formatting)`,
-            //       },
-            //   ],
-            //   store: true,
-            // });
-            
-            // const giftIdea = await completion.choices[0].message.content;
             const giftIdea = ""
             console.log(giftIdea)
 
@@ -1130,6 +1117,16 @@ const addFriendQRPost = async (req, res) => {
   }
 };
 
+const letters = async (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+      res.render("letters");
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
 export default {
   home,
   addFriend,
@@ -1165,5 +1162,6 @@ export default {
   editProfilePost,
   addFriendQR,
   addFriendQRPost,
-  friendIDGiftIdea
+  friendIDGiftIdea,
+  letters
 };

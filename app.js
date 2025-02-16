@@ -14,8 +14,6 @@ import siteController from "./controllers/siteController.js";
 
 const upload = multer({ storage });
 
-
-
 const app = express();
 
 app.set("view engine", "ejs");
@@ -141,3 +139,5 @@ app.get(
   siteController.unsubscribeEmailConfirm
 );
 app.get("/unsubscribe-done", siteController.unsubscribeDone);
+
+app.get("/letters", siteController.letters)
