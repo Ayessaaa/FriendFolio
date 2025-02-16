@@ -3,15 +3,10 @@
 // https://www.peterfisher.me.uk/blog/javascript-sort-by-soonest-date-object/
 
 import "dotenv/config";
-import OpenAI from "openai";
 import express from "express";
 import morgan from "morgan";
 import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
 import session from "express-session";
-import cloudinary from "cloudinary";
-import nodemailer from "nodemailer";
-import schedule from "node-schedule";
 import multer from "multer";
 import storage from "./storage/storage.js";
 import authController from "./controllers/authController.js";
