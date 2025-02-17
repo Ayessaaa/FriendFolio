@@ -13,12 +13,12 @@ import QRCode from "qrcode";
 
 import User from "../models/user.js";
 import Friend from "../models/friend.js";
-import Polariod from "../models/polariod.js";  // Note: Check spelling if you intended "polaroid"
+import Polariod from "../models/polariod.js"; // Note: Check spelling if you intended "polaroid"
 import Gift from "../models/gift.js";
 import Profile from "../models/profile.js";
+import Capsule from "../models/capsule.js";
 
 import OpenAI from "openai";
-
 
 const home = (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
@@ -529,12 +529,10 @@ const friendDelete = async (req, res) => {
 
 const friendID = async (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
-  
 
   if (isLoggedIn) {
-
     const openai = new OpenAI();
-    
+
     Friend.find({ _id: req.params.id, username: req.session.username })
       .then((resultFriend) => {
         Polariod.find({
@@ -543,13 +541,13 @@ const friendID = async (req, res) => {
         })
           .sort({ date: "desc" })
           .then(async (resultPolariod) => {
-            const giftIdea = ""
-            console.log(giftIdea)
+            const giftIdea = "";
+            console.log(giftIdea);
 
             res.render("friend", {
               friend: resultFriend[0],
               polariods: resultPolariod,
-              giftIdea: giftIdea
+              giftIdea: giftIdea,
             });
           })
           .catch((err) => {
@@ -566,12 +564,10 @@ const friendID = async (req, res) => {
 
 const friendIDGiftIdea = async (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
-  
 
   if (isLoggedIn) {
-
     const openai = new OpenAI();
-    
+
     Friend.find({ _id: req.params.id, username: req.session.username })
       .then((resultFriend) => {
         Polariod.find({
@@ -583,22 +579,22 @@ const friendIDGiftIdea = async (req, res) => {
             const completion = await openai.chat.completions.create({
               model: "gpt-4o",
               messages: [
-                  { role: "developer", content: "You are a helpful assistant." },
-                  {
-                      role: "user",
-                      content: `This user likes ${resultFriend[0].likes}. This user dislikes ${resultFriend[0].dislikes}. This users hobbies are ${resultFriend[0].hobbies}. This users dream is to be a ${resultFriend[0].dream}. What gift would you recommend to this user? (Make it a paragraph and dont do formatting)`,
-                  },
+                { role: "developer", content: "You are a helpful assistant." },
+                {
+                  role: "user",
+                  content: `This user likes ${resultFriend[0].likes}. This user dislikes ${resultFriend[0].dislikes}. This users hobbies are ${resultFriend[0].hobbies}. This users dream is to be a ${resultFriend[0].dream}. What gift would you recommend to this user? (Make it a paragraph and dont do formatting)`,
+                },
               ],
               store: true,
             });
-            
+
             const giftIdea = await completion.choices[0].message.content;
-            console.log(giftIdea)
+            console.log(giftIdea);
 
             res.render("friend", {
               friend: resultFriend[0],
               polariods: resultPolariod,
-              giftIdea: giftIdea
+              giftIdea: giftIdea,
             });
           })
           .catch((err) => {
@@ -866,23 +862,25 @@ const myProfile = async (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
-    
-    await Profile.find({ username: req.session.username }).then(async(result) => {
-      if(result.length>0){
-        try {
-          const url = 'https://closed-time-denim.glitch.me/add-friend-qr/'+result[0]._id;
-          console.log(url)
-          const qrCodeImage = await QRCode.toDataURL(url);
-          res.render("myProfile", { profile: result[0] , qr: qrCodeImage});
-        } catch (err) {
-          console.error('Error generating QR code:', err);
-          res.status(500).send('Internal Server Error');
+    await Profile.find({ username: req.session.username }).then(
+      async (result) => {
+        if (result.length > 0) {
+          try {
+            const url =
+              "https://closed-time-denim.glitch.me/add-friend-qr/" +
+              result[0]._id;
+            console.log(url);
+            const qrCodeImage = await QRCode.toDataURL(url);
+            res.render("myProfile", { profile: result[0], qr: qrCodeImage });
+          } catch (err) {
+            console.error("Error generating QR code:", err);
+            res.status(500).send("Internal Server Error");
+          }
+        } else {
+          res.redirect("/create-profile");
         }
-      } else {
-        res.redirect("/create-profile")
       }
-      
-    });
+    );
   } else {
     res.redirect("/log-in");
   }
@@ -948,7 +946,7 @@ const createProfile = (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
-    res.render("createProfile", {username: req.session.username});
+    res.render("createProfile", { username: req.session.username });
   } else {
     res.redirect("/log-in");
   }
@@ -987,7 +985,7 @@ const createProfilePost = async (req, res) => {
     });
 
     await profile.save();
-    res.redirect("/my-profile")
+    res.redirect("/my-profile");
   } else {
     res.redirect("/log-in");
   }
@@ -1001,7 +999,7 @@ const addFriendQR = async (req, res) => {
       res.render("addFriendQR", { profile: result[0] });
     });
   } else {
-    res.redirect("/log-in/qr-redirect/"+ req.params.id);
+    res.redirect("/log-in/qr-redirect/" + req.params.id);
   }
 };
 
@@ -1009,7 +1007,6 @@ const addFriendQRPost = async (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   const [zodiac, emoji] = zodiacFunction(req.body.birthday);
-
 
   if (isLoggedIn) {
     const friend = new Friend({
@@ -1121,7 +1118,7 @@ const letters = async (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
-      res.render("letters");
+    res.render("letters");
   } else {
     res.redirect("/log-in");
   }
@@ -1131,7 +1128,24 @@ const newLetterCapsule = async (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
-      res.render("newLetterCapsule");
+    res.render("newLetterCapsule");
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
+const newLetterCapsulePost = async (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    const capsule = new Capsule({
+      title: req.body.title,
+      description: req.body.description,
+      date: req.body.date,
+      username: req.session.username,
+    });
+    await capsule.save();
+    res.redirect("/letter-capsule/" + capsule._id);
   } else {
     res.redirect("/log-in");
   }
@@ -1141,7 +1155,12 @@ const letterCapsule = async (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
-      res.render("letterCapsule");
+    await Capsule.find({ _id: req.params.id })
+      .then((result) => {
+
+        res.render("letterCapsule", {capsule: result[0]});
+      })
+      .catch((err) => console.log(err));
   } else {
     res.redirect("/log-in");
   }
@@ -1151,7 +1170,7 @@ const addLetter = async (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
-      res.render("addLetter");
+    res.render("addLetter");
   } else {
     res.redirect("/log-in");
   }
@@ -1196,5 +1215,6 @@ export default {
   letters,
   newLetterCapsule,
   letterCapsule,
-  addLetter
+  addLetter,
+  newLetterCapsulePost,
 };

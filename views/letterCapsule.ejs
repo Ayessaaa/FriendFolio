@@ -214,13 +214,13 @@
       />
     </svg>
     <p class="text-pink-500 font-bold text-2xl w-fit mx-auto">
-      Letters for Christmas
+      <%= capsule.title %>
     </p>
     <p class="text-sm font-medium text-pink-400 text-center">
-      I've asked some of my friends to write me a letter for Christmas
+      <%= capsule.description %>
     </p>
     <div
-      class="w-fit mx-auto bg-pink-300 font-semibold text-sm text-pink-400 px-4 py-2 rounded-xl mt-5"
+      class="w-fit mx-auto bg-pink-300 font-semibold md:text-sm text-xs transition-all text-pink-400 px-4 py-2 rounded-xl mt-5"
     >
       <p class="bg-pink-200 px-3 py-1 rounded-lg flex items-center gap-2">
         <svg
@@ -235,7 +235,7 @@
             clip-rule="evenodd"
           />
         </svg>
-        https:friendfolio.com/letter-capsule/id
+        https://friendfolio.com/add-letter/<%= capsule._id %>
       </p>
     </div>
     <div class="mx-auto w-fit flex mt-3 gap-3">
@@ -245,12 +245,12 @@
         <p
           class="bg-violet-400/70 basis-2/6 px-5 pt-1.5 rounded-t-xl text-lg text-violet-600/80 w-full text-center drop-shadow-md group-hover:bg-violet-500/50 transition-all group-hover:text-violet-600"
         >
-          Dec
+          <%= capsule.date ? capsule.date.toString().split(" ")[1] : "-" %>
         </p>
         <p
           class="text-3xl basis-4/6 pt-2 drop-shadow-md group-hover:scale-105 transition-all pb-3"
         >
-          25
+          <%= capsule.date ? capsule.date.toString().split(" ")[2] : "-" %>
         </p>
       </div>
       <div
@@ -263,7 +263,24 @@
     <div
       class="bg-white px-5 py-1 font-medium text-neutral-400 w-fit mx-auto rounded-xl shadow-sm mt-2"
     >
-      100 days left to unlock
+    <% 
+    today = new Date();
+    var text = ""
+
+    var date = new Date(capsule.date);
+
+    if (today.getMonth() >= date.getMonth() && today.getDate() >= date.getDate() && today.getFullYear() >= date.getFullYear()) {
+      text = "Capsule Unlocked!"
+      
+    } else {
+      var one_day = 1000 * 60 * 60 * 24;
+      text = Math.ceil((date.getTime() - today.getTime()) / (one_day)) + " days left to unlock"
+    }
+
+    
+    %>
+    
+      <%= text %> 
     </div>
 
     <div
@@ -282,7 +299,6 @@
         />
       </svg>
 
-      
       <div class="flex-1 flex flex-col">
         <p class="text-lg text-pink-500 font-semibold">Merry Christmas bruh</p>
         <p class="text-sm text-pink-400 font-medium -mt-1">From: John</p>

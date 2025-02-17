@@ -140,7 +140,11 @@ app.get(
 );
 app.get("/unsubscribe-done", siteController.unsubscribeDone);
 
-app.get("/letters", siteController.letters)
-app.get("/new-letter-capsule", siteController.newLetterCapsule)
-app.get("/letter-capsule", siteController.letterCapsule)
-app.get("/add-letter/:id", siteController.addLetter)
+app.get("/letters", siteController.letters);
+
+app.get("/new-letter-capsule", siteController.newLetterCapsule);
+app.post("/new-letter-capsule", siteController.newLetterCapsulePost);
+
+app.get("/letter-capsule/:id", siteController.letterCapsule);
+
+app.get("/add-letter/:id", siteController.addLetter);
