@@ -1119,7 +1119,12 @@ const letters = async (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
-    res.render("letters");
+    Capsule.find({username:req.session.username}).sort("asc").then((resultCapsule)=>{
+      Letter.find({username:req.session.username}).then((resultLetter)=>{
+        console.log(resultLetter[0])
+        res.render("letters", {capsules:resultCapsule, letters:resultLetter});
+      })
+    })
   } else {
     res.redirect("/log-in");
   }

@@ -260,17 +260,16 @@
         <p class="text-4xl"><%= letters.length %></p>
       </div>
     </div>
-    <div
-      class="bg-white px-5 py-1 font-medium text-neutral-400 w-fit mx-auto rounded-xl shadow-sm mt-2 mb-5"
-    >
     <% 
     today = new Date();
     var text = ""
+    var lock = true
 
     var date = new Date(capsule.date);
 
     if (today.getMonth() >= date.getMonth() && today.getDate() >= date.getDate() && today.getFullYear() >= date.getFullYear()) {
       text = "Capsule Unlocked!"
+      var lock = false
       
     } else {
       var one_day = 1000 * 60 * 60 * 24;
@@ -279,12 +278,25 @@
 
     
     %>
+
+    <% if(lock){ %>
+      <div
+        class="bg-white px-5 py-1 font-medium text-neutral-400 w-fit mx-auto rounded-xl shadow-sm mt-2 mb-5"
+      >
+    <% } else { %> 
+      <div
+        class="bg-violet-400 px-5 py-1 font-medium text-white w-fit mx-auto rounded-xl shadow-sm mt-2 mb-5 shadow-violet-500/50"
+      >
+    <%}%>
+    
     
       <%= text %> 
     </div>
 
     <% for (let i = 0; i < letters.length; i++) {
         const letter = letters[i]; %>
+
+    <% if (lock){ %>
 
     <div
       class="bg-white w-1/4 mx-auto mt-2 p-5 flex rounded-lg gap-5 shadow-sm text-left min-w-80"
@@ -307,9 +319,30 @@
         <p class="text-lg text-pink-500 font-semibold"><%= letter.title %></p>
         <p class="text-sm text-pink-400 font-medium -mt-1">From: <%= letter.from %></p>
       </div>
-      
-      
     </div>
+
+    <% } else {%>
+
+      <div
+      class="bg-white w-1/4 mx-auto mt-2 p-5 flex rounded-lg gap-5 shadow-sm text-left min-w-80"
+    >
+    <svg xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 20 20" 
+      fill="currentColor" 
+      class="size-10 stroke-pink-400 fill-pink-400">
+      <path fill-rule="evenodd" d="M14.5 1A4.5 4.5 0 0 0 10 5.5V9H3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-1.5V5.5a3 3 0 1 1 6 0v2.75a.75.75 0 0 0 1.5 0V5.5A4.5 4.5 0 0 0 14.5 1Z" clip-rule="evenodd" />
+    </svg>
+
+
+      
+        <div class="flex-1 flex flex-col">
+        <p class="text-lg text-pink-500 font-semibold"><%= letter.title %></p>
+        <p class="text-xs text-pink-400 font-medium -mt-1">From: <%= letter.from %></p>
+        <p class="font-medium text-neutral-400 text-sm mt-2"><%= letter.letter %></p>
+      </div>
+    </div>
+
+    <% } %>
     <% } %>
   </body>
 </html>

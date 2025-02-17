@@ -199,7 +199,7 @@
     >
       Letter Capsules
     </p>
-    <div class="w-fit mx-auto">
+    <div class="w-fit mx-auto mb-5">
       <button
         onclick="window.location.href = '/new-letter-capsule'"
         class="md:text-base text-sm bg-pink-100 px-5 py-1 text-pink-400 font-semibold transition-all rounded-full flex items-center gap-1 hover:bg-violet-200 hover:text-violet-500 hover:border-violet-400 active:bg-violet-400 active:border-violet-500 active:text-white"
@@ -217,7 +217,9 @@
         New Letter Capsule
       </button>
     </div>
-    <button class="bg-white w-1/4 mx-auto mt-5 p-5 flex rounded-lg gap-5 shadow-sm text-left min-w-96" onclick="window.location.href= '/letter-capsule'">
+    <% for (let i = 0; i < capsules.length; i++) {
+      const capsule = capsules[i]; %>
+      <button class="bg-white w-1/4 mx-auto mt-2 p-5 flex rounded-lg gap-5 shadow-sm text-left min-w-96" onclick="window.location.href= '/letter-capsule/<%=capsule._id%>'">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -233,16 +235,44 @@
         />
       </svg>
       <div class="flex-1 flex flex-col">
-        <p class="text-lg text-pink-500 font-semibold">Letters for Christmas</p>
+        <p class="text-lg text-pink-500 font-semibold"><%= capsule.title %></p>
+        <% 
+        today = new Date();
+        var text = ""
+
+        var date = new Date(capsule.date);
+
+        if (today.getMonth() >= date.getMonth() && today.getDate() >= date.getDate() && today.getFullYear() >= date.getFullYear()) {
+          text = "Capsule Unlocked!"
+          
+        } else {
+          var one_day = 1000 * 60 * 60 * 24;
+          text = Math.ceil((date.getTime() - today.getTime()) / (one_day)) + " days left to unlock"
+        }
+
+        
+        %>
         <div class="flex gap-1 md:flex-row flex-col transition-all">
-          <div class="text-xs bg-pink-100 border-pink-300 border px-2 rounded-full w-fit text-pink-400 font-semibold">Letters: 4</div>
-          <div class="text-xs bg-violet-100 border-violet-300 border px-2 rounded-full w-fit text-violet-400 font-semibold">100 days left to unlock</div>
+          <div class="text-xs bg-pink-100 border-pink-300 border px-2 rounded-full w-fit text-pink-400 font-semibold">Letters: 
+            <% 
+            var counter = 0
+            for (let i = 0; i < letters.length; i++) {
+            const letter = letters[i];
+            console.log(letter.capsule_id, capsule._id)
+            if (letter.capsule_id == capsule._id){
+              counter+=1}
+              %><%
+            
+            } %><%= counter %></div>
+          <div class="text-xs bg-violet-100 border-violet-300 border px-2 rounded-full w-fit text-violet-400 font-semibold"><%= text %> </div>
         </div>
       </div>
       <div class="bg-pink-400 px-3 py-1 rounded-lg text-white text-center shadow-sm">
-        <p class="font-medium text-sm">Dec</p>
-        <p class="font-bold -mt-1">25</p>
+        <p class="font-medium text-sm"><%= capsule.date.toLocaleString('default', { month: 'short' }) %></p>
+        <p class="font-bold -mt-1"><%= capsule.date.getDate() %></p>
       </div>
     </button>
+    <% } %>
+    
   </body>
 </html>
