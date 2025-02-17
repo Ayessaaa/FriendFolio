@@ -141,6 +141,7 @@ app.get(
 app.get("/unsubscribe-done", siteController.unsubscribeDone);
 
 app.get("/letters", siteController.letters);
+app.get("/letter-submitted", siteController.letterSubmitted)
 
 app.get("/new-letter-capsule", siteController.newLetterCapsule);
 app.post("/new-letter-capsule", siteController.newLetterCapsulePost);

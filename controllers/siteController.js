@@ -1119,12 +1119,17 @@ const letters = async (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
-    Capsule.find({username:req.session.username}).sort("asc").then((resultCapsule)=>{
-      Letter.find({username:req.session.username}).then((resultLetter)=>{
-        console.log(resultLetter[0])
-        res.render("letters", {capsules:resultCapsule, letters:resultLetter});
-      })
-    })
+    Capsule.find({ username: req.session.username })
+      .sort("asc")
+      .then((resultCapsule) => {
+        Letter.find({ username: req.session.username }).then((resultLetter) => {
+          console.log(resultLetter[0]);
+          res.render("letters", {
+            capsules: resultCapsule,
+            letters: resultLetter,
+          });
+        });
+      });
   } else {
     res.redirect("/log-in");
   }
@@ -1165,7 +1170,10 @@ const letterCapsule = async (req, res) => {
       .then((resultCapsule) => {
         Letter.find({ capsule_id: req.params.id })
           .then((resultLetter) => {
-            res.render("letterCapsule", { capsule: resultCapsule[0], letters: resultLetter });
+            res.render("letterCapsule", {
+              capsule: resultCapsule[0],
+              letters: resultLetter,
+            });
           })
           .catch((err) => {
             console.log(err);
@@ -1178,19 +1186,17 @@ const letterCapsule = async (req, res) => {
 };
 
 const addLetter = async (req, res) => {
-  const isLoggedIn = req.session.isLoggedIn;
+  Capsule.find({ _id: req.params.id })
+    .then((result) => {
+      res.render("addLetter", { capsule: result[0] });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
-  if (isLoggedIn) {
-    Capsule.find({ _id: req.params.id })
-      .then((result) => {
-        res.render("addLetter", { capsule: result[0] });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  } else {
-    res.redirect("/log-in");
-  }
+const letterSubmitted = async (req, res) => {
+  res.render("letterSubmitted");
 };
 
 const addLetterPost = async (req, res) => {
@@ -1253,4 +1259,5 @@ export default {
   addLetter,
   newLetterCapsulePost,
   addLetterPost,
+  letterSubmitted,
 };

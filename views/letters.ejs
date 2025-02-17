@@ -217,16 +217,36 @@
         New Letter Capsule
       </button>
     </div>
+    <div class="bg-violet-400 px-5 w-fit rounded-full mx-auto py-1 font-semibold text-white mt-10">
+      Unlocked Capsules
+    </div>
     <% for (let i = 0; i < capsules.length; i++) {
       const capsule = capsules[i]; %>
-      <button class="bg-white w-1/4 mx-auto mt-2 p-5 flex rounded-lg gap-5 shadow-sm text-left min-w-96" onclick="window.location.href= '/letter-capsule/<%=capsule._id%>'">
+      <% 
+        today = new Date();
+        var text = ""
+        var lock = true
+
+        var date = new Date(capsule.date);
+
+        if (today.getMonth() >= date.getMonth() && today.getDate() >= date.getDate() && today.getFullYear() >= date.getFullYear()) {
+          text = "Capsule Unlocked!"
+          lock = false
+        } else {
+          var one_day = 1000 * 60 * 60 * 24;
+          text = Math.ceil((date.getTime() - today.getTime()) / (one_day)) + " days left to unlock"
+        }
+
+        if (!lock){
+        %>
+      <button class="hover:bg-white  group/button bg-pink-400 transition-all w-1/4 mx-auto mt-2 p-5 flex rounded-lg gap-5 shadow-sm text-left min-w-96" onclick="window.location.href= '/letter-capsule/<%=capsule._id%>'">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        class="size-12 stroke-pink-500"
+        class="size-12 group-hover/button:stroke-pink-500 stroke-white transition-all"
       >
         <path
           stroke-linecap="round"
@@ -235,25 +255,10 @@
         />
       </svg>
       <div class="flex-1 flex flex-col">
-        <p class="text-lg text-pink-500 font-semibold"><%= capsule.title %></p>
-        <% 
-        today = new Date();
-        var text = ""
-
-        var date = new Date(capsule.date);
-
-        if (today.getMonth() >= date.getMonth() && today.getDate() >= date.getDate() && today.getFullYear() >= date.getFullYear()) {
-          text = "Capsule Unlocked!"
-          
-        } else {
-          var one_day = 1000 * 60 * 60 * 24;
-          text = Math.ceil((date.getTime() - today.getTime()) / (one_day)) + " days left to unlock"
-        }
-
+        <p class="text-lg group-hover/button:text-pink-500 text-white transition-all font-semibold"><%= capsule.title %></p>
         
-        %>
         <div class="flex gap-1 md:flex-row flex-col transition-all">
-          <div class="text-xs bg-pink-100 border-pink-300 border px-2 rounded-full w-fit text-pink-400 font-semibold">Letters: 
+          <div class="text-xs group-hover/button:bg-pink-100 bg-pink-500/50 group-hover/button:border-pink-300 border-pink-700/70 border transition-all px-2 rounded-full w-fit group-hover/button:text-pink-400 text-pink-700 font-semibold">Letters: 
             <% 
             var counter = 0
             for (let i = 0; i < letters.length; i++) {
@@ -264,15 +269,78 @@
               %><%
             
             } %><%= counter %></div>
-          <div class="text-xs bg-violet-100 border-violet-300 border px-2 rounded-full w-fit text-violet-400 font-semibold"><%= text %> </div>
+          <div class="text-xs group-hover/button:bg-violet-100 bg-violet-500/50 group-hover/button:border-violet-300 border-violet-700/70 border transition-all px-2 rounded-full w-fit group-hover/button:text-violet-400 text-violet-700 font-semibold"><%= text %> </div>
         </div>
       </div>
-      <div class="bg-pink-400 px-3 py-1 rounded-lg text-white text-center shadow-sm">
+      <div class="group-hover/button:bg-pink-400 bg-white transition-all px-3 py-1 rounded-lg group-hover/button:text-white text-pink-400 text-center shadow-sm">
         <p class="font-medium text-sm"><%= capsule.date.toLocaleString('default', { month: 'short' }) %></p>
         <p class="font-bold -mt-1"><%= capsule.date.getDate() %></p>
       </div>
     </button>
-    <% } %>
+    <% }} %>
+
+    <div class="bg-indigo-400 px-5 w-fit rounded-full mx-auto py-1 font-semibold text-white mt-10">
+      Locked Capsules
+    </div>
+    <% for (let i = 0; i < capsules.length; i++) {
+      const capsule = capsules[i]; %>
+      <% 
+        today = new Date();
+        var text = ""
+        var lock = true
+
+        var date = new Date(capsule.date);
+
+        if (today.getMonth() >= date.getMonth() && today.getDate() >= date.getDate() && today.getFullYear() >= date.getFullYear()) {
+          text = "Capsule Unlocked!"
+          lock = false
+        } else {
+          var one_day = 1000 * 60 * 60 * 24;
+          text = Math.ceil((date.getTime() - today.getTime()) / (one_day)) + " days left to unlock"
+        }
+
+        if (lock){
+        %>
+        <button class="bg-white  group/button hover:bg-pink-400/70 transition-all w-1/4 mx-auto mt-2 p-5 flex rounded-lg gap-5 shadow-sm text-left min-w-96" onclick="window.location.href= '/letter-capsule/<%=capsule._id%>'">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-12 stroke-pink-500 group-hover/button:stroke-white transition-all"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
+            />
+          </svg>
+          <div class="flex-1 flex flex-col">
+            <p class="text-lg text-pink-500 group-hover/button:text-white transition-all font-semibold"><%= capsule.title %></p>
+            
+            <div class="flex gap-1 md:flex-row flex-col transition-all">
+              <div class="text-xs bg-pink-100 group-hover/button:bg-pink-500/30 border-pink-300 group-hover/button:border-pink-700/70 border transition-all px-2 rounded-full w-fit text-pink-400 group-hover/button:text-pink-700/80 font-semibold">Letters: 
+                <% 
+                var counter = 0
+                for (let i = 0; i < letters.length; i++) {
+                const letter = letters[i];
+                console.log(letter.capsule_id, capsule._id)
+                if (letter.capsule_id == capsule._id){
+                  counter+=1}
+                  %><%
+                
+                } %><%= counter %></div>
+              <div class="text-xs bg-violet-100 group-hover/button:bg-violet-500/30 border-violet-300 group-hover/button:border-violet-700/70 border transition-all px-2 rounded-full w-fit text-violet-400 group-hover/button:text-violet-700/80 font-semibold"><%= text %> </div>
+            </div>
+          </div>
+          <div class="bg-pink-400 group-hover/button:bg-white transition-all px-3 py-1 rounded-lg text-white group-hover/button:text-pink-400 text-center shadow-sm">
+            <p class="font-medium text-sm"><%= capsule.date.toLocaleString('default', { month: 'short' }) %></p>
+            <p class="font-bold -mt-1"><%= capsule.date.getDate() %></p>
+          </div>
+        </button>
+      
+    <% }} %>
     
   </body>
 </html>
