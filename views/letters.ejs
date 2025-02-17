@@ -25,7 +25,7 @@
     </style>
   </head>
   <body
-    class="bg-gradient-to-r from-violet-100 via-purple-50 to-pink-100 bg-no-repeat bg-fixed transition-all px-0 lg:px-16 py-10"
+    class="bg-gradient-to-r from-violet-100 via-purple-50 to-pink-100 bg-no-repeat bg-fixed transition-all px-2 lg:px-16 py-10"
   >
     <div class="grid grid-cols-3 w-full h-fit md:px-16 px-3 lg:px-0">
       <div
@@ -202,7 +202,7 @@
     <div class="w-fit mx-auto mb-5">
       <button
         onclick="window.location.href = '/new-letter-capsule'"
-        class="md:text-base text-sm bg-pink-100 px-5 py-1 text-pink-400 font-semibold transition-all rounded-full flex items-center gap-1 hover:bg-violet-200 hover:text-violet-500 hover:border-violet-400 active:bg-violet-400 active:border-violet-500 active:text-white"
+        class="lg:text-base text-sm bg-pink-100 px-5 py-1 text-pink-400 font-semibold transition-all rounded-full flex items-center gap-1 hover:bg-violet-200 hover:text-violet-500 hover:border-violet-400 active:bg-violet-400 active:border-violet-500 active:text-white"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -255,7 +255,7 @@
         />
       </svg>
       <div class="flex-1 flex flex-col">
-        <p class="text-lg group-hover/button:text-pink-500 text-white transition-all font-semibold"><%= capsule.title %></p>
+        <p class="md:text-lg text-base  group-hover/button:text-pink-500 text-white transition-all font-semibold"><%= capsule.title %></p>
         
         <div class="flex gap-1 2xl:flex-row flex-col transition-all">
           <div class="text-xs group-hover/button:bg-pink-100 bg-pink-500/50 group-hover/button:border-pink-300 border-pink-700/70 border transition-all px-2 rounded-full w-fit group-hover/button:text-pink-400 text-pink-700 font-semibold">Letters: 
@@ -317,7 +317,7 @@
             />
           </svg>
           <div class="flex-1 flex flex-col">
-            <p class="text-lg text-pink-500 group-hover/button:text-white transition-all font-semibold"><%= capsule.title %></p>
+            <p class="lg:text-lg text-base text-pink-500 group-hover/button:text-white transition-all font-semibold"><%= capsule.title %></p>
             
             <div class="flex gap-1 2xl:flex-row flex-col transition-all">
               <div class="text-xs bg-pink-100 group-hover/button:bg-pink-500/30 border-pink-300 group-hover/button:border-pink-700/70 border transition-all px-2 rounded-full w-fit text-pink-400 group-hover/button:text-pink-700/80 font-semibold">Letters: 

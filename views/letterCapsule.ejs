@@ -25,7 +25,7 @@
     </style>
   </head>
   <body
-    class="bg-gradient-to-r from-violet-100 via-purple-50 to-pink-100 bg-no-repeat bg-fixed transition-all px-0 lg:px-16 py-10"
+    class="bg-gradient-to-r from-violet-100 via-purple-50 to-pink-100 bg-no-repeat bg-fixed transition-all px-2 lg:px-16 py-10"
   >
     <div class="grid grid-cols-3 w-full h-fit md:px-16 px-3 lg:px-0">
       <div
@@ -220,9 +220,9 @@
       <%= capsule.description %>
     </p>
     <div
-      class="w-fit mx-auto bg-pink-300 font-semibold md:text-sm text-xs transition-all text-pink-400 px-4 py-2 rounded-xl mt-5"
+      class="w-fit mx-auto bg-pink-300 font-semibold md:text-sm text-xs transition-all text-pink-400 px-4 py-2 rounded-xl mt-5 text-center"
     >
-      <p class="bg-pink-200 px-3 py-1 rounded-lg flex items-center gap-2">
+      <p class="bg-pink-200 px-3 py-1 rounded-lg flex md:flex-row flex-col items-center gap-2" id="link">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"
@@ -235,10 +235,32 @@
             clip-rule="evenodd"
           />
         </svg>
-        https://friendfolio.com/add-letter/<%= capsule._id %>
+        https://safe-ivory-veterinarian.glitch.me/add-letter/<%= capsule._id %>
+
+        <script>
+          function myFunction(event) {
+            link = document.getElementById("link")
+            var copyText = link.innerText
+            
+            navigator.clipboard.writeText(copyText);
+
+            document.getElementById("span").innerText = "Copied !"
+} 
+        </script>
       </p>
     </div>
-    <div class="mx-auto w-fit flex mt-3 gap-3">
+
+    <div class="w-fit mx-auto">
+
+      <button onclick="myFunction(event)" class="bg-white rounded-lg font-medium text-sm mx-auto px-3 py-1 flex items-center gap-3 text-neutral-400 mt-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+          <path fill-rule="evenodd" d="M11.986 3H12a2 2 0 0 1 2 2v6a2 2 0 0 1-1.5 1.937v-2.523a2.5 2.5 0 0 0-.732-1.768L8.354 5.232A2.5 2.5 0 0 0 6.586 4.5H4.063A2 2 0 0 1 6 3h.014A2.25 2.25 0 0 1 8.25 1h1.5a2.25 2.25 0 0 1 2.236 2ZM10.5 4v-.75a.75.75 0 0 0-.75-.75h-1.5a.75.75 0 0 0-.75.75V4h3Z" clip-rule="evenodd" />
+          <path d="M3 6a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1v-3.586a1 1 0 0 0-.293-.707L7.293 6.293A1 1 0 0 0 6.586 6H3Z" />
+        </svg>
+        <span id="span">Copy text</span></button>
+    </div>
+
+    <div class="mx-auto w-fit flex mt-5 gap-3">
       <div
         class="rounded-xl bg-violet-300 font-bold text-white flex-col flex items-center justify-center w-20 group hover:bg-violet-400/70 transition-all hover:shadow-md hover:shadow-violet-500/30"
       >
@@ -338,7 +360,7 @@
         <div class="flex-1 flex flex-col">
         <p class="text-lg text-pink-500 font-semibold"><%= letter.title %></p>
         <p class="text-xs text-pink-400 font-medium -mt-1">From: <%= letter.from %></p>
-        <p class="font-medium text-neutral-400 text-sm mt-2"><%= letter.letter %></p>
+        <p class="font-medium text-neutral-400 md:text-sm text-xs mt-2 transition-all"><%= letter.letter %></p>
       </div>
     </div>
 
