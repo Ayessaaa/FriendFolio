@@ -2488,6 +2488,11 @@ video {
   background-color: rgb(244 114 182 / 0.8);
 }
 
+.hover\:bg-neutral-200:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 229 229 / var(--tw-bg-opacity, 1));
+}
+
 .hover\:fill-blue-400:hover {
   fill: #60a5fa;
 }
@@ -2859,6 +2864,11 @@ video {
 .active\:bg-yellow-400:active {
   --tw-bg-opacity: 1;
   background-color: rgb(250 204 21 / var(--tw-bg-opacity, 1));
+}
+
+.active\:bg-neutral-500:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(115 115 115 / var(--tw-bg-opacity, 1));
 }
 
 .active\:from-orange-500\/80:active {

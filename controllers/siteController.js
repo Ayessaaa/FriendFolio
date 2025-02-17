@@ -1200,21 +1200,15 @@ const letterSubmitted = async (req, res) => {
 };
 
 const addLetterPost = async (req, res) => {
-  const isLoggedIn = req.session.isLoggedIn;
-
-  if (isLoggedIn) {
-    const letter = new Letter({
-      title: req.body.title,
-      from: req.body.from,
-      letter: req.body.letter,
-      username: req.session.username,
-      capsule_id: req.params.id,
-    });
-    await letter.save();
-    res.redirect("/letter-submitted");
-  } else {
-    res.redirect("/log-in");
-  }
+  const letter = new Letter({
+    title: req.body.title,
+    from: req.body.from,
+    letter: req.body.letter,
+    username: req.session.username,
+    capsule_id: req.params.id,
+  });
+  await letter.save();
+  res.redirect("/letter-submitted");
 };
 
 export default {
