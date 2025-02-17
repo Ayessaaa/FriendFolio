@@ -33,7 +33,12 @@
       Letter Capsule
     </p>
     <p class="font-medium text-neutral-400 text-center mt-2 md:text-base text-sm transition-all">
-      Write a letter to [name] and this letter will be unlocked on
+      Write a letter to 
+      <span
+      class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400 font-bold text-lg w-fit mx-auto mt-10">
+        <%= capsule.username %>
+      </span> 
+      and this letter will be unlocked on
     </p>
 
     <div
@@ -42,12 +47,12 @@
       <p
         class="bg-pink-400/70 basis-2/6 px-5 pt-1.5 rounded-t-xl text-lg text-pink-600/80 w-full text-center drop-shadow-md group-hover:bg-pink-500/50 transition-all group-hover:text-pink-600"
       >
-        December
+        <%= capsule.date.toLocaleString('default', { month: 'long' }) %>
       </p>
       <p
         class="text-3xl basis-4/6 pt-2 drop-shadow-md group-hover:scale-105 transition-all pb-3"
       >
-        25
+        <%= capsule.date.getDate() %>
       </p>
     </div>
 
@@ -105,8 +110,8 @@
         <textarea
           required
           type="text"
-          name="description"
-          id="description"
+          name="letter"
+          id="letter"
           class="text-xs md:text-sm bg-neutral-50 px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2 focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500 active:bg-neutral-300/50 hover:bg-neutral-100 hover:border-neutral-200 transition-all"
         ></textarea>
       </div>

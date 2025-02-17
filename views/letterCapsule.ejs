@@ -257,11 +257,11 @@
         class="rounded-xl bg-pink-300 font-bold text-white flex-col flex items-center justify-center w-28 group shadow-sm hover:bg-pink-400/70 transition-all hover:shadow-md hover:shadow-pink-500/30"
       >
         <p class="text-base text-pink-500">Total Letter</p>
-        <p class="text-4xl">4</p>
+        <p class="text-4xl"><%= letters.length %></p>
       </div>
     </div>
     <div
-      class="bg-white px-5 py-1 font-medium text-neutral-400 w-fit mx-auto rounded-xl shadow-sm mt-2"
+      class="bg-white px-5 py-1 font-medium text-neutral-400 w-fit mx-auto rounded-xl shadow-sm mt-2 mb-5"
     >
     <% 
     today = new Date();
@@ -283,8 +283,11 @@
       <%= text %> 
     </div>
 
+    <% for (let i = 0; i < letters.length; i++) {
+        const letter = letters[i]; %>
+
     <div
-      class="bg-white w-1/4 mx-auto mt-5 p-5 flex rounded-lg gap-5 shadow-sm text-left min-w-80"
+      class="bg-white w-1/4 mx-auto mt-2 p-5 flex rounded-lg gap-5 shadow-sm text-left min-w-80"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -299,10 +302,14 @@
         />
       </svg>
 
-      <div class="flex-1 flex flex-col">
-        <p class="text-lg text-pink-500 font-semibold">Merry Christmas bruh</p>
-        <p class="text-sm text-pink-400 font-medium -mt-1">From: John</p>
+      
+        <div class="flex-1 flex flex-col">
+        <p class="text-lg text-pink-500 font-semibold"><%= letter.title %></p>
+        <p class="text-sm text-pink-400 font-medium -mt-1">From: <%= letter.from %></p>
       </div>
+      
+      
     </div>
+    <% } %>
   </body>
 </html>

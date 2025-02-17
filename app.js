@@ -148,3 +148,4 @@ app.post("/new-letter-capsule", siteController.newLetterCapsulePost);
 app.get("/letter-capsule/:id", siteController.letterCapsule);
 
 app.get("/add-letter/:id", siteController.addLetter);
+app.post("/add-letter/:id", siteController.addLetterPost)

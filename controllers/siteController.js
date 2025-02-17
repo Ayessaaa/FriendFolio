@@ -17,6 +17,7 @@ import Polariod from "../models/polariod.js"; // Note: Check spelling if you int
 import Gift from "../models/gift.js";
 import Profile from "../models/profile.js";
 import Capsule from "../models/capsule.js";
+import Letter from "../models/letter.js";
 
 import OpenAI from "openai";
 
@@ -1156,9 +1157,14 @@ const letterCapsule = async (req, res) => {
 
   if (isLoggedIn) {
     await Capsule.find({ _id: req.params.id })
-      .then((result) => {
-
-        res.render("letterCapsule", {capsule: result[0]});
+      .then((resultCapsule) => {
+        Letter.find({ capsule_id: req.params.id })
+          .then((resultLetter) => {
+            res.render("letterCapsule", { capsule: resultCapsule[0], letters: resultLetter });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => console.log(err));
   } else {
@@ -1170,7 +1176,31 @@ const addLetter = async (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
 
   if (isLoggedIn) {
-    res.render("addLetter");
+    Capsule.find({ _id: req.params.id })
+      .then((result) => {
+        res.render("addLetter", { capsule: result[0] });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
+const addLetterPost = async (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn;
+
+  if (isLoggedIn) {
+    const letter = new Letter({
+      title: req.body.title,
+      from: req.body.from,
+      letter: req.body.letter,
+      username: req.session.username,
+      capsule_id: req.params.id,
+    });
+    await letter.save();
+    res.redirect("/letter-submitted");
   } else {
     res.redirect("/log-in");
   }
@@ -1217,4 +1247,5 @@ export default {
   letterCapsule,
   addLetter,
   newLetterCapsulePost,
+  addLetterPost,
 };
