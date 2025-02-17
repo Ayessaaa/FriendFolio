@@ -3424,6 +3424,10 @@ video {
     width: 25%;
   }
 
+  .xl\:flex-row {
+    flex-direction: row;
+  }
+
   .xl\:flex-col {
     flex-direction: column;
   }
