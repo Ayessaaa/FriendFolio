@@ -345,9 +345,7 @@
             class="font-semibold text-neutral-400 mt-1 text-xs md:text-sm transition-all"
             >Birthday</label
           >
-          <input value="<%=
-          profile.birthday.getFullYear()+"-"+String(profile.birthday.getMonth()+1).padStart(2,
-          "0")+"-"+profile.birthday.getDate() %>" required type="date"
+          <input value="<%= profile.birthday.getFullYear()+'-'+String(profile.birthday.getMonth()+1).padStart(2, '0')+'-'+String(profile.birthday.getDate()).padStart(2, '0') %>" required type="date"
           name="birthday" id="birthday" class="text-xs md:text-sm bg-neutral-50
           w-full px-2 py-0.5 rounded-lg border-2 outline-none focus:ring-2
           focus:ring-neutral-300 border-neutral-100 font-medium text-neutral-500

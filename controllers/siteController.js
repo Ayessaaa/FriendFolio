@@ -868,7 +868,7 @@ const myProfile = async (req, res) => {
         if (result.length > 0) {
           try {
             const url =
-              "https://closed-time-denim.glitch.me/add-friend-qr/" +
+              "https://safe-ivory-veterinarian.glitch.me/add-friend-qr/" +
               result[0]._id;
             console.log(url);
             const qrCodeImage = await QRCode.toDataURL(url);
@@ -915,7 +915,6 @@ const editProfilePost = async (req, res) => {
   }
 
   if (isLoggedIn) {
-    console.log(req.body);
     await Profile.findOneAndUpdate(
       { username: req.session.username },
       {
@@ -958,7 +957,7 @@ const createProfilePost = async (req, res) => {
 
   var path = "https://fl-1.cdn.flockler.com/embed/no-image.svg";
 
-  if (req.body.pfp_default === 100) {
+  if (req.body.pfp_default === "100") {
     try {
       path = req.file.path;
     } catch {
@@ -1000,7 +999,7 @@ const addFriendQR = async (req, res) => {
       res.render("addFriendQR", { profile: result[0] });
     });
   } else {
-    res.redirect("/log-in/qr-redirect/" + req.params.id);
+    res.redirect("/log-in");
   }
 };
 

@@ -239,14 +239,14 @@
 
         if (!lock){
         %>
-      <button class="hover:bg-white  group/button bg-pink-400 transition-all w-1/4 mx-auto mt-2 p-5 flex rounded-lg gap-5 shadow-sm text-left min-w-96" onclick="window.location.href= '/letter-capsule/<%=capsule._id%>'">
+      <button class="hover:bg-white from-purple-200 to-pink-200  group/button bg-gradient-to-br transition-all w-1/4 mx-auto mt-2 p-5 flex rounded-lg gap-5 shadow-sm text-left min-w-96" onclick="window.location.href= '/letter-capsule/<%=capsule._id%>'">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        class="size-12 group-hover/button:stroke-pink-500 stroke-white transition-all"
+        class="size-12 group-hover/button:stroke-pink-500 stroke-purple-500 transition-all"
       >
         <path
           stroke-linecap="round"
@@ -255,10 +255,10 @@
         />
       </svg>
       <div class="flex-1 flex flex-col">
-        <p class="md:text-lg text-base  group-hover/button:text-pink-500 text-white transition-all font-semibold"><%= capsule.title %></p>
+        <p class="md:text-lg text-base  group-hover/button:text-pink-500 text-purple-500 transition-all font-semibold"><%= capsule.title %></p>
         
-        <div class="flex gap-1 2xl:flex-row flex-col transition-all">
-          <div class="text-xs group-hover/button:bg-pink-100 bg-pink-500/50 group-hover/button:border-pink-300 border-pink-700/70 border transition-all px-2 rounded-full w-fit group-hover/button:text-pink-400 text-pink-700 font-semibold">Letters: 
+        <div class="flex gap-1 flex-row items-center  transition-all mt-1">
+          <div class="text-[.70rem] 2xl:text-xs  group-hover/button:bg-pink-100 bg-white/50 group-hover/button:border-pink-300 border-pink-200/70 border transition-all px-2 rounded-full w-fit group-hover/button:text-pink-400 text-pink-400 font-semibold">Letters: 
             <% 
             var counter = 0
             for (let i = 0; i < letters.length; i++) {
@@ -269,7 +269,7 @@
               %><%
             
             } %><%= counter %></div>
-          <div class="text-xs group-hover/button:bg-violet-100 bg-violet-500/50 group-hover/button:border-violet-300 border-violet-700/70 border transition-all px-2 rounded-full w-fit group-hover/button:text-violet-400 text-violet-700 font-semibold"><%= text %> </div>
+          <div class="text-[.70rem]  2xl:text-xs group-hover/button:bg-violet-100 bg-white/50 group-hover/button:border-violet-300 border-violet-200/70 border transition-all px-2 rounded-full w-fit group-hover/button:text-violet-400 text-violet-400 font-semibold"><%= text %> </div>
         </div>
       </div>
       <div class="group-hover/button:bg-pink-400 bg-white transition-all px-3 py-1 rounded-lg group-hover/button:text-white text-pink-400 text-center shadow-sm">
@@ -319,8 +319,8 @@
           <div class="flex-1 flex flex-col">
             <p class="lg:text-lg text-base text-pink-500 group-hover/button:text-white transition-all font-semibold"><%= capsule.title %></p>
             
-            <div class="flex gap-1 2xl:flex-row flex-col transition-all">
-              <div class="text-xs bg-pink-100 group-hover/button:bg-pink-500/30 border-pink-300 group-hover/button:border-pink-700/70 border transition-all px-2 rounded-full w-fit text-pink-400 group-hover/button:text-pink-700/80 font-semibold">Letters: 
+            <div class="flex gap-1 flex-row transition-all">
+              <div class="2xl:text-xs text-[.65rem] bg-pink-100 group-hover/button:bg-pink-500/30 border-pink-300 group-hover/button:border-pink-700/70 border transition-all px-2 rounded-full w-fit text-pink-400 group-hover/button:text-pink-700/80 font-semibold">Letters: 
                 <% 
                 var counter = 0
                 for (let i = 0; i < letters.length; i++) {
@@ -331,7 +331,7 @@
                   %><%
                 
                 } %><%= counter %></div>
-              <div class="text-xs bg-violet-100 group-hover/button:bg-violet-500/30 border-violet-300 group-hover/button:border-violet-700/70 border transition-all px-2 rounded-full w-fit text-violet-400 group-hover/button:text-violet-700/80 font-semibold"><%= text %> </div>
+              <div class="2xl:text-xs text-[.65rem] bg-violet-100 group-hover/button:bg-violet-500/30 border-violet-300 group-hover/button:border-violet-700/70 border transition-all px-2 rounded-full w-fit text-violet-400 group-hover/button:text-violet-700/80 font-semibold"><%= text %> </div>
             </div>
           </div>
           <div class="bg-pink-400 group-hover/button:bg-white transition-all px-3 py-1 rounded-lg text-white group-hover/button:text-pink-400 text-center shadow-sm">
