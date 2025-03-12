@@ -9,6 +9,9 @@ You will never forget a thing about them anymore! **Especially birthdayss 😉**
 ### Demo Video
 https://www.youtube.com/watch?v=ZF_nH2YcO6Y
 
+### Updates Demo Video (updates from the cafe event)
+https://youtu.be/oV8RhHu72lo
+
 ### 🔧 Built Using
 
 **FriendFolio** is built using these technologies:
@@ -170,6 +173,39 @@ This enables users to create and open their own accounts.
 
 This link is accessible for everyone, no need for signing up!
 
+----
+
+## Updates
+
+### 🎁 Gift Idea Generator
+![dfgdfger](https://github.com/user-attachments/assets/a83200d8-08d0-4a32-956c-4091eb1e279a)
+
+Powered by OpenAI, the informationn that you provided from your friends are used to create gift ideas that you could use!
+
+### 🙎‍♀️ Create / Edit Profile
+![jshdfu](https://github.com/user-attachments/assets/e98e0e07-a3c8-4810-91c9-145ca6352cad)
+
+You can create you own profile so that you can share it through QR to your friends. It also have default hand drawn pfp (by me :D) to choose from.
+
+### 🙎‍♀️ Profile + Add Friend QR
+![hjasfgshj](https://github.com/user-attachments/assets/270c1c3d-a210-4cc4-ae3e-2bc1dac9222d)
+
+This includes informationn about yourself that you can share to your friends!
+
+### 🔐 Letter Capsule
+![hjsdgfyugsyuf](https://github.com/user-attachments/assets/e4af382a-3603-49a1-a214-812718fddf66)]
+
+You can create different letter capsules that you can share to your friends and unlock those letter on a given date. Your friends can write you letters from the link you've given to them
+
+### 🔓 Unlocked Letter Capsule
+![shjdfj](https://github.com/user-attachments/assets/08754938-187c-455e-be29-b51edb199eef)
+
+You can read your letters once the date comes
+
+### 💌 Add Letter
+![sjhdfi](https://github.com/user-attachments/assets/4056ddc5-4651-4892-b8e3-e19fa59b03f1)
+
+The link that you send to your friends where they put letters for you! No log in needed. 
 
 ## 📚 Resources
 I have used ChatGPT to help me from some code and debugging some parts of the project. Additionally, here are some resources that helped me create FriendFolio:
